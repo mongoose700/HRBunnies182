@@ -1,5 +1,7 @@
 package com.example.michael.hrbunnies182.game;
 
+import com.example.michael.hrbunnies182.controller.IViewToModelAdapter;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
