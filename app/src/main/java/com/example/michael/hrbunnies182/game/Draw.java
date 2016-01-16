@@ -23,7 +23,7 @@ public class Draw {
     public List<RouteCard> getReturnedCards() {
         List<RouteCard> returnedCards = new ArrayList<>(3 - mustKeep);
         for (CheckedRouteCard card : cards) {
-            if (card.isChecked()) {
+            if (!card.isChecked()) {
                 returnedCards.add(card.getCard());
             }
         }
@@ -32,5 +32,16 @@ public class Draw {
 
     public Player getPlayer() {
         return player;
+    }
+
+    /** Returns true when the number of cards kept is at least mustKeep */
+    public boolean isValid() {
+        int kept = 0;
+        for (CheckedRouteCard card : cards) {
+            if (card.isChecked()) {
+                kept++;
+            }
+        }
+        return kept >= mustKeep;
     }
 }
