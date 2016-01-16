@@ -1,12 +1,14 @@
 package com.example.michael.hrbunnies182.game;
 
+import java.io.Serializable;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Michael on 1/15/2016.
  */
-public class City {
+public class City implements Serializable{
     private String name;
     private Map<City, Edge> neighbors;
 

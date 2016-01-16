@@ -1,5 +1,6 @@
 package com.example.michael.hrbunnies182.game;
 
+import java.io.Serializable;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
@@ -26,7 +27,7 @@ import java.util.regex.Pattern;
 /**
  * Created by Michael on 1/15/2016.
  */
-public class GameMap {
+public class GameMap implements Serializable {
     // Pairs city to city, with duplicates
     private Set<Edge> edges;
 

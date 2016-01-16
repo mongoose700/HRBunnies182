@@ -1,5 +1,6 @@
 package com.example.michael.hrbunnies182.game;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Queue;
 /**
  * Created by Michael on 1/15/2016.
  */
-public class Deck {
+public class Deck implements Serializable {
     private Queue<RouteCard> cards;
 
     public Deck(List<RouteCard> cardList) {

@@ -1,5 +1,6 @@
 package com.example.michael.hrbunnies182.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * Created by Michael on 1/15/2016.
  */
-public class Draw {
+public class Draw implements Serializable {
 
     private final int mustKeep;
     private final Player player;
