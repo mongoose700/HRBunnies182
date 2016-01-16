@@ -15,16 +15,32 @@ import android.widget.ViewSwitcher;
 
 public class Start extends AppCompatActivity {
 
-    private ViewSwitcher switcher;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        createPlayerSelectScreen();
+
+        Button start = (Button) findViewById(R.id.buttonStart);
+
+        final Intent choosePlayersActivity = new Intent(this, com.example.michael.hrbunnies182.view.ChoosePlayersActivity.class);
+
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(choosePlayersActivity);
+            }
+        });
+    }
+
+    /*
+
+     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.test_layout);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         //fab.setOnClickListener(new View.OnClickListener() {
@@ -36,20 +52,6 @@ public class Start extends AppCompatActivity {
         //});
     }
 
-    private void createPlayerSelectScreen() {
-
-        Button ok = (Button) findViewById(R.id.buttonOkToPlayers);
-
-        final Intent intent = new Intent(this, com.example.michael.hrbunnies182.view.ChoosePlayersActivity.class);
-
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean isRed = ((CheckBox) findViewById(R.id.checkBoxRed)).isChecked();
-                startActivity(intent);
-            }
-        });
-    }
 
     //@Override
     //public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,4 +74,5 @@ public class Start extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+     */
 }

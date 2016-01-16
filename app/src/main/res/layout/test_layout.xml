@@ -6,8 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="H!!!"
+        android:text="HI!!!"
         android:id="@+id/textView3" />
 </LinearLayout>
