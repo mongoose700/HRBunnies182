@@ -165,22 +165,6 @@
                     Seattle
                 </city>
                 <city>
-                    Vancouver
-                </city>
-            </cities>
-            <length>
-                1
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Seattle
-                </city>
-                <city>
                     Helena
                 </city>
             </cities>
@@ -213,22 +197,6 @@
                     Portland
                 </city>
                 <city>
-                    Seattle
-                </city>
-            </cities>
-            <length>
-                1
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Portland
-                </city>
-                <city>
                     Salt Lake City
                 </city>
             </cities>
@@ -261,22 +229,6 @@
                     San Francisco
                 </city>
                 <city>
-                    Portland
-                </city>
-            </cities>
-            <length>
-                5
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    San Francisco
-                </city>
-                <city>
                     Salt Lake City
                 </city>
             </cities>
@@ -294,22 +246,6 @@
                 </city>
                 <city>
                     Los Angeles
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Los Angeles
-                </city>
-                <city>
-                    San Francisco
                 </city>
             </cities>
             <length>
@@ -373,38 +309,6 @@
                     Calgary
                 </city>
                 <city>
-                    Vancouver
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Calgary
-                </city>
-                <city>
-                    Seattle
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Calgary
-                </city>
-                <city>
                     Helena
                 </city>
             </cities>
@@ -422,38 +326,6 @@
                 </city>
                 <city>
                     Winnipeg
-                </city>
-            </cities>
-            <length>
-                6
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Helena
-                </city>
-                <city>
-                    Calgary
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Helena
-                </city>
-                <city>
-                    Seattle
                 </city>
             </cities>
             <length>
@@ -541,38 +413,6 @@
             </length>
             <width>
                 1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Salt Lake City
-                </city>
-                <city>
-                    Portland
-                </city>
-            </cities>
-            <length>
-                6
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Salt Lake City
-                </city>
-                <city>
-                    San Francisco
-                </city>
-            </cities>
-            <length>
-                5
-            </length>
-            <width>
-                2
             </width>
         </edge>
         <edge>
@@ -610,70 +450,6 @@
         <edge>
             <cities>
                 <city>
-                    Salt Lake City
-                </city>
-                <city>
-                    Helena
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Las Vegas
-                </city>
-                <city>
-                    Salt Lake City
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Las Vegas
-                </city>
-                <city>
-                    Los Angeles
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Phoenix
-                </city>
-                <city>
-                    Los Angeles
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
                     Phoenix
                 </city>
                 <city>
@@ -725,38 +501,6 @@
                     Winnipeg
                 </city>
                 <city>
-                    Calgary
-                </city>
-            </cities>
-            <length>
-                6
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Winnipeg
-                </city>
-                <city>
-                    Helena
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Winnipeg
-                </city>
-                <city>
                     Sault St. Marie
                 </city>
             </cities>
@@ -778,54 +522,6 @@
             </cities>
             <length>
                 4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Denver
-                </city>
-                <city>
-                    Helena
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Denver
-                </city>
-                <city>
-                    Salt Lake City
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Denver
-                </city>
-                <city>
-                    Phoenix
-                </city>
-            </cities>
-            <length>
-                5
             </length>
             <width>
                 1
@@ -901,39 +597,7 @@
                     Santa Fe
                 </city>
                 <city>
-                    Phoenix
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Santa Fe
-                </city>
-                <city>
                     El Paso
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Santa Fe
-                </city>
-                <city>
-                    Denver
                 </city>
             </cities>
             <length>
@@ -954,54 +618,6 @@
             </cities>
             <length>
                 3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    El Paso
-                </city>
-                <city>
-                    Los Angeles
-                </city>
-            </cities>
-            <length>
-                6
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    El Paso
-                </city>
-                <city>
-                    Phoenix
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    El Paso
-                </city>
-                <city>
-                    Santa Fe
-                </city>
-            </cities>
-            <length>
-                2
             </length>
             <width>
                 1
@@ -1046,38 +662,6 @@
                 </city>
                 <city>
                     Houston
-                </city>
-            </cities>
-            <length>
-                6
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Duluth
-                </city>
-                <city>
-                    Winnipeg
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Duluth
-                </city>
-                <city>
-                    Helena
                 </city>
             </cities>
             <length>
@@ -1157,54 +741,6 @@
                     Omaha
                 </city>
                 <city>
-                    Helena
-                </city>
-            </cities>
-            <length>
-                5
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Omaha
-                </city>
-                <city>
-                    Denver
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Omaha
-                </city>
-                <city>
-                    Duluth
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Omaha
-                </city>
-                <city>
                     Chicago
                 </city>
             </cities>
@@ -1226,38 +762,6 @@
             </cities>
             <length>
                 1
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Kansas City
-                </city>
-                <city>
-                    Omaha
-                </city>
-            </cities>
-            <length>
-                1
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Kansas City
-                </city>
-                <city>
-                    Denver
-                </city>
-            </cities>
-            <length>
-                4
             </length>
             <width>
                 2
@@ -1301,70 +805,6 @@
                     Oklahoma City
                 </city>
                 <city>
-                    Denver
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Oklahoma City
-                </city>
-                <city>
-                    Santa Fe
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Oklahoma City
-                </city>
-                <city>
-                    El Paso
-                </city>
-            </cities>
-            <length>
-                5
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Oklahoma City
-                </city>
-                <city>
-                    Kansas City
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Oklahoma City
-                </city>
-                <city>
                     Little Rock
                 </city>
             </cities>
@@ -1397,38 +837,6 @@
                     Dallas
                 </city>
                 <city>
-                    Oklahoma City
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Dallas
-                </city>
-                <city>
-                    El Paso
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Dallas
-                </city>
-                <city>
                     Little Rock
                 </city>
             </cities>
@@ -1453,38 +861,6 @@
             </length>
             <width>
                 2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Houston
-                </city>
-                <city>
-                    Dallas
-                </city>
-            </cities>
-            <length>
-                1
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Houston
-                </city>
-                <city>
-                    El Paso
-                </city>
-            </cities>
-            <length>
-                6
-            </length>
-            <width>
-                1
             </width>
         </edge>
         <edge>
@@ -1498,38 +874,6 @@
             </cities>
             <length>
                 2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Sault St. Marie
-                </city>
-                <city>
-                    Winnipeg
-                </city>
-            </cities>
-            <length>
-                6
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Sault St. Marie
-                </city>
-                <city>
-                    Duluth
-                </city>
-            </cities>
-            <length>
-                3
             </length>
             <width>
                 1
@@ -1573,38 +917,6 @@
                     Chicago
                 </city>
                 <city>
-                    Duluth
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Chicago
-                </city>
-                <city>
-                    Omaha
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Chicago
-                </city>
-                <city>
                     Saint Louis
                 </city>
             </cities>
@@ -1653,22 +965,6 @@
                     Saint Louis
                 </city>
                 <city>
-                    Kansas City
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Saint Louis
-                </city>
-                <city>
                     Little Rock
                 </city>
             </cities>
@@ -1677,22 +973,6 @@
             </length>
             <width>
                 1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Saint Louis
-                </city>
-                <city>
-                    Chicago
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
             </width>
         </edge>
         <edge>
@@ -1733,54 +1013,6 @@
                     Little Rock
                 </city>
                 <city>
-                    Oklahoma City
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Little Rock
-                </city>
-                <city>
-                    Dallas
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Little Rock
-                </city>
-                <city>
-                    Saint Louis
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Little Rock
-                </city>
-                <city>
                     Nashville
                 </city>
             </cities>
@@ -1802,38 +1034,6 @@
             </cities>
             <length>
                 3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    New Orleans
-                </city>
-                <city>
-                    Little Rock
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    New Orleans
-                </city>
-                <city>
-                    Houston
-                </city>
-            </cities>
-            <length>
-                2
             </length>
             <width>
                 1
@@ -1877,54 +1077,6 @@
                     Toronto
                 </city>
                 <city>
-                    Sault St. Marie
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Toronto
-                </city>
-                <city>
-                    Duluth
-                </city>
-            </cities>
-            <length>
-                6
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Toronto
-                </city>
-                <city>
-                    Chicago
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Toronto
-                </city>
-                <city>
                     Pittsburgh
                 </city>
             </cities>
@@ -1957,59 +1109,11 @@
                     Pittsburgh
                 </city>
                 <city>
-                    Chicago
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Pittsburgh
-                </city>
-                <city>
-                    Saint Louis
-                </city>
-            </cities>
-            <length>
-                5
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Pittsburgh
-                </city>
-                <city>
                     Nashville
                 </city>
             </cities>
             <length>
                 4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Pittsburgh
-                </city>
-                <city>
-                    Toronto
-                </city>
-            </cities>
-            <length>
-                2
             </length>
             <width>
                 1
@@ -2069,54 +1173,6 @@
                     Nashville
                 </city>
                 <city>
-                    Saint Louis
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Nashville
-                </city>
-                <city>
-                    Little Rock
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Nashville
-                </city>
-                <city>
-                    Pittsburgh
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Nashville
-                </city>
-                <city>
                     Raleigh
                 </city>
             </cities>
@@ -2141,38 +1197,6 @@
             </length>
             <width>
                 1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Atlanta
-                </city>
-                <city>
-                    Nashville
-                </city>
-            </cities>
-            <length>
-                1
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Atlanta
-                </city>
-                <city>
-                    New Orleans
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                2
             </width>
         </edge>
         <edge>
@@ -2218,38 +1242,6 @@
             </cities>
             <length>
                 5
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Montreal
-                </city>
-                <city>
-                    Sault St. Marie
-                </city>
-            </cities>
-            <length>
-                5
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Montreal
-                </city>
-                <city>
-                    Toronto
-                </city>
-            </cities>
-            <length>
-                3
             </length>
             <width>
                 1
@@ -2293,71 +1285,7 @@
                     Boston
                 </city>
                 <city>
-                    Montreal
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Boston
-                </city>
-                <city>
                     New York
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    New York
-                </city>
-                <city>
-                    Montreal
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    New York
-                </city>
-                <city>
-                    Pittsburgh
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    New York
-                </city>
-                <city>
-                    Boston
                 </city>
             </cities>
             <length>
@@ -2389,103 +1317,7 @@
                     Washington
                 </city>
                 <city>
-                    New York
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Washington
-                </city>
-                <city>
-                    Pittsburgh
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Washington
-                </city>
-                <city>
                     Raleigh
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Raleigh
-                </city>
-                <city>
-                    Pittsburgh
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Raleigh
-                </city>
-                <city>
-                    Nashville
-                </city>
-            </cities>
-            <length>
-                3
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Raleigh
-                </city>
-                <city>
-                    Atlanta
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                2
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Raleigh
-                </city>
-                <city>
-                    Washington
                 </city>
             </cities>
             <length>
@@ -2502,38 +1334,6 @@
                 </city>
                 <city>
                     Charleston
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Charleston
-                </city>
-                <city>
-                    Raleigh
-                </city>
-            </cities>
-            <length>
-                2
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Charleston
-                </city>
-                <city>
-                    Atlanta
                 </city>
             </cities>
             <length>
@@ -2550,54 +1350,6 @@
                 </city>
                 <city>
                     Miami
-                </city>
-            </cities>
-            <length>
-                4
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Miami
-                </city>
-                <city>
-                    New Orleans
-                </city>
-            </cities>
-            <length>
-                6
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Miami
-                </city>
-                <city>
-                    Atlanta
-                </city>
-            </cities>
-            <length>
-                5
-            </length>
-            <width>
-                1
-            </width>
-        </edge>
-        <edge>
-            <cities>
-                <city>
-                    Miami
-                </city>
-                <city>
-                    Charleston
                 </city>
             </cities>
             <length>

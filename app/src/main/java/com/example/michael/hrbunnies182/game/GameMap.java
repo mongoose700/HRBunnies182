@@ -35,9 +35,6 @@ public class GameMap {
 
     // Maps all city names to City objects
     private Map<String, City> cities;
-
-    // Used to index cities when seeking all-pairs shortest-path
-    private String[] cityList;
     
     // Used for picking new cards
     private Random r = new Random();
@@ -58,7 +55,7 @@ public class GameMap {
     public static void main(String[] args) {
         GameMap test = new GameMap("usa.txt", null);
 
-        Deck deck = test.getDeck(30);
+        Deck deck = test.getDeck(35);
 
         System.out.println("Deck: " + deck);
     }
