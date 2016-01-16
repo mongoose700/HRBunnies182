@@ -239,24 +239,28 @@ public class GameMap implements Serializable {
      * Sets all the edge distances between cities.
      */
     private void initMap(String mapName, Activity activity) {
-        Resources res = activity.getResources();
-        XmlResourceParser xpp = res.getXml(R.xml.usa);
-        int eventType = 0;
-        try {
-            eventType = xpp.getEventType();
-            while (eventType != XmlPullParser.END_DOCUMENT)
-            {
-                if (eventType == XmlPullParser.START_TAG) {
-                    if (xpp.getName().equals(CITIES)) {
-                        initCities(xpp);
-                    } else if (xpp.getName().equals(EDGES)) {
-                        initEdges(xpp);
-                    }
-                }
-            }
-        } catch (XmlPullParserException|IOException e) {
-            e.printStackTrace();
-        }
+//        Resources res = activity.getResources();
+//        XmlResourceParser xpp = res.getXml(R.xml.usa);
+//        int eventType = 0;
+//        try {
+//            eventType = xpp.getEventType();
+//            while (eventType != XmlPullParser.END_DOCUMENT)
+//            {
+//                if (eventType == XmlPullParser.START_TAG) {
+//                    if (xpp.getName().equals(CITIES)) {
+//                        initCities(xpp);
+//                    } else if (xpp.getName().equals(EDGES)) {
+//                        initEdges(xpp);
+//                    }
+//                }
+//            }
+//        } catch (XmlPullParserException|IOException e) {
+//            e.printStackTrace();
+//        }
+        edges = new HashSet<>();
+        cityList = new String[]{"Bunnyland"};
+        cities = new HashMap<>();
+        cities.put(cityList[0], new City(cityList[0]));
     }
 
     private void initCities(XmlResourceParser xpp) throws XmlPullParserException, IOException {
