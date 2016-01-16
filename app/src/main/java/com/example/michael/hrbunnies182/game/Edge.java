@@ -27,4 +27,25 @@ public class Edge {
     public Pair<City, City> getCities() {
         return cities;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Edge edge = (Edge) o;
+
+        if (length != edge.length) return false;
+        if (width != edge.width) return false;
+        return !(cities != null ? !cities.equals(edge.cities) : edge.cities != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = length;
+        result = 31 * result + width;
+        result = 31 * result + (cities != null ? cities.hashCode() : 0);
+        return result;
+    }
 }

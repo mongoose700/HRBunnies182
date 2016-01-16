@@ -1,5 +1,7 @@
 package com.example.michael.hrbunnies182.game;
 
+import android.app.Activity;
+
 import com.example.michael.hrbunnies182.controller.IViewToModelAdapter;
 
 import java.io.Serializable;
@@ -17,8 +19,8 @@ public class Model implements Serializable {
     private List<Player> players;
     private GameMap map;
 
-    public Model(Set<PlayerColor> colors) {
-        map = new GameMap();
+    public Model(Set<PlayerColor> colors, Activity activity) {
+        map = new GameMap("usa.xml", activity);
         deck = map.getDeck();
         players = new ArrayList<>(colors.size());
         for (PlayerColor color : colors) {

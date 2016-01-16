@@ -1,5 +1,7 @@
 package com.example.michael.hrbunnies182.controller;
 
+import android.app.Activity;
+
 import com.example.michael.hrbunnies182.game.Model;
 import com.example.michael.hrbunnies182.game.PlayerColor;
 
@@ -13,8 +15,8 @@ public class Controller implements Serializable {
 
     private final IViewToModelAdapter adapter;
 
-    public Controller(Set<PlayerColor> playerColors) {
-        Model model = new Model(playerColors);
+    public Controller(Set<PlayerColor> playerColors, Activity activity) {
+        Model model = new Model(playerColors, activity);
         adapter = model.getAdapter();
     }
 
