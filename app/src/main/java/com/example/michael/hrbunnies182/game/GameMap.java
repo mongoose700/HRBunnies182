@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +28,7 @@ import java.util.regex.Pattern;
  */
 public class GameMap {
     // Pairs city to city, with duplicates
-    private Map<City, Map<City, Edge>> edges;
+    private Set<Edge> edges;
 
     // Pairs city to city, with duplicates
     private Map<City, Map<City, Integer>> shortestPathLengths;
@@ -45,13 +47,6 @@ public class GameMap {
     private String EDGE = "edge";
     private String LENGTH = "length";
     private String WIDTH = "width";
-
-    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco",
-            "Los Angeles", "Calgary", "Helena", "Salt Lake City", "Las Vegas", "Phoenix",
-            "Winnipeg", "Denver", "Santa Fe", "El Paso", "Duluth", "Omaha", "Kansas City",
-            "Oklahoma City", "Dallas", "Houston", "Sault St. Marie", "Chicago","Saint Louis",
-            "Little Rock", "New Orleans", "Toronto", "Pittsburgh", "Nashville", "Atlanta",
-            "Montreal", "Boston", "New York", "Washington", "Raleigh", "Charleston", "Miami"};
 
     /**
      * Create a new map (initializing the cities and edges between them)
@@ -176,17 +171,7 @@ public class GameMap {
         // Initialize all distances to infinity, except for neighbors and city-to-itself
         for (int i = 0; i < cityList.length; i++) {
             for (int j = 0; j < cityList.length; j++) {
-                if (i != j) {
-                    if (edges.get(cities.get(cityList[i])).containsKey(cities.get(cityList[j]))) {
-                        // The two cities are neighbors
-                        minDists[i][j] = edges.get(cities.get(cityList[i])).get(cities.get(cityList[j])).getLength();
-                    } else {
-                        minDists[i][j] = Integer.MAX_VALUE;
-                    }
-                } else {
-                    // The cities are identical
-                    minDists[i][j] = 0;
-                }
+                minDists[i][j] = cities.get(cityList[i]).getDistance(cities.get(cityList[j]));
             }
         }
 
@@ -236,36 +221,17 @@ public class GameMap {
     private void validateCities(Integer[][] minDists) {
         for (int i = 0; i < cityList.length; i++) {
             for (int j = 0; j < cityList.length; j++) {
-                if (edges.get(cities.get(cityList[i])).containsKey(cities.get(cityList[j]))) {
+                if (cities.get(cityList[i]).getDistance(cities.get(cityList[j])) < Integer.MAX_VALUE) {
                     // The two cities are neighbors
                     minDists[i][j] = 0;
                 }
             }
         }
     }
-
-    private void addCity(String line) {
-        cities.put(line, new City(line));
-    }
-
-    private void addEdge(String line) {
-        Pattern pattern = Pattern.compile("(.*)\\t+(.*)\\t+([0-9]*)\\t+([0-9]*)");
-        Matcher matcher = pattern.matcher(line);
-        String firstCityName = matcher.group(1);
-        String secondCityName = matcher.group(2);
-        int length = Integer.parseInt(matcher.group(3));
-        int width = Integer.parseInt(matcher.group(4));
-        addEdge(firstCityName, secondCityName, length, width);
-    }
-
     private void addEdge(String firstCityName, String secondCityName, int length, int width) {
         City firstCity = cities.get(firstCityName);
         City secondCity = cities.get(secondCityName);
-        Edge edge = new Edge(firstCity, secondCity, length, width);
-        if (!edges.containsKey(firstCity)) {
-            edges.put(firstCity, new HashMap<City, Edge>());
-        }
-        edges.get(firstCity).put(secondCity, edge);
+        edges.add(new Edge(firstCity, secondCity, length, width));
     }
 
     /**
@@ -301,14 +267,10 @@ public class GameMap {
     }
 
     private void initEdges(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+        edges = new HashSet<>();
         int eventType = xpp.getEventType();
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(EDGES))) {
-            Edge edge = extractEdge(xpp);
-            Pair<City, City> edgeCities = edge.getCities();
-            if (!edges.containsKey(edgeCities.first)) {
-                edges.put(edgeCities.first, new HashMap<City, Edge>());
-            }
-            edges.get(edgeCities.first).put(edgeCities.second, edge);
+            edges.add(extractEdge(xpp));
             eventType = xpp.getEventType();
         }
         xpp.next();
