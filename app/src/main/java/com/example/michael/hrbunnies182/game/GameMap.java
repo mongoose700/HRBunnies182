@@ -55,16 +55,16 @@ public class GameMap {
     public Deck getDeck() {
         // Get all valid pairs of cities and the shortest distances between them
         Integer[][] minDists = getMinCityDist();
-        System.out.println("Naive minimum distances:");
-        prettyPrintDistances(minDists);
+//        System.out.println("Naive minimum distances:");
+//        prettyPrintDistances(minDists);
 
         // Mutate minDists, setting all invalid pairs of cities to have 0 distance
         validateCities(minDists);
 
-        System.out.println("Validated cities:");
-        prettyPrintDistances(minDists);
+//        System.out.println("Validated cities:");
+//        prettyPrintDistances(minDists);
 
-        ArrayDeque<RouteCard> cards = new ArrayDeque<>();
+        ArrayList<RouteCard> cards = new ArrayList<>();
         // Create RouteCards for each city and add them to the deck.
         // Takes only the upper triangle for efficiency
         for (int i = 0; i < minDists.length; i++) {
@@ -77,7 +77,7 @@ public class GameMap {
         }
 
         // Shuffle the cards
-//        Collections.shuffle(cards);
+        Collections.shuffle(cards);
 
         return new Deck(cards);
     }
@@ -130,8 +130,8 @@ public class GameMap {
             }
         }
 
-        System.out.println("Initialized distance array (before minimum search):");
-        prettyPrintDistances(minDists);
+//        System.out.println("Initialized distance array (before minimum search):");
+//        prettyPrintDistances(minDists);
 
         // Search for minimum distances
         for (int k = 0; k < cityList.length; k++) {
