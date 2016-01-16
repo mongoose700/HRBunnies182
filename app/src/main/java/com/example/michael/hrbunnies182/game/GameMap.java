@@ -7,9 +7,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +31,13 @@ public class GameMap {
 
     // Used to index cities when seeking all-pairs shortest-path
     private String[] cityList;
+    
+    // Used for picking new cards
+    private Random r = new Random();
+
+    // Used to index cities when seeking all-pairs shortest-path, and also for initCities.
+    // Clearly, hardcodes for America
+//    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco", "Salt Lake City"};
 
     /**
      * Create a new map (initializing the cities and edges between them)
@@ -39,7 +49,7 @@ public class GameMap {
     public static void main(String[] args) {
         GameMap test = new GameMap("usa.txt", null);
 
-        Deck deck = test.getDeck();
+        Deck deck = test.getDeck(30);
 
         System.out.println("Deck: " + deck);
     }
@@ -48,6 +58,51 @@ public class GameMap {
      * Get a shuffled deck from this map
      */
     public Deck getDeck() {
+        List<RouteCard> cards = getDeckCards();
+
+        // Shuffle the cards
+        Collections.shuffle(cards);
+
+        return new Deck(cards);
+    }
+
+    /**
+     * Get a deck with the given number of cards from this map;
+     * should be fairly evenly distributed across the country
+     *
+     * @param numCards The number of cards to produce
+     */
+    public Deck getDeck(int numCards) {
+        numCards = numCards - 1; // Hack to make the math easier
+
+        // Get a list of cards, not shuffled for better card distribution
+        List<RouteCard> initCards = getDeckCards();
+
+        // Get the interval at which to draw cards (truncating)
+        int interval = initCards.size() / numCards;
+
+        // Pick a random starting card so we don't always include Vancouver to Portland
+        int offset = initCards.size() % numCards;
+        int start = r.nextInt(offset);
+
+//        System.out.println("Picking " + (numCards + 1) + " cards from deck of " + initCards.size() +
+//                " with start index " + start + " from offset " + offset + " and interval " + interval);
+
+        ArrayList<RouteCard> newCards = new ArrayList<>();
+        for (int i = start; i < initCards.size(); i = i + interval) {
+//            System.out.println("Picking card at index " + i);
+            newCards.add(initCards.get(i));
+        }
+
+        Collections.shuffle(newCards);
+
+        return new Deck(newCards);
+    }
+
+    /**
+     * Get a list of RouteCards
+     */
+    private List<RouteCard> getDeckCards() {
         // Get all valid pairs of cities and the shortest distances between them
         Integer[][] minDists = getMinCityDist();
 //        System.out.println("Naive minimum distances:");
@@ -70,11 +125,7 @@ public class GameMap {
                 }
             }
         }
-
-        // Shuffle the cards
-        Collections.shuffle(cards);
-
-        return new Deck(cards);
+        return cards;
     }
 
     /**

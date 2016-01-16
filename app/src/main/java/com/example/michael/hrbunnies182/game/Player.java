@@ -8,8 +8,8 @@ import java.util.List;
  * Created by Michael on 1/15/2016.
  */
 public class Player {
-    private PlayerColor color;
-    private List<RouteCard> cards;
+    private final PlayerColor color;
+    private final List<RouteCard> cards;
     private int score;
     private String name;
     private String pin;
@@ -18,12 +18,10 @@ public class Player {
         this.score = 0;
         this.color = color;
         this.cards = new ArrayList<>();
-        this.name = color.name();
-        this.pin = null;
     }
 
-    public void addCards(List<RouteCard> cards) {
-        cards.addAll(cards);
+    public void addCards(List<RouteCard> addedCards) {
+        cards.addAll(addedCards);
     }
 
     public List<RouteCard> getCards() {
@@ -48,5 +46,9 @@ public class Player {
 
     public boolean verifyPin(String attempt) {
         return attempt.equals(name);
+    }
+
+    public String toString() {
+        return color + "_PLAYER";
     }
 }

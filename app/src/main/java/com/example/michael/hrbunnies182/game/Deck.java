@@ -2,7 +2,6 @@ package com.example.michael.hrbunnies182.game;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 import java.util.Queue;
 
@@ -28,6 +27,10 @@ public class Deck {
 
     public void returnCards(Draw draw) {
         cards.addAll(draw.getReturnedCards());
+    }
+
+    public int numCards() {
+        return cards.size();
     }
 
     public String toString() {
