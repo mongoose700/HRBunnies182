@@ -22,14 +22,14 @@ public class GameMap {
 
     // Used to index cities when seeking all-pairs shortest-path, and also for initCities.
     // Clearly, hardcodes for America
-    String[] testCityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco", "Salt Lake City"};
+    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco", "Salt Lake City"};
 
-    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco",
-            "Los Angeles", "Calgary", "Helena", "Salt Lake City", "Las Vegas", "Phoenix",
-            "Winnipeg", "Denver", "Santa Fe", "El Paso", "Duluth", "Omaha", "Kansas City",
-            "Oklahoma City", "Dallas", "Houston", "Sault St. Marie", "Chicago","Saint Louis",
-            "Little Rock", "New Orleans", "Toronto", "Pittsburgh", "Nashville", "Atlanta",
-            "Montreal", "Boston", "New York", "Washington", "Raleigh", "Charleston", "Miami"};
+//    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco",
+//            "Los Angeles", "Calgary", "Helena", "Salt Lake City", "Las Vegas", "Phoenix",
+//            "Winnipeg", "Denver", "Santa Fe", "El Paso", "Duluth", "Omaha", "Kansas City",
+//            "Oklahoma City", "Dallas", "Houston", "Sault St. Marie", "Chicago","Saint Louis",
+//            "Little Rock", "New Orleans", "Toronto", "Pittsburgh", "Nashville", "Atlanta",
+//            "Montreal", "Boston", "New York", "Washington", "Raleigh", "Charleston", "Miami"};
 
     /**
      * Create a new map (initializing the cities and edges between them)
@@ -139,7 +139,7 @@ public class GameMap {
         for (int k = 0; k < cityList.length; k++) {
             for (int j = 0; j < cityList.length; j++) {
                 for (int i = 0; i < cityList.length; i++) {
-                    if (minDists[i][j] > minDists[i][k] + minDists[k][j]) {
+                    if (minDists[i][j] > safeInfAdd(minDists[i][k], minDists[k][j])) {
                         minDists[i][j] = minDists[i][k] + minDists[k][j];
                     }
                 }
@@ -147,6 +147,26 @@ public class GameMap {
         }
 
         return minDists;
+    }
+
+    /**
+     * If num1 + num2 would be greater than Integer.MAX_VALUE (and hence overflow), returns
+     * Integer.MAX_VALUE instead.
+     *
+     * @param num1 The first number being added
+     * @param num2 The second number being added
+     * @return The smaller of
+     */
+    private Integer safeInfAdd(int num1, int num2) {
+        if (num1 == Integer.MAX_VALUE || num2 == Integer.MAX_VALUE) {
+            // Clearly going to overflow
+            return Integer.MAX_VALUE;
+        } else if (num1 > 0 && num2 > 0 && ((num1 + num2 < num1) || (num1 + num2 < num2))) {
+            // It overflowed
+            return Integer.MAX_VALUE;
+        } else {
+            return num1 + num2;
+        }
     }
 
     /**
@@ -414,10 +434,5 @@ public class GameMap {
             cityMap.put(cityNames.get(cityNameArray[i]), cityDistances[i]);
         }
         return cityMap;
-    }
-
-    public Deck createDeck() {
-        //TODO: create deck from map
-        return null;
     }
 }
