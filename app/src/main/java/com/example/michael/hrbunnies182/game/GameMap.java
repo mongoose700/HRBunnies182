@@ -289,6 +289,8 @@ public class GameMap implements Serializable {
                 } else if (xpp.getName().equals(WIDTH)) {
                     width = extractInt(xpp);
                 }
+            } else {
+                xpp.next();
             }
         }
         xpp.next();
