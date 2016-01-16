@@ -79,7 +79,7 @@ public class GameMap {
         // Shuffle the cards
         Collections.shuffle(cards);
 
-        return new Deck(cards);
+        return new Deck(new ArrayDeque<>(cards));
     }
 
     /**
