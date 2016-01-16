@@ -315,4 +315,8 @@ public class GameMap {
         xpp.next();
         return val;
     }
+
+    public Set<Edge> getEdges() {
+        return edges;
+    }
 }
