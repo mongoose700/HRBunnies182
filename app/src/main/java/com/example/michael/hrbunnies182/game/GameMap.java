@@ -35,17 +35,13 @@ public class GameMap {
     /**
      * Create a new map (initializing the cities and edges between them)
      */
-    public GameMap(boolean test) {
+    public GameMap() {
         initCities();
-        if (!test) {
-            initMap();
-        } else {
-            initTestMap();
-        }
+        initMap();
     }
 
     public static void main(String[] args) {
-        GameMap test = new GameMap(true);
+        GameMap test = new GameMap();
 
         Deck deck = test.getDeck();
 
@@ -178,35 +174,6 @@ public class GameMap {
         for (String name: cityList) {
             cityNames.put(name, new City(name));
         }
-    }
-
-    /**
-     * Initialize a test map
-     */
-    private void initTestMap() {
-        edgeDistances = new HashMap<>();
-
-        // Vancouver
-        edgeDistances.put(cityNames.get("Vancouver"),
-                fillMap(new String[]{"Seattle"}, new Integer[]{1}));
-
-        // Seattle
-        edgeDistances.put(cityNames.get("Seattle"),
-                fillMap(new String[]{"Vancouver", "Portland"}, new Integer[]{1, 1}));
-
-        // Portland
-        edgeDistances.put(cityNames.get("Portland"),
-                fillMap(new String[]{"Seattle", "Salt Lake City", "San Francisco"}, new Integer[]{1, 6, 5}));
-
-        // San Francisco
-        edgeDistances.put(cityNames.get("San Francisco"),
-                fillMap(new String[]{"Portland", "Salt Lake City"}, new Integer[]{5, 5}));
-
-        // Salt Lake City
-        edgeDistances.put(cityNames.get("Salt Lake City"),
-                fillMap(new String[]{"Portland", "San Francisco"},
-                        new Integer[] {6, 5}));
-
     }
 
     /**
