@@ -2,24 +2,18 @@ package com.example.michael.hrbunnies182.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.Player;
 import com.example.michael.hrbunnies182.game.PlayerColor;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class InitializePlayerActivity extends AppCompatActivity {
@@ -33,18 +27,21 @@ public class InitializePlayerActivity extends AppCompatActivity {
         setContentView(R.layout.initialize_player);
 
         Bundle appData = getIntent().getBundleExtra("APP_DATA");
-        Controller gameController = (Controller) appData.getSerializable("GAME_CONTROLLER");
+        final Controller gameController = (Controller) appData.getSerializable("GAME_CONTROLLER");
 
-        remainingPlayers = gameController.getAdapter().getPlayers();
+        remainingPlayers = new ArrayList<>();
+        remainingPlayers.addAll(gameController.getAdapter().getPlayers());
         final TextView playerName = (TextView) findViewById(R.id.textViewPlayerName);
         nextPlayer(playerName);
+
+        final Intent selectPlayerActivity = new Intent(this, com.example.michael.hrbunnies182.view.SelectPlayerActivity.class);
+
 
         Button thatsMe = (Button) findViewById(R.id.buttonMe);
         thatsMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 findViewById(R.id.layoutHandOffPhone).setVisibility(View.GONE);
-                System.out.println("IN BETWEEN");
                 findViewById(R.id.layoutDrawInitialCards).setVisibility(View.VISIBLE);
             }
         });
@@ -66,7 +63,13 @@ public class InitializePlayerActivity extends AppCompatActivity {
                     findViewById(R.id.layoutInitialHand).setVisibility(View.GONE);
                     findViewById(R.id.layoutHandOffPhone).setVisibility(View.VISIBLE);
                 }
-                //TODO: Go to next screen
+                else {
+                    Bundle newAppData = new Bundle();
+                    newAppData.putSerializable("GAME_CONTROLLER", gameController);
+                    selectPlayerActivity.putExtra("APP_DATA", newAppData);
+
+                    startActivity(selectPlayerActivity);
+                }
             }
         });
     }
