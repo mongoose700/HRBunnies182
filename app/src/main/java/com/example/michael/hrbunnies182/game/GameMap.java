@@ -41,6 +41,10 @@ public class GameMap {
     public GameMap() {
         initCities();
         initMap();
+
+        for (String city: cityList) {
+            System.out.println(city);
+        }
     }
 
     public static void main(String[] args) {
@@ -49,6 +53,7 @@ public class GameMap {
         Deck deck = test.getDeck(30);
 
         System.out.println("Deck: " + deck);
+
     }
 
     /**
