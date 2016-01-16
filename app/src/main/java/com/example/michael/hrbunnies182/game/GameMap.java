@@ -35,6 +35,8 @@ public class GameMap {
 
     // Maps all city names to City objects
     private Map<String, City> cities;
+
+    private String[] cityList;
     
     // Used for picking new cards
     private Random r = new Random();
