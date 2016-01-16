@@ -1,6 +1,7 @@
 package com.example.michael.hrbunnies182.game;
 
 import java.lang.reflect.Array;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -81,7 +82,7 @@ public class GameMap {
         // Shuffle the cards
         Collections.shuffle(cards);
 
-        return new Deck(cards);
+        return new Deck(new ArrayDeque<>(cards));
     }
 
     /**
