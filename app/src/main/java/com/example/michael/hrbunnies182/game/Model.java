@@ -1,9 +1,9 @@
 package com.example.michael.hrbunnies182.game;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Created by Derek on 1/15/2016.
@@ -15,8 +15,11 @@ public class Model {
     private GameMap map;
 
     public Model(Set<PlayerColor> colors) {
-        deck = new Deck();
-        players = colors.stream().map(Player::new).collect(Collectors.toList());
+        deck = null; //new Deck();
+        players = new ArrayList<>(colors.size());
+        for (PlayerColor color : colors) {
+            players.add(new Player(color));
+        }
         Collections.shuffle(players);
         map = new GameMap();
     }

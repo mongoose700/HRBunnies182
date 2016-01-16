@@ -1,7 +1,6 @@
 package com.example.michael.hrbunnies182.game;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Adapter from View to Model
