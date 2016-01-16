@@ -25,4 +25,8 @@ public final class RouteCard {
     public int getLength() {
         return length;
     }
+
+    public String toString() {
+        return firstCity.getName() + " to " + secondCity.getName() + ": " + Integer.toString(length);
+    }
 }
