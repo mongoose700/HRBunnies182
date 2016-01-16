@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
+import com.example.michael.hrbunnies182.game.CheckedRouteCard;
+import com.example.michael.hrbunnies182.game.Draw;
 import com.example.michael.hrbunnies182.game.Player;
 import com.example.michael.hrbunnies182.game.PlayerColor;
+import com.example.michael.hrbunnies182.game.RouteCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +24,7 @@ public class InitializePlayerActivity extends AppCompatActivity {
 
     private Player currentPlayer;
     private List<Player> remainingPlayers;
+    private Draw currentDraw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +41,24 @@ public class InitializePlayerActivity extends AppCompatActivity {
 
         final Intent selectPlayerActivity = new Intent(this, com.example.michael.hrbunnies182.view.SelectPlayerActivity.class);
 
+        final CheckBox [] checkboxes = new CheckBox[3];
+        checkboxes[0] = ((CheckBox) findViewById(R.id.checkBoxInitialCard1));
+        checkboxes[1] = ((CheckBox) findViewById(R.id.checkBoxInitialCard2));
+        checkboxes[2] = ((CheckBox) findViewById(R.id.checkBoxInitialCard3));
 
         Button thatsMe = (Button) findViewById(R.id.buttonMe);
         thatsMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Draw cards
+                currentDraw = gameController.getAdapter().getNewDraw(currentPlayer, 2);
+                for (int i = 0; i < 3; i++) {
+                    checkboxes[i].setText(currentDraw.getCards().get(i).getCard().toString());
+                    checkboxes[i].setChecked(false);
+                }
+
+                // Go to draw screen
                 findViewById(R.id.layoutHandOffPhone).setVisibility(View.GONE);
                 findViewById(R.id.layoutDrawInitialCards).setVisibility(View.VISIBLE);
             }
@@ -50,6 +68,36 @@ public class InitializePlayerActivity extends AppCompatActivity {
         keep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Check for 2 saved cards
+                ArrayList<String> saved = new ArrayList<String>();
+                for (CheckBox box : checkboxes) {
+                    if (box.isChecked()) {
+                        saved.add(box.getText().toString());
+                    }
+                }
+                if (saved.size() < 2) {
+                    //TODO: alert that too few cards were taken
+                    return;
+                }
+                for (String cardName : saved) {
+                    for (CheckedRouteCard card : currentDraw.getCards()) {
+                        if (cardName.equals(card.getCard().toString())) {
+                            card.setChecked(true);
+                        }
+                    }
+                }
+                gameController.getAdapter().makeChoice(currentDraw);
+
+                // Display hand
+                TextView hand = (TextView) findViewById(R.id.textViewHandCards);
+                String cards = "";
+                for (RouteCard card : currentPlayer.getCards()) {
+                    cards += card + "\n";
+                }
+                hand.setText(cards);
+
+                // Go to hand screen
                 findViewById(R.id.layoutDrawInitialCards).setVisibility(View.GONE);
                 findViewById(R.id.layoutInitialHand).setVisibility(View.VISIBLE);
             }

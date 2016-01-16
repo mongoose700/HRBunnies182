@@ -48,6 +48,24 @@
             android:text="Choose at least 2 cards to keep"
             android:id="@+id/textViewChoose2Cards" />
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New CheckBox"
+            android:id="@+id/checkBoxInitialCard1" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New CheckBox"
+            android:id="@+id/checkBoxInitialCard2" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New CheckBox"
+            android:id="@+id/checkBoxInitialCard3" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,6 +88,13 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="This is your hand"
             android:id="@+id/textViewHand" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="(cards)"
+            android:id="@+id/textViewHandCards" />
 
         <Button
             android:layout_width="wrap_content"
