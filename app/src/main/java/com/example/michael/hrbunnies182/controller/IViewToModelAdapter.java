@@ -1,4 +1,7 @@
-package com.example.michael.hrbunnies182.game;
+package com.example.michael.hrbunnies182.controller;
+
+import com.example.michael.hrbunnies182.game.Draw;
+import com.example.michael.hrbunnies182.game.Player;
 
 import java.util.List;
 
