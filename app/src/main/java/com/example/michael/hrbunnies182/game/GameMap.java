@@ -1,48 +1,43 @@
 package com.example.michael.hrbunnies182.game;
 
-import java.lang.reflect.Array;
-import java.util.ArrayDeque;
+import android.content.Context;
+import android.content.res.AssetManager;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Michael on 1/15/2016.
  */
 public class GameMap {
     // Pairs city to city, with duplicates
-    private Map<City, Map<City, Integer>> edgeDistances;
+    private Map<City, Map<City, Edge>> edges;
 
     // Pairs city to city, with duplicates
     private Map<City, Map<City, Integer>> shortestPathLengths;
 
     // Maps all city names to City objects
-    private Map<String, City> cityNames;
+    private Map<String, City> cities;
 
-    // Used to index cities when seeking all-pairs shortest-path, and also for initCities.
-    // Clearly, hardcodes for America
-//    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco", "Salt Lake City"};
-
-    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco",
-            "Los Angeles", "Calgary", "Helena", "Salt Lake City", "Las Vegas", "Phoenix",
-            "Winnipeg", "Denver", "Santa Fe", "El Paso", "Duluth", "Omaha", "Kansas City",
-            "Oklahoma City", "Dallas", "Houston", "Sault St. Marie", "Chicago","Saint Louis",
-            "Little Rock", "New Orleans", "Toronto", "Pittsburgh", "Nashville", "Atlanta",
-            "Montreal", "Boston", "New York", "Washington", "Raleigh", "Charleston", "Miami"};
+    // Used to index cities when seeking all-pairs shortest-path
+    private String[] cityList;
 
     /**
      * Create a new map (initializing the cities and edges between them)
      */
-    public GameMap() {
-        initCities();
-        initMap();
+    public GameMap(String mapName, Context context) {
+        initMap(mapName, context);
     }
 
     public static void main(String[] args) {
-        GameMap test = new GameMap();
+        GameMap test = new GameMap("usa.txt", null);
 
         Deck deck = test.getDeck();
 
@@ -70,7 +65,7 @@ public class GameMap {
         for (int i = 0; i < minDists.length; i++) {
             for (int j = i + 1; j < minDists[0].length; j++) {
                 if (minDists[i][j] != 0 ) {
-                    cards.add(new RouteCard(cityNames.get(cityList[i]), cityNames.get(cityList[j]),
+                    cards.add(new RouteCard(cities.get(cityList[i]), cities.get(cityList[j]),
                             minDists[i][j]));
                 }
             }
@@ -108,7 +103,7 @@ public class GameMap {
     }
 
     /**
-     * Use the Floyd-Warshall algorithm to find the minimu distance between all pairs of cities
+     * Use the Floyd-Warshall algorithm to find the minimum distance between all pairs of cities
      */
     private Integer[][] getMinCityDist() {
         Integer[][] minDists = new Integer[cityList.length][cityList.length];
@@ -117,9 +112,9 @@ public class GameMap {
         for (int i = 0; i < cityList.length; i++) {
             for (int j = 0; j < cityList.length; j++) {
                 if (i != j) {
-                    if (edgeDistances.get(cityNames.get(cityList[i])).containsKey(cityNames.get(cityList[j]))) {
+                    if (edges.get(cities.get(cityList[i])).containsKey(cities.get(cityList[j]))) {
                         // The two cities are neighbors
-                        minDists[i][j] = edgeDistances.get(cityNames.get(cityList[i])).get(cityNames.get(cityList[j]));
+                        minDists[i][j] = edges.get(cities.get(cityList[i])).get(cities.get(cityList[j])).getLength();
                     } else {
                         minDists[i][j] = Integer.MAX_VALUE;
                     }
@@ -176,7 +171,7 @@ public class GameMap {
     private void validateCities(Integer[][] minDists) {
         for (int i = 0; i < cityList.length; i++) {
             for (int j = 0; j < cityList.length; j++) {
-                if (edgeDistances.get(cityNames.get(cityList[i])).containsKey(cityNames.get(cityList[j]))) {
+                if (edges.get(cities.get(cityList[i])).containsKey(cities.get(cityList[j]))) {
                     // The two cities are neighbors
                     minDists[i][j] = 0;
                 }
@@ -184,203 +179,53 @@ public class GameMap {
         }
     }
 
+    private void addCity(String line) {
+        cities.put(line, new City(line));
+    }
 
-    /**
-     * Map all city names to City objects, so we only make the Cities once
-     * (currently hardcoded for the American map)
-     */
-    private void initCities() {
-        cityNames = new HashMap<>();
+    private void addEdge(String line) {
+        Pattern pattern = Pattern.compile("(.*)\\t+(.*)\\t+([0-9]*)\\t+([0-9]*)");
+        Matcher matcher = pattern.matcher(line);
+        String firstCityName = matcher.group(1);
+        String secondCityName = matcher.group(2);
+        int length = Integer.parseInt(matcher.group(3));
+        int width = Integer.parseInt(matcher.group(4));
+        addEdge(firstCityName, secondCityName, length, width);
+    }
 
-        for (String name: cityList) {
-            cityNames.put(name, new City(name));
+    private void addEdge(String firstCityName, String secondCityName, int length, int width) {
+        City firstCity = cities.get(firstCityName);
+        City secondCity = cities.get(secondCityName);
+        Edge edge = new Edge(firstCity, secondCity, length, width);
+        if (!edges.containsKey(firstCity)) {
+            edges.put(firstCity, new HashMap<City, Edge>());
         }
+        edges.get(firstCity).put(secondCity, edge);
     }
 
     /**
      * Initialize the map (currently hardcoded for the American map)
      * Sets all the edge distances between cities.
      */
-    private void initMap() {
-        edgeDistances = new HashMap<>();
-
-        // Vancouver
-        edgeDistances.put(cityNames.get("Vancouver"),
-                fillMap(new String[]{"Calgary", "Seattle"}, new Integer[]{3, 1}));
-
-        // Seattle
-        edgeDistances.put(cityNames.get("Seattle"),
-                fillMap(new String[]{"Calgary", "Vancouver", "Helena", "Portland"}, new Integer[]{4, 1, 6, 1}));
-
-        // Portland
-        edgeDistances.put(cityNames.get("Portland"),
-                fillMap(new String[]{"Seattle", "Salt Lake City", "San Francisco"}, new Integer[]{1, 6, 5}));
-
-        // San Francisco
-        edgeDistances.put(cityNames.get("San Francisco"),
-                fillMap(new String[]{"Portland", "Salt Lake City", "Los Angeles"}, new Integer[]{5, 5, 3}));
-
-        // Los Angeles
-        edgeDistances.put(cityNames.get("Los Angeles"),
-                fillMap(new String[]{"San Francisco", "Las Vegas", "Phoenix", "El Paso"}, new Integer[]{3, 2, 3, 6}));
-
-
-        // Calgary
-        edgeDistances.put(cityNames.get("Calgary"),
-                fillMap(new String[]{"Vancouver", "Seattle", "Helena", "Winnipeg"}, new Integer[] {3, 4, 4, 6}));
-
-        // Helena
-        edgeDistances.put(cityNames.get("Helena"),
-                fillMap(new String[] {"Calgary", "Seattle", "Salt Lake City", "Denver", "Omaha", "Duluth", "Winnipeg"},
-                        new Integer[] {4, 6, 3, 4, 5, 6, 4}));
-
-        // Salt Lake City
-        edgeDistances.put(cityNames.get("Salt Lake City"),
-                fillMap(new String[]{"Portland", "San Francisco", "Las Vegas", "Denver", "Helena"},
-                        new Integer[] {6, 5, 3, 3, 3}));
-
-        // Las Vegas
-        edgeDistances.put(cityNames.get("Las Vegas"),
-                fillMap(new String[]{"Salt Lake City", "Los Angeles"}, new Integer[] {3, 2}));
-
-        // Phoenix
-        edgeDistances.put(cityNames.get("Phoenix"),
-                fillMap(new String[]{"Los Angeles", "El Paso", "Santa Fe", "Denver"},
-                        new Integer[] {3, 3, 3, 5}));
-
-
-        // Winnipeg
-        edgeDistances.put(cityNames.get("Winnipeg"),
-                fillMap(new String[]{"Calgary", "Helena", "Sault St. Marie", "Duluth"},
-                        new Integer[] {6, 4, 6, 4}));
-
-        // Denver
-        edgeDistances.put(cityNames.get("Denver"),
-                fillMap(new String[]{"Helena", "Salt Lake City", "Phoenix", "Santa Fe", "Omaha", "Kansas City", "Oklahoma City"},
-                        new Integer[] {4, 3, 5, 2, 4, 4, 4}));
-
-        // Santa Fe
-        edgeDistances.put(cityNames.get("Santa Fe"),
-                fillMap(new String[]{"Phoenix", "El Paso", "Denver", "Oklahoma City"},
-                        new Integer[] {3, 2, 2, 3}));
-
-        // El Paso
-        edgeDistances.put(cityNames.get("El Paso"),
-                fillMap(new String[]{"Los Angeles", "Phoenix", "Santa Fe", "Oklahoma City", "Dallas", "Houston"},
-                        new Integer[] {6, 3, 2, 5, 4, 6}));
-
-
-        // Duluth
-        edgeDistances.put(cityNames.get("Duluth"),
-                fillMap(new String[]{"Winnipeg", "Helena", "Omaha", "Sault St. Marie", "Toronto", "Chicago"},
-                        new Integer[] {4, 6, 2, 3, 6, 3}));
-
-        // Omaha
-        edgeDistances.put(cityNames.get("Omaha"),
-                fillMap(new String[]{"Helena", "Denver", "Duluth", "Chicago", "Kansas City"},
-                        new Integer[] {5, 4, 2, 4, 1}));
-
-        // Kansas City
-        edgeDistances.put(cityNames.get("Kansas City"),
-                fillMap(new String[]{"Omaha", "Denver", "Oklahoma City", "Saint Louis"},
-                        new Integer[] {1, 4, 2, 2}));
-
-        // Oklahoma City
-        edgeDistances.put(cityNames.get("Oklahoma City"),
-                fillMap(new String[]{"Denver", "Santa Fe", "El Paso", "Kansas City", "Little Rock", "Dallas"},
-                        new Integer[] {4, 3, 5, 2, 2, 2}));
-
-        // Dallas
-        edgeDistances.put(cityNames.get("Dallas"),
-                fillMap(new String[]{"Oklahoma City", "El Paso", "Little Rock", "Houston"},
-                        new Integer[] {2, 4, 2, 1}));
-
-        // Houston
-        edgeDistances.put(cityNames.get("Houston"),
-                fillMap(new String[]{"Dallas", "El Paso", "New Orleans"}, new Integer[] {1, 6, 2}));
-
-
-        // Sault St. Marie
-        edgeDistances.put(cityNames.get("Sault St. Marie"),
-                fillMap(new String[]{"Winnipeg", "Duluth", "Montreal", "Toronto"},
-                        new Integer[] {6, 3, 5, 2}));
-
-        // Chicago
-        edgeDistances.put(cityNames.get("Chicago"),
-                fillMap(new String[]{"Duluth", "Omaha", "Saint Louis", "Toronto", "Pittsburgh"},
-                        new Integer[] {3, 4, 2, 4, 3}));
-
-        // Saint Louis
-        edgeDistances.put(cityNames.get("Saint Louis"),
-                fillMap(new String[]{"Kansas City", "Little Rock", "Chicago", "Pittsburgh", "Nashville"},
-                        new Integer[] {2, 2, 2, 5, 2}));
-
-        // Little Rock
-        edgeDistances.put(cityNames.get("Little Rock"),
-                fillMap(new String[]{"Oklahoma City", "Dallas", "Saint Louis", "Nashville", "New Orleans"},
-                        new Integer[] {2, 2, 2, 3, 3}));
-
-        // New Orleans
-        edgeDistances.put(cityNames.get("New Orleans"),
-                fillMap(new String[]{"Little Rock", "Houston", "Atlanta", "Miami"},
-                        new Integer[] {3, 2, 4, 6}));
-
-
-        // Toronto
-        edgeDistances.put(cityNames.get("Toronto"),
-                fillMap(new String[]{"Sault St. Marie", "Duluth", "Chicago", "Pittsburgh", "Montreal"},
-                        new Integer[] {2, 6, 4, 2, 3}));
-
-        // Pittsburgh
-        edgeDistances.put(cityNames.get("Pittsburgh"),
-                fillMap(new String[]{"Chicago", "Saint Louis", "Nashville", "Toronto", "New York", "Washington", "Raleigh"},
-                        new Integer[] {3, 5, 4, 2, 2, 2, 2}));
-
-        // Nashville
-        edgeDistances.put(cityNames.get("Nashville"),
-                fillMap(new String[]{"Saint Louis", "Little Rock", "Pittsburgh", "Raleigh", "Atlanta"},
-                        new Integer[] {2, 3, 4, 3, 1}));
-
-        // Atlanta
-        edgeDistances.put(cityNames.get("Atlanta"),
-                fillMap(new String[]{"Nashville", "New Orleans", "Raleigh", "Charleston", "Miami"},
-                        new Integer[] {1, 4, 2, 2, 5}));
-
-
-        // Montreal
-        edgeDistances.put(cityNames.get("Montreal"),
-                fillMap(new String[]{"Sault St. Marie", "Toronto", "Boston", "New York"},
-                        new Integer[] {5, 3, 2, 3}));
-
-        // Boston
-        edgeDistances.put(cityNames.get("Boston"),
-                fillMap(new String[]{"Montreal", "New York"},
-                        new Integer[] {2, 2}));
-
-        // New York
-        edgeDistances.put(cityNames.get("New York"),
-                fillMap(new String[]{"Montreal", "Pittsburgh", "Boston", "Washington"},
-                        new Integer[] {3, 2, 2, 2}));
-
-        // Washington
-        edgeDistances.put(cityNames.get("Washington"),
-                fillMap(new String[]{"New York", "Pittsburgh", "Raleigh"},
-                        new Integer[] {2, 2, 2}));
-
-        // Raleigh
-        edgeDistances.put(cityNames.get("Raleigh"),
-                fillMap(new String[]{"Pittsburgh", "Nashville", "Atlanta", "Washington", "Charleston"},
-                        new Integer[] {2, 3, 2, 2, 2}));
-
-        // Charleston
-        edgeDistances.put(cityNames.get("Charleston"),
-                fillMap(new String[]{"Raleigh", "Atlanta", "Miami"}, new Integer[] {2, 2, 4}));
-
-        // Miami
-        edgeDistances.put(cityNames.get("Miami"),
-                fillMap(new String[]{"New Orleans", "Atlanta", "Charleston"},
-                        new Integer[] {6, 5, 4}));
-
+    private void initMap(String mapName, Context context) {
+        edges = new HashMap<>();
+        cities = new HashMap<>();
+        AssetManager am = context.getAssets();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(am.open(mapName)));
+            int numCities = Integer.parseInt(reader.readLine());
+            for (int i = 0; i < numCities; i++) {
+                addCity(reader.readLine());
+            }
+            cityList = cities.values().toArray(cityList);
+            int numEdges = Integer.parseInt(reader.readLine());
+            for (int i = 0; i < numEdges; i++) {
+                addEdge(reader.readLine());
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -388,20 +233,20 @@ public class GameMap {
      * Add the given city names and distances to the given cityMap
      *
      * @param cityNameArray A list of all neighboring cities
-     * @param cityDistances A list of the distances to the names in cityNames (indexed as in cityNames)
+     * @param cityDistances A list of the distances to the names in cities (indexed as in cities)
      * @return A Map pairing those names and distances, which will be cleared and modified
      */
-    private Map<City, Integer> fillMap(String[] cityNameArray, Integer[] cityDistances) {
-        Map<City, Integer> cityMap = new HashMap<>();
-        if (cityNameArray.length != cityDistances.length) {
-            System.err.println("FATAL ERROR!  Mismatched cityNames and cityDistances when initializing map: " +
-                    Arrays.toString(cityNameArray) + ", " + Arrays.toString(cityDistances));
-            return new HashMap<>();
-        }
-
-        for (int i = 0; i < cityNameArray.length; i++) {
-            cityMap.put(cityNames.get(cityNameArray[i]), cityDistances[i]);
-        }
-        return cityMap;
-    }
+//    private Map<City, Integer> fillMap(String[] cityNameArray, Integer[] cityDistances) {
+//        Map<City, Integer> cityMap = new HashMap<>();
+//        if (cityNameArray.length != cityDistances.length) {
+//            System.err.println("FATAL ERROR!  Mismatched cities and cityDistances when initializing map: " +
+//                    Arrays.toString(cityNameArray) + ", " + Arrays.toString(cityDistances));
+//            return new HashMap<>();
+//        }
+//
+//        for (int i = 0; i < cityNameArray.length; i++) {
+//            cityMap.put(cities.get(cityNameArray[i]), cityDistances[i]);
+//        }
+//        return cityMap;
+//    }
 }
