@@ -1,5 +1,6 @@
 package com.example.michael.hrbunnies182.game;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
@@ -11,8 +12,8 @@ import java.util.Queue;
 public class Deck {
     private Queue<RouteCard> cards;
 
-    public Deck(Queue<RouteCard> cards) {
-        this.cards = cards;
+    public Deck(List<RouteCard> cardList) {
+        this.cards = new ArrayDeque<>(cardList);
     }
 
     /** Removes (up to) three cards from the deck, and puts them in a Draw */
