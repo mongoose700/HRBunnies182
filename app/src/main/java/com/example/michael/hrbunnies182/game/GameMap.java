@@ -61,7 +61,7 @@ public class GameMap {
     public static void main(String[] args) {
         GameMap test = new GameMap("usa.txt", null);
 
-        Deck deck = test.getDeck(30);
+        Deck deck = test.getDeck(35);
 
         System.out.println("Deck: " + deck);
     }
