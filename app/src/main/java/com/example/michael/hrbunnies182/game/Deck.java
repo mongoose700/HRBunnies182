@@ -26,4 +26,12 @@ public class Deck {
     public void returnCards(Draw draw) {
         cards.addAll(draw.getReturnedCards());
     }
+
+    public String toString() {
+        StringBuilder msg = new StringBuilder();
+        for (RouteCard card: cards) {
+            msg.append(card.toString() + "\n");
+        }
+        return msg.toString();
+    }
 }
