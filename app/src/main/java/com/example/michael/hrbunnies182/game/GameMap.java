@@ -238,31 +238,33 @@ public class GameMap implements Serializable {
      * Initialize the map. Sets all the edge distances between cities.
      */
     private void initMap(String mapName, Activity activity) {
-//        Resources res = activity.getResources();
-//        XmlResourceParser xpp = res.getXml(R.xml.usa);
-//        int eventType = 0;
-//        try {
-//            eventType = xpp.getEventType();
-//            while (eventType != XmlPullParser.END_DOCUMENT)
-//            {
-//                if (eventType == XmlPullParser.START_TAG) {
-//                    if (xpp.getName().equals(CITIES)) {
-//                        initCities(xpp);
-//                    } else if (xpp.getName().equals(EDGES)) {
-//                        initEdges(xpp);
-//                    }
-//                }
-//            }
-//        } catch (XmlPullParserException|IOException e) {
-//            e.printStackTrace();
-//        }
-        edges = new HashSet<>();
-        cityList = new String[]{"Bunnyland"};
-        cities = new HashMap<>();
-        cities.put(cityList[0], new City(cityList[0]));
+        Resources res = activity.getResources();
+        XmlResourceParser xpp = res.getXml(R.xml.usa);
+        int eventType = 0;
+        try {
+            eventType = xpp.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT)
+            {
+                if (eventType == XmlPullParser.START_TAG) {
+                    if (xpp.getName().equals(CITIES)) {
+                        initCities(xpp);
+                    } else if (xpp.getName().equals(EDGES)) {
+                        initEdges(xpp);
+                    } else {
+                        eventType = xpp.next();
+                    }
+                } else {
+                    System.out.println("Moving on from non-start event " + XmlPullParser.TYPES[eventType]);
+                    eventType = xpp.next();
+                }
+            }
+        } catch (XmlPullParserException|IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initCities(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+        cities = new HashMap<>();
         cityList = extractCities(xpp);
         for (String cityName : cityList) {
             cities.put(cityName, new City(cityName));
@@ -271,7 +273,7 @@ public class GameMap implements Serializable {
 
     private void initEdges(XmlResourceParser xpp) throws XmlPullParserException, IOException {
         edges = new HashSet<>();
-        int eventType = xpp.getEventType();
+        int eventType = xpp.next();
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(EDGES))) {
             edges.add(extractEdge(xpp));
             eventType = xpp.getEventType();
@@ -292,7 +294,14 @@ public class GameMap implements Serializable {
                     length = extractInt(xpp);
                 } else if (xpp.getName().equals(WIDTH)) {
                     width = extractInt(xpp);
+                } else {
+//                    System.out.println("EXTRACTEDGE: Skipping xpp with name " + xpp.getName() +
+//                            " and type " + XmlPullParser.TYPES[eventType]);
+                    xpp.next();
                 }
+                eventType = xpp.getEventType();
+            } else {
+//                System.out.println("EXTRACTEDGE: Skipping non-start event " + XmlPullParser.TYPES[eventType] + " with name " + xpp.getName());
             }
         }
         xpp.next();
@@ -304,17 +313,18 @@ public class GameMap implements Serializable {
         int eventType = xpp.getEventType();
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(CITIES))) {
             if (eventType == XmlPullParser.TEXT) {
-                newCities.add(xpp.getName());
+                newCities.add(xpp.getText());
             }
             eventType = xpp.next();
         }
         xpp.next();
-        return newCities.toArray(new String[cities.size()]);
+//        System.out.println("EXTRACTCITIES: Extracted cities " + newCities);
+        return newCities.toArray(new String[newCities.size()]);
     }
 
     private int extractInt(XmlResourceParser xpp) throws IOException, XmlPullParserException {
         xpp.next();
-        int val = Integer.parseInt(xpp.getName());
+        int val = Integer.parseInt(xpp.getText());
         xpp.next();
         xpp.next();
         return val;

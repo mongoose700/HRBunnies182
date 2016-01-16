@@ -42,4 +42,13 @@ public class ScoreMap {
         }
         owners.get(edge).clear();
     }
+
+    public int getLongestRouteLength(Player player) {
+        Graph g = createGraph(player);
+        return 0;
+    }
+
+    public Graph createGraph(Player player) {
+        return null;
+    }
 }
