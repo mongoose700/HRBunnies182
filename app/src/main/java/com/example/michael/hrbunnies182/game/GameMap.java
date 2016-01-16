@@ -33,9 +33,6 @@ public class GameMap {
 
     // Maps all city names to City objects
     private Map<String, City> cities;
-
-    // Used to index cities when seeking all-pairs shortest-path
-    private String[] cityList;
     
     // Used for picking new cards
     private Random r = new Random();
@@ -46,6 +43,7 @@ public class GameMap {
     private String LENGTH = "length";
     private String WIDTH = "width";
 
+    // Used to index cities when seeking all-pairs shortest-path
     String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco",
             "Los Angeles", "Calgary", "Helena", "Salt Lake City", "Las Vegas", "Phoenix",
             "Winnipeg", "Denver", "Santa Fe", "El Paso", "Duluth", "Omaha", "Kansas City",
