@@ -1,11 +1,13 @@
 package com.example.michael.hrbunnies182.game;
 
 import java.lang.reflect.Array;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * Created by Michael on 1/15/2016.
@@ -22,29 +24,25 @@ public class GameMap {
 
     // Used to index cities when seeking all-pairs shortest-path, and also for initCities.
     // Clearly, hardcodes for America
-    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco", "Salt Lake City"};
+//    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco", "Salt Lake City"};
 
-//    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco",
-//            "Los Angeles", "Calgary", "Helena", "Salt Lake City", "Las Vegas", "Phoenix",
-//            "Winnipeg", "Denver", "Santa Fe", "El Paso", "Duluth", "Omaha", "Kansas City",
-//            "Oklahoma City", "Dallas", "Houston", "Sault St. Marie", "Chicago","Saint Louis",
-//            "Little Rock", "New Orleans", "Toronto", "Pittsburgh", "Nashville", "Atlanta",
-//            "Montreal", "Boston", "New York", "Washington", "Raleigh", "Charleston", "Miami"};
+    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco",
+            "Los Angeles", "Calgary", "Helena", "Salt Lake City", "Las Vegas", "Phoenix",
+            "Winnipeg", "Denver", "Santa Fe", "El Paso", "Duluth", "Omaha", "Kansas City",
+            "Oklahoma City", "Dallas", "Houston", "Sault St. Marie", "Chicago","Saint Louis",
+            "Little Rock", "New Orleans", "Toronto", "Pittsburgh", "Nashville", "Atlanta",
+            "Montreal", "Boston", "New York", "Washington", "Raleigh", "Charleston", "Miami"};
 
     /**
      * Create a new map (initializing the cities and edges between them)
      */
-    public GameMap(boolean test) {
+    public GameMap() {
         initCities();
-        if (!test) {
-            initMap();
-        } else {
-            initTestMap();
-        }
+        initMap();
     }
 
     public static void main(String[] args) {
-        GameMap test = new GameMap(true);
+        GameMap test = new GameMap();
 
         Deck deck = test.getDeck();
 
@@ -66,7 +64,7 @@ public class GameMap {
         System.out.println("Validated cities:");
         prettyPrintDistances(minDists);
 
-        ArrayList<RouteCard> cards = new ArrayList<>();
+        ArrayDeque<RouteCard> cards = new ArrayDeque<>();
         // Create RouteCards for each city and add them to the deck.
         // Takes only the upper triangle for efficiency
         for (int i = 0; i < minDists.length; i++) {
@@ -79,7 +77,7 @@ public class GameMap {
         }
 
         // Shuffle the cards
-        Collections.shuffle(cards);
+//        Collections.shuffle(cards);
 
         return new Deck(cards);
     }
@@ -338,7 +336,7 @@ public class GameMap {
 
         // Chicago
         edgeDistances.put(cityNames.get("Chicago"),
-                fillMap(new String[]{"Duluth", "Omaha", "Sainnt Louis", "Toronto", "Pittscurgh"},
+                fillMap(new String[]{"Duluth", "Omaha", "Saint Louis", "Toronto", "Pittsburgh"},
                         new Integer[] {3, 4, 2, 4, 3}));
 
         // Saint Louis
