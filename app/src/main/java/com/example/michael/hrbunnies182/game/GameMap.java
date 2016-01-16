@@ -1,13 +1,17 @@
 package com.example.michael.hrbunnies182.game;
 
-import android.content.Context;
-import android.content.res.AssetManager;
+import android.app.Activity;
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
+import android.util.Pair;
 
-import java.io.BufferedReader;
+import com.example.michael.hrbunnies182.R;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -35,15 +39,17 @@ public class GameMap {
     // Used for picking new cards
     private Random r = new Random();
 
-    // Used to index cities when seeking all-pairs shortest-path, and also for initCities.
-    // Clearly, hardcodes for America
-//    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco", "Salt Lake City"};
+    private String CITIES = "cities";
+    private String EDGES = "edges";
+    private String EDGE = "edge";
+    private String LENGTH = "length";
+    private String WIDTH = "width";
 
     /**
      * Create a new map (initializing the cities and edges between them)
      */
-    public GameMap(String mapName, Context context) {
-        initMap(mapName, context);
+    public GameMap(String mapName, Activity activity) {
+        initMap(mapName, activity);
     }
 
     public static void main(String[] args) {
@@ -258,46 +264,86 @@ public class GameMap {
      * Initialize the map (currently hardcoded for the American map)
      * Sets all the edge distances between cities.
      */
-    private void initMap(String mapName, Context context) {
-        edges = new HashMap<>();
-        cities = new HashMap<>();
-        AssetManager am = context.getAssets();
+    private void initMap(String mapName, Activity activity) {
+        Resources res = activity.getResources();
+        XmlResourceParser xpp = res.getXml(R.xml.usa);
+        int eventType = 0;
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(am.open(mapName)));
-            int numCities = Integer.parseInt(reader.readLine());
-            for (int i = 0; i < numCities; i++) {
-                addCity(reader.readLine());
+            eventType = xpp.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT)
+            {
+                if (eventType == XmlPullParser.START_TAG) {
+                    if (xpp.getName().equals(CITIES)) {
+                        initCities(xpp);
+                    } else if (xpp.getName().equals(EDGES)) {
+                        initEdges(xpp);
+                    }
+                }
             }
-            cityList = cities.values().toArray(cityList);
-            int numEdges = Integer.parseInt(reader.readLine());
-            for (int i = 0; i < numEdges; i++) {
-                addEdge(reader.readLine());
-            }
-            reader.close();
-        } catch (IOException e) {
+        } catch (XmlPullParserException|IOException e) {
             e.printStackTrace();
         }
     }
 
+    private void initCities(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+        cityList = extractCities(xpp);
+        for (String cityName : cityList) {
+            cities.put(cityName, new City(cityName));
+        }
+    }
 
-    /**
-     * Add the given city names and distances to the given cityMap
-     *
-     * @param cityNameArray A list of all neighboring cities
-     * @param cityDistances A list of the distances to the names in cities (indexed as in cities)
-     * @return A Map pairing those names and distances, which will be cleared and modified
-     */
-//    private Map<City, Integer> fillMap(String[] cityNameArray, Integer[] cityDistances) {
-//        Map<City, Integer> cityMap = new HashMap<>();
-//        if (cityNameArray.length != cityDistances.length) {
-//            System.err.println("FATAL ERROR!  Mismatched cities and cityDistances when initializing map: " +
-//                    Arrays.toString(cityNameArray) + ", " + Arrays.toString(cityDistances));
-//            return new HashMap<>();
-//        }
-//
-//        for (int i = 0; i < cityNameArray.length; i++) {
-//            cityMap.put(cities.get(cityNameArray[i]), cityDistances[i]);
-//        }
-//        return cityMap;
-//    }
+    private void initEdges(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+        int eventType = xpp.getEventType();
+        while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(EDGES))) {
+            Edge edge = extractEdge(xpp);
+            Pair<City, City> edgeCities = edge.getCities();
+            if (!edges.containsKey(edgeCities.first)) {
+                edges.put(edgeCities.first, new HashMap<City, Edge>());
+            }
+            edges.get(edgeCities.first).put(edgeCities.second, edge);
+            eventType = xpp.getEventType();
+        }
+        xpp.next();
+    }
+
+    private Edge extractEdge(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+        int eventType = xpp.getEventType();
+        String[] cityNames = new String[2];
+        int length = 0;
+        int width = 0;
+        while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(EDGE))) {
+            if (eventType == XmlPullParser.START_TAG) {
+                if (xpp.getName().equals(CITIES)) {
+                    cityNames = extractCities(xpp);
+                } else if (xpp.getName().equals(LENGTH)) {
+                    length = extractInt(xpp);
+                } else if (xpp.getName().equals(WIDTH)) {
+                    width = extractInt(xpp);
+                }
+            }
+        }
+        xpp.next();
+        return new Edge(cities.get(cityNames[0]), cities.get(cityNames[1]), length, width);
+    }
+
+    private String[] extractCities(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+        ArrayList<String> newCities = new ArrayList<>();
+        int eventType = xpp.getEventType();
+        while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(CITIES))) {
+            if (eventType == XmlPullParser.TEXT) {
+                newCities.add(xpp.getName());
+            }
+            eventType = xpp.next();
+        }
+        xpp.next();
+        return newCities.toArray(new String[cities.size()]);
+    }
+
+    private int extractInt(XmlResourceParser xpp) throws IOException, XmlPullParserException {
+        xpp.next();
+        int val = Integer.parseInt(xpp.getName());
+        xpp.next();
+        xpp.next();
+        return val;
+    }
 }

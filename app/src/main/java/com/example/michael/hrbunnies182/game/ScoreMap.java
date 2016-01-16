@@ -9,8 +9,9 @@ import java.util.Set;
  * Keeps track of which players have which edges
  */
 public class ScoreMap {
-    private Map<Pair<City, City>, Set<Player>> owners;
-    private Map<Pair<City, City>, Integer> width;
+    private Map<Edge, Set<Player>> owners;
 
-
+    public ScoreMap(GameMap gameMap) {
+        
+    }
 }
