@@ -16,7 +16,13 @@ public class CheckedRouteCard {
         return checked;
     }
 
+    public void setChecked(boolean checked) { this.checked = checked; }
+
     public RouteCard getCard() {
         return card;
+    }
+
+    public String toString() {
+        return card + ": " + checked;
     }
 }

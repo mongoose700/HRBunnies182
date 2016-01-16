@@ -1,7 +1,7 @@
 package com.example.michael.hrbunnies182.game;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,6 +17,10 @@ public class Draw {
         this.cards = cards;
         this.player = player;
         this.mustKeep = mustKeep;
+    }
+
+    public List<CheckedRouteCard> getCards() {
+        return cards;
     }
 
     /** Gives the cards that the player did not decide to keep */
@@ -43,5 +47,12 @@ public class Draw {
             }
         }
         return kept >= mustKeep;
+    }
+
+    public void giveCardsToPlayer() {
+        for (CheckedRouteCard card : cards) {
+            if (card.isChecked())
+                player.addCards(Collections.singletonList(card.getCard()));
+        }
     }
 }

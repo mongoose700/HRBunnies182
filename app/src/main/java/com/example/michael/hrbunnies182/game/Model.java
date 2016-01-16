@@ -39,6 +39,7 @@ public class Model {
             @Override
             public void makeChoice(Draw choice) {
                 deck.returnCards(choice);
+                choice.giveCardsToPlayer();
             }
         };
     }

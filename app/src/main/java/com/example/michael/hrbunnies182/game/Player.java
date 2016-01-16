@@ -8,8 +8,8 @@ import java.util.List;
  * Created by Michael on 1/15/2016.
  */
 public class Player {
-    private PlayerColor color;
-    private List<RouteCard> cards;
+    private final PlayerColor color;
+    private final List<RouteCard> cards;
     private int score;
 
     public Player(PlayerColor color) {
@@ -18,11 +18,15 @@ public class Player {
         this.cards = new ArrayList<>();
     }
 
-    public void addCards(List<RouteCard> cards) {
-        cards.addAll(cards);
+    public void addCards(List<RouteCard> addedCards) {
+        cards.addAll(addedCards);
     }
 
     public List<RouteCard> getCards() {
         return Collections.unmodifiableList(cards);
+    }
+
+    public String toString() {
+        return color + "_PLAYER";
     }
 }

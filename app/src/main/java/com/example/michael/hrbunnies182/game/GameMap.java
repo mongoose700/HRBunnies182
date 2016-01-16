@@ -1,13 +1,10 @@
 package com.example.michael.hrbunnies182.game;
 
-import java.lang.reflect.Array;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.PriorityQueue;
 
 /**
  * Created by Michael on 1/15/2016.
