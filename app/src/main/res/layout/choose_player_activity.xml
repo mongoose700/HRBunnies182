@@ -8,7 +8,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
         android:layout_weight="0.12">
 
         <TextView
@@ -69,13 +68,6 @@
         android:layout_marginTop="55dp"
         android:layout_weight="0.12"
         android:id="@+id/layoutSwitched">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Switched"
-            android:id="@+id/textView5" />
     </LinearLayout>
 
 </LinearLayout>

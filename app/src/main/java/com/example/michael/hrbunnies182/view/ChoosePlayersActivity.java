@@ -14,48 +14,46 @@ import android.widget.CheckBox;
 import android.widget.ViewSwitcher;
 
 import com.example.michael.hrbunnies182.R;
+import com.example.michael.hrbunnies182.game.PlayerColor;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ChoosePlayersActivity extends AppCompatActivity {
-
-    private ViewSwitcher switcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_layout);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        setContentView(R.layout.choose_player_activity);
 
-        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        //fab.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-        //        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-        //                .setAction("Action", null).show();
-        //    }
-        //});
-    }
+        Button ok = (Button) findViewById(R.id.buttonOkToPlayers);
 
+        final Intent initializePlayerActivity = new Intent(this, com.example.michael.hrbunnies182.view.InitializePlayerActivity.class);
 
-    //@Override
-    //public boolean onCreateOptionsMenu(Menu menu) {
-    //    // Inflate the menu; this adds items to the action bar if it is present.
-    //    getMenuInflater().inflate(R.menu.menu_start, menu);
-    //    return true;
-    //}
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+                HashMap<Integer, PlayerColor> colorBoxes = new HashMap<>();
+                colorBoxes.put(R.id.checkBoxRed, PlayerColor.RED);
+                colorBoxes.put(R.id.checkBoxBlue, PlayerColor.BLUE);
+                colorBoxes.put(R.id.checkBoxGreen, PlayerColor.GREEN);
+                colorBoxes.put(R.id.checkBoxYellow, PlayerColor.YELLOW);
+                colorBoxes.put(R.id.checkBoxBlack, PlayerColor.BLACK);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+                Set<PlayerColor> activeColors = new HashSet<>();
 
-        return super.onOptionsItemSelected(item);
+                for (Integer id : colorBoxes.keySet()) {
+                    if (((CheckBox) findViewById(id)).isChecked()) {
+                        activeColors.add(colorBoxes.get(id));
+                    }
+                }
+
+                // TODO: Start controller with activeColors
+
+                startActivity(initializePlayerActivity);
+            }
+        });
     }
 }
