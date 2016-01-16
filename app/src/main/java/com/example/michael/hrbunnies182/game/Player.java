@@ -11,6 +11,8 @@ public class Player {
     private final PlayerColor color;
     private final List<RouteCard> cards;
     private int score;
+    private String name;
+    private String pin;
 
     public Player(PlayerColor color) {
         this.score = 0;
@@ -24,6 +26,26 @@ public class Player {
 
     public List<RouteCard> getCards() {
         return Collections.unmodifiableList(cards);
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean hasPin() {
+        return pin != null;
+    }
+
+    public boolean verifyPin(String attempt) {
+        return attempt.equals(name);
     }
 
     public String toString() {
