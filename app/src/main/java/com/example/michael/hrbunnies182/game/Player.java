@@ -20,6 +20,8 @@ public class Player implements Serializable {
         this.score = 0;
         this.color = color;
         this.cards = new ArrayList<>();
+        this.name = color.name();
+        this.pin = null;
         this.trainsRemaining = 45;
     }
 
@@ -52,7 +54,7 @@ public class Player implements Serializable {
     }
 
     public String toString() {
-        return color + "_PLAYER";
+        return name;
     }
 
     public int getTrainsRemaining() {

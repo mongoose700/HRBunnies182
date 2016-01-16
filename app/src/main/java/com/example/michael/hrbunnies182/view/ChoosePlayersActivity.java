@@ -44,7 +44,7 @@ public class ChoosePlayersActivity extends AppCompatActivity {
                     }
                 }
 
-                Controller gameController = new Controller(activeColors);
+                Controller gameController = new Controller(activeColors, ChoosePlayersActivity.this);
 
                 Bundle appData = new Bundle();
                 appData.putSerializable("GAME_CONTROLLER", gameController);
