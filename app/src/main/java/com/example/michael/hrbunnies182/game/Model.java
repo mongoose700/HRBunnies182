@@ -32,13 +32,13 @@ public class Model {
             }
 
             @Override
-            public Draw getNewDraw(Player player) {
-                return null;
+            public Draw getNewDraw(Player player, int numKept) {
+                return deck.drawCards(player, numKept);
             }
 
             @Override
             public void makeChoice(Draw choice) {
-
+                deck.returnCards(choice);
             }
         };
     }

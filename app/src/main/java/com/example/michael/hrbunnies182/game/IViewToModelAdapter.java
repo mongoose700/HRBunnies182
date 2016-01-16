@@ -12,7 +12,7 @@ public interface IViewToModelAdapter {
 
     /** Returns a new Draw of up to three cards from the deck of available cards
      * for the given Player to choose */
-    Draw getNewDraw(Player player);
+    Draw getNewDraw(Player player, int numKept);
 
     /** Accepts a Draw returned by getNewDraw, with certain cards now designated as kept */
     void makeChoice(Draw choice);
