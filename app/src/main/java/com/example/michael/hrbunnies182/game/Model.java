@@ -15,13 +15,13 @@ public class Model {
     private GameMap map;
 
     public Model(Set<PlayerColor> colors) {
-        deck = null; //new Deck();
+        map = new GameMap();
+        deck = map.getDeck();
         players = new ArrayList<>(colors.size());
         for (PlayerColor color : colors) {
             players.add(new Player(color));
         }
         Collections.shuffle(players);
-        map = new GameMap();
     }
 
     public IViewToModelAdapter getAdapter() {
