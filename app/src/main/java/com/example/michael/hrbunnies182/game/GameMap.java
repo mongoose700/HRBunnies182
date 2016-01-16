@@ -41,10 +41,6 @@ public class GameMap {
     public GameMap() {
         initCities();
         initMap();
-
-        for (String city: cityList) {
-            System.out.println(city);
-        }
     }
 
     public static void main(String[] args) {
