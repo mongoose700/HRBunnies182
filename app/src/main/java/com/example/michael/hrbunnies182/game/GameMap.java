@@ -1,5 +1,6 @@
 package com.example.michael.hrbunnies182.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,7 +12,7 @@ import java.util.Random;
 /**
  * Created by Michael on 1/15/2016.
  */
-public class GameMap {
+public class GameMap implements Serializable {
     // Pairs city to city, with duplicates
     private Map<City, Map<City, Integer>> edgeDistances;
 

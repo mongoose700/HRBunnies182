@@ -1,9 +1,11 @@
 package com.example.michael.hrbunnies182.game;
 
+import java.io.Serializable;
+
 /**
  * Created by Michael on 1/15/2016.
  */
-public final class RouteCard {
+public final class RouteCard implements Serializable {
     private final City firstCity;
     private final City secondCity;
     private final int length;

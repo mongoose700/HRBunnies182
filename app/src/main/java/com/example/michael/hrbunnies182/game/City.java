@@ -1,9 +1,11 @@
 package com.example.michael.hrbunnies182.game;
 
+import java.io.Serializable;
+
 /**
  * Created by Michael on 1/15/2016.
  */
-public class City {
+public class City implements Serializable{
     private String name;
 
     public City(String name) {

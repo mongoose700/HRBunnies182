@@ -3,12 +3,13 @@ package com.example.michael.hrbunnies182.controller;
 import com.example.michael.hrbunnies182.game.Draw;
 import com.example.michael.hrbunnies182.game.Player;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Adapter from View to Model
  */
-public interface IViewToModelAdapter {
+public interface IViewToModelAdapter extends Serializable {
 
     /** Returns the players in the game */
     List<Player> getPlayers();
