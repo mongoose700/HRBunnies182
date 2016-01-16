@@ -14,11 +14,13 @@ public class Player implements Serializable {
     private int score;
     private String name;
     private String pin;
+    private int trainsRemaining;
 
     public Player(PlayerColor color) {
         this.score = 0;
         this.color = color;
         this.cards = new ArrayList<>();
+        this.trainsRemaining = 45;
     }
 
     public void addCards(List<RouteCard> addedCards) {
@@ -51,5 +53,40 @@ public class Player implements Serializable {
 
     public String toString() {
         return color + "_PLAYER";
+    }
+
+    public int getTrainsRemaining() {
+        return trainsRemaining;
+    }
+
+    public void incrementTrainsRemaining(int delta) {
+        trainsRemaining += delta;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Player player = (Player) o;
+
+        if (score != player.score) return false;
+        if (trainsRemaining != player.trainsRemaining) return false;
+        if (color != player.color) return false;
+        if (cards != null ? !cards.equals(player.cards) : player.cards != null) return false;
+        if (name != null ? !name.equals(player.name) : player.name != null) return false;
+        return !(pin != null ? !pin.equals(player.pin) : player.pin != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = color != null ? color.hashCode() : 0;
+        result = 31 * result + (cards != null ? cards.hashCode() : 0);
+        result = 31 * result + score;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (pin != null ? pin.hashCode() : 0);
+        result = 31 * result + trainsRemaining;
+        return result;
     }
 }
