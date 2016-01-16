@@ -12,6 +12,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +45,13 @@ public class GameMap {
     private String EDGE = "edge";
     private String LENGTH = "length";
     private String WIDTH = "width";
+
+    String[] cityList = new String[] {"Vancouver", "Seattle", "Portland", "San Francisco",
+            "Los Angeles", "Calgary", "Helena", "Salt Lake City", "Las Vegas", "Phoenix",
+            "Winnipeg", "Denver", "Santa Fe", "El Paso", "Duluth", "Omaha", "Kansas City",
+            "Oklahoma City", "Dallas", "Houston", "Sault St. Marie", "Chicago","Saint Louis",
+            "Little Rock", "New Orleans", "Toronto", "Pittsburgh", "Nashville", "Atlanta",
+            "Montreal", "Boston", "New York", "Washington", "Raleigh", "Charleston", "Miami"};
 
     /**
      * Create a new map (initializing the cities and edges between them)
