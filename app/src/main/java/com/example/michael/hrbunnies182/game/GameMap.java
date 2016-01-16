@@ -235,8 +235,7 @@ public class GameMap implements Serializable {
     }
 
     /**
-     * Initialize the map (currently hardcoded for the American map)
-     * Sets all the edge distances between cities.
+     * Initialize the map. Sets all the edge distances between cities.
      */
     private void initMap(String mapName, Activity activity) {
         Resources res = activity.getResources();
