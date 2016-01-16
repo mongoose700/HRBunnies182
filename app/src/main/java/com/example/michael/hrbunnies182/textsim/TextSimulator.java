@@ -42,7 +42,8 @@ public class TextSimulator {
             colors.add(PlayerColor.BLACK);
         }
         System.out.println("Colors: " + colors);
-        return new Model(colors);
+//        return new Model(colors);
+        return null;
     }
 
 }
