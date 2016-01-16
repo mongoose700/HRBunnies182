@@ -18,10 +18,10 @@ public class City implements Serializable{
     }
 
     public void addEdge(Edge edge) {
-        if (this.equals(edge.getCities().first)) {
-            neighbors.put(edge.getCities().second, edge);
+        if (this.equals(edge.getFirstCity())) {
+            neighbors.put(edge.getSecondCity(), edge);
         } else {
-            neighbors.put(edge.getCities().first, edge);
+            neighbors.put(edge.getFirstCity(), edge);
         }
     }
 

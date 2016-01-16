@@ -15,7 +15,7 @@ public class TextSimulator {
     private Scanner scan = new Scanner(System.in);
 
     public static void main() {
-        new TextSimulator().start();
+        //new TextSimulator().start();
     }
 
     public void start() {
@@ -42,7 +42,7 @@ public class TextSimulator {
             colors.add(PlayerColor.BLACK);
         }
         System.out.println("Colors: " + colors);
-//        return new Model(colors);
+        //return new Model(colors);
         return null;
     }
 

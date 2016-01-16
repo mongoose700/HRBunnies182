@@ -1,5 +1,6 @@
 package com.example.michael.hrbunnies182.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.CheckBox;
 
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
+import com.example.michael.hrbunnies182.game.Player;
 import com.example.michael.hrbunnies182.game.PlayerColor;
 
 import java.util.HashMap;
@@ -24,6 +26,7 @@ public class ChoosePlayersActivity extends AppCompatActivity {
         Button ok = (Button) findViewById(R.id.buttonOkToPlayers);
 
         final Intent initializePlayerActivity = new Intent(this, com.example.michael.hrbunnies182.view.InitializePlayerActivity.class);
+        final Activity me = this;
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +47,12 @@ public class ChoosePlayersActivity extends AppCompatActivity {
                     }
                 }
 
-                Controller gameController = new Controller(activeColors, ChoosePlayersActivity.this);
+                if (activeColors.size() == 0) {
+                    //TODO: Create alert (must have at least one player)
+                    return;
+                }
+
+                Controller gameController = new Controller(activeColors, me);
 
                 Bundle appData = new Bundle();
                 appData.putSerializable("GAME_CONTROLLER", gameController);

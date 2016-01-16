@@ -3,83 +3,80 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/profileSwitcher"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <!-- HAND PHONE LAYOUT -->
 
-        <!-- HAND PHONE LAYOUT -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layoutHandOffPhone"
+        android:visibility="visible">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical" android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Please hand the phone to this player:"
+            android:id="@+id/textViewHandPhoneToPlayer" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Please hand the phone to this player:"
-                android:id="@+id/textViewHandPhoneToPlayer" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="(player name)"
+            android:id="@+id/textViewPlayerName" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="(player name)"
-                android:id="@+id/textViewPlayerName" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="That&apos;s me!"
+            android:id="@+id/buttonMe" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="That&apos;s me!"
-                android:id="@+id/buttonMe" />
+    </LinearLayout>
 
-        </LinearLayout>
+    <!-- DRAW CARDS -->
 
-        <!-- DRAW CARDS -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layoutDrawInitialCards"
+        android:visibility="invisible">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical" android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Choose at least 2 cards to keep"
+            android:id="@+id/textViewChoose2Cards" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Choose at least 2 cards to keep"
-                android:id="@+id/textViewChoose2Cards" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keep"
+            android:id="@+id/buttonKeepInitialDraw" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Keep"
-                android:id="@+id/buttonKeepInitialDraw" />
+    </LinearLayout>
 
-        </LinearLayout>
+    <!-- SHOW HAND -->
 
-        <!-- SHOW HAND -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layoutInitialHand"
+        android:visibility="invisible">
 
-        <!--
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical" android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="This is your hand"
+            android:id="@+id/textViewHand" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="This is your hand"
-                android:id="@+id/textViewHand" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            android:id="@+id/buttonHandOk" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ok"
-                android:id="@+id/buttonHandOk" />
-
-        </LinearLayout>
-        -->
-
-    </ViewSwitcher>
+    </LinearLayout>
 
 </LinearLayout>
