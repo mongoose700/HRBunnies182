@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.michael.hrbunnies182.MyApplication;
@@ -15,6 +17,7 @@ import com.example.michael.hrbunnies182.game.Player;
 import com.example.michael.hrbunnies182.game.RouteCard;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,39 +41,17 @@ public class ViewHandActivity extends AppCompatActivity {
         TextView playerTitle = (TextView) findViewById(R.id.toolbar_title_player_name_hand);
         playerTitle.setText(newColorName + " Player");
 
-        String cards = "";
+//        String cards = "";
+//        for (RouteCard card : currentPlayer.getCards()) {
+//            cards += card.toString() + "\n";
+//        }
+//        ((TextView) findViewById(R.id.textViewPlayerHandCards)).setText(cards);
+
+        LinearLayout routeCardImages = (LinearLayout) findViewById(R.id.route_images);
         for (RouteCard card : currentPlayer.getCards()) {
-            cards += card.toString() + "\n";
+            FrameLayout frame = RouteCardCreator.getInstance().getRouteCard(card.getFirstCity() + " * " + card.getSecondCity(),Arrays.asList(card.getFirstCity(), card.getSecondCity()), card.getLength(), getBaseContext());
+            routeCardImages.addView(frame);
         }
-        ((TextView) findViewById(R.id.textViewPlayerHandCards)).setText(cards);
-
-/*        FrameLayout frame = new FrameLayout(getBaseContext());
-        ImageView image = new ImageView(getBaseContext());
-        image.setBackgroundResource(R.drawable.destination_card);
-        ((LinearLayout) findViewById(R.id.route_images)).addView(frame);
-        frame.addView(image);
-        ImageView icon = new ImageView(getBaseContext());
-        // Some existing RelativeLayout from your layout xml
-        RelativeLayout rl1 = new RelativeLayout(getBaseContext());
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(20, 20);
-        RouteCard card = currentPlayer.getCards().get(0);
-        Point coords = card.getFirstCity().getCoordinates();
-        params.leftMargin = coords.x;
-        params.topMargin = coords.y;
-        rl1.addView(icon, params);
-        icon.setBackgroundResource(R.drawable.destination_icon);
-        frame.addView(rl1);
-
-        RelativeLayout rl2 = new RelativeLayout(getBaseContext());
-        RelativeLayout.LayoutParams rl2params = new RelativeLayout.LayoutParams(400, 25);
-        rl2params.leftMargin = 20;
-        rl2params.topMargin = 20;
-
-        TextView cardTitle = new TextView(getBaseContext());
-        cardTitle.setText(card.getFirstCity().getName() + " * " + card.getSecondCity().getName());
-        rl2.addView(cardTitle, rl2params);
-        frame.addView(rl2);*/
-
 //        LinearLayout buttons = (LinearLayout) findViewById(R.id.buttonList);
 
         final Map<String, NextStep> nextSteps = (Map<String, NextStep>) getIntent().getExtras().getSerializable("next_step_buttons");

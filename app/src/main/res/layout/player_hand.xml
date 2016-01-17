@@ -20,19 +20,21 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/route_images"
-        android:orientation="vertical"></LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_weight="1"><LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="(cards go here)"
-        android:id="@+id/textViewPlayerHandCards" />
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/route_images"
+            android:orientation="vertical"/>
 
+        </LinearLayout>
+    </ScrollView>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,6 +81,15 @@
             android:text="Draw"
             android:id="@+id/buttonDrawCards" />
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="(cards go here)"
+        android:id="@+id/textViewPlayerHandCards"
+        android:visibility="gone"/>
+
+
 
 
     <LinearLayout
