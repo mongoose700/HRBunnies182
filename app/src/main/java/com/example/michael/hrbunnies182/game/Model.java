@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Created by Derek on 1/15/2016.
@@ -26,14 +25,19 @@ public class Model implements Serializable {
     private Player curPlayer;
 
     public Model(Set<PlayerColor> colors, Activity activity) {
+        System.out.println("Creating model");
         gameMap = new GameMap("usa.xml", activity);
+        System.out.println("Made game map");
         deck = gameMap.getDeck();
+        System.out.println("Got deck");
         players = new ArrayList<>(colors.size());
         for (PlayerColor color : colors) {
             players.add(new Player(color));
+            System.out.println("Added players");
         }
         Collections.shuffle(players);
         scoreMap = new ScoreMap(gameMap, new HashSet<>(players));
+        System.out.println("Created model");
     }
 
     public IViewToModelAdapter getAdapter() {

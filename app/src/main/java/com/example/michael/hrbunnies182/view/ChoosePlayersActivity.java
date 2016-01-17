@@ -10,8 +10,6 @@ import android.widget.CheckBox;
 
 import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
-import com.example.michael.hrbunnies182.controller.Controller;
-import com.example.michael.hrbunnies182.game.Player;
 import com.example.michael.hrbunnies182.game.PlayerColor;
 
 import java.util.HashMap;
@@ -26,7 +24,6 @@ public class ChoosePlayersActivity extends AppCompatActivity {
 
         Button ok = (Button) findViewById(R.id.buttonOkToPlayers);
 
-        final Intent initializePlayerActivity = new Intent(this, com.example.michael.hrbunnies182.view.InitializePlayerActivity.class);
         final Activity me = this;
 
         ok.setOnClickListener(new View.OnClickListener() {
@@ -53,9 +50,12 @@ public class ChoosePlayersActivity extends AppCompatActivity {
                     return;
                 }
 
-                ((MyApplication) me.getApplication()).initializeGame(activeColors, me);
-
-                startActivity(initializePlayerActivity);
+                MyApplication app = ((MyApplication) me.getApplication());
+                app.initializeGame(activeColors, me);
+                Intent declarePlayerActivity = new Intent(me, com.example.michael.hrbunnies182.view.DeclarePlayerActivity.class);
+                declarePlayerActivity.putExtra("player_num", 0);
+                System.out.println("Put extra player_num 0");
+                startActivity(declarePlayerActivity);
             }
         });
     }

@@ -251,6 +251,7 @@ public class GameMap implements Serializable {
         Resources res = activity.getResources();
         XmlResourceParser xpp = res.getXml(R.xml.usa);
         int eventType = 0;
+        System.out.println("Initializing map");
         try {
             eventType = xpp.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT)
