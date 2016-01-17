@@ -167,11 +167,13 @@ public class ScoreMap {
         int length = 0;
         for (Player player : players) {
             int playerLength = getLongestRouteLength(player);
+            System.out.println(player.getColor() + " " + playerLength);
             if (playerLength > length) {
                 best.clear();
             }
             if (playerLength >= length) {
                 best.add(player);
+                length = playerLength;
             }
         }
         return best;
