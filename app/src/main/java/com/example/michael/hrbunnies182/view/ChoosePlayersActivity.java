@@ -7,11 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.game.PlayerColor;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -22,7 +24,24 @@ public class ChoosePlayersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_players);
 
-        Button ok = (Button) findViewById(R.id.buttonOkToPlayers);
+        final Button ok = (Button) findViewById(R.id.buttonOkToPlayers);
+        ok.setEnabled(false);
+        ok.setBackgroundResource(R.color.lightBrown);
+        final int[] checked = {0};
+        for (int id : Arrays.asList(R.id.checkBoxRed, R.id.checkBoxBlue, R.id.checkBoxGreen, R.id.checkBoxBlack, R.id.checkBoxYellow)) {
+            ((CheckBox) findViewById(id)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked)
+                        checked[0]++;
+                    else
+                        checked[0]--;
+                    ok.setEnabled(checked[0] > 0);
+                    ok.setBackgroundResource(ok.isEnabled() ? R.color.darkBrown : R.color.lightBrown);
+                }
+            });
+        }
 
         final Activity me = this;
 

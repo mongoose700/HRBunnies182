@@ -54,6 +54,7 @@ public class RouteCardCreator {
         cardValue.setTextColor(resources.getColor(R.color.redFont));
         RelativeLayout rl3 = new RelativeLayout(context);
         RelativeLayout.LayoutParams rl3params = new RelativeLayout.LayoutParams(100, 100);
+        System.out.println("Size: " + image.getWidth() + " " + image.getHeight());
         rl3params.leftMargin = value >= 10 ? 450 : 467;
         rl3params.topMargin = 250;
         rl3.addView(cardValue, rl3params);
