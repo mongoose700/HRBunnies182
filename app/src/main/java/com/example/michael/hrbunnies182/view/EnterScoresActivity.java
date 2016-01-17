@@ -1,5 +1,6 @@
 package com.example.michael.hrbunnies182.view;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -49,6 +50,8 @@ public class EnterScoresActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.scoring_map);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
     }
 
