@@ -41,18 +41,6 @@ public class DeclarePlayerActivity extends AppCompatActivity {
         playerName.setText(newColorName);
 
 
-        Button thatsMe = (Button) findViewById(R.id.buttonMe);
-        thatsMe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent drawCardsActivity = new Intent(DeclarePlayerActivity.this, com.example.michael.hrbunnies182.view.DrawCardsKeepSomeActivity.class);
-                drawCardsActivity.putExtra("player_num", playerIndex);
-                drawCardsActivity.putExtra("card_min", 2);
-                drawCardsActivity.putExtra("next_step_buttons", (Serializable) Collections.singletonMap("Continue", new ViewHandActivity.InitializeNextPlayer((playerIndex + 1))));
-                startActivity(drawCardsActivity);
-            }
-        });
-
         playerName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
