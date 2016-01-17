@@ -152,4 +152,28 @@ public class ScoreMap {
     public int countOwners(Edge edge) {
         return owners.get(edge).size();
     }
+
+    public Map<Player, Scores> getAllScores(List<Player> players) {
+        Set<Player> longestRoutes = calculateLongestRoutes(players);
+        Map<Player, Scores> scores = new HashMap<>();
+        for (Player player : players) {
+            scores.put(player, new Scores(getRouteScore(player), getTrainScore(player), longestRoutes.contains(player) ? 10 : 0));
+        }
+        return scores;
+    }
+
+    private Set<Player> calculateLongestRoutes(List<Player> players) {
+        Set<Player> best = new HashSet<>();
+        int length = 0;
+        for (Player player : players) {
+            int playerLength = getLongestRouteLength(player);
+            if (playerLength > length) {
+                best.clear();
+            }
+            if (playerLength >= length) {
+                best.add(player);
+            }
+        }
+        return best;
+    }
 }

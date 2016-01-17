@@ -1,6 +1,7 @@
 package com.example.michael.hrbunnies182.view;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -18,6 +19,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -227,6 +229,16 @@ public class EnterScoresActivity extends AppCompatActivity {
                 }
             }
         }
+
+        Button ok = (Button) findViewById(R.id.done);
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent results = new Intent(EnterScoresActivity.this, com.example.michael.hrbunnies182.view.ResultsActivity.class);
+                startActivity(results);
+            }
+        });
     }
 
     // Forward touches to the gestureDetector

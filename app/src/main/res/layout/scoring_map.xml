@@ -106,6 +106,14 @@
                 android:text="CLEAR" />
 
         </RadioGroup>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:id="@+id/done" />
+
     </RelativeLayout>
 
 

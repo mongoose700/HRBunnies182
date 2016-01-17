@@ -59,6 +59,11 @@
             android:label="@string/title_activity_draw_cards_keep_some"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".view.ResultsActivity"
+            android:label="@string/title_activity_results"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

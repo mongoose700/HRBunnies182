@@ -6,10 +6,12 @@ import com.example.michael.hrbunnies182.game.City;
 import com.example.michael.hrbunnies182.game.Draw;
 import com.example.michael.hrbunnies182.game.Edge;
 import com.example.michael.hrbunnies182.game.Player;
+import com.example.michael.hrbunnies182.game.Scores;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Adapter from View to Model
@@ -42,4 +44,6 @@ public interface IViewToModelAdapter extends Serializable {
     int countOwners(Edge edge);
 
     Collection<City> getAllCities();
+
+    Map<Player, Scores> getAllScores();
 }

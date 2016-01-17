@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -99,6 +100,11 @@ public class Model implements Serializable {
             @Override
             public Collection<City> getAllCities() {
                 return gameMap.getCities();
+            }
+
+            @Override
+            public Map<Player, Scores> getAllScores() {
+                return scoreMap.getAllScores(players);
             }
         };
     }
