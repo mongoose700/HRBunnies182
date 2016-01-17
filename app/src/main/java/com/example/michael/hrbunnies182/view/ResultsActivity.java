@@ -36,7 +36,11 @@ public class ResultsActivity extends AppCompatActivity {
 
         Map<Player, Scores> scores = gameController.getAdapter().getAllScores();
 
+//        System.out.println("Scores: " + scores);
+
         List<Player> sortedPlayers = sorted(scores);
+
+//        System.out.println("Sorted players: " + sortedPlayers);
 
         Button ok = (Button) findViewById(R.id.buttonOkToPlayers);
         List<TextView> rankings = new ArrayList<>();
@@ -53,6 +57,7 @@ public class ResultsActivity extends AppCompatActivity {
             } else {
                 view.setText((i + 1) + ": " + scores.get(sortedPlayers.get(i)));
                 int color;
+//                System.out.println("Player color: " + sortedPlayers.get(i).getColor());
                 switch (sortedPlayers.get(i).getColor()) {
                     case RED: color = Color.RED; break;
                     case BLUE: color = Color.BLUE; break;
@@ -81,7 +86,7 @@ public class ResultsActivity extends AppCompatActivity {
         for (int i = 0; i < scores.size(); i++) {
             int best = scores.get(players.get(i)).getTotalScore();
             int bestIndex = i;
-            for (int j = 1; j < scores.size(); j++) {
+            for (int j = i + 1; j < scores.size(); j++) {
                 if (scores.get(players.get(j)).getTotalScore() > best) {
                     best = scores.get(players.get(j)).getTotalScore();
                     bestIndex = j;
