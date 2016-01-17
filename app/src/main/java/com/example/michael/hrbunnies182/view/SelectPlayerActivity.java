@@ -27,11 +27,6 @@ public class SelectPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_player_gameplay);
 
-     //   onResume(savedInstanceState);
-   // }
-
-    //protected void onResume(Bundle savedInstanceState) {
-
         final Intent viewHandActivity = new Intent(this, com.example.michael.hrbunnies182.view.ViewHandActivity.class);
         final Controller gameController = ((MyApplication) this.getApplication()).getGame();
 
@@ -59,6 +54,7 @@ public class SelectPlayerActivity extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        gameController.getAdapter().setPlayer(curPlayer);
                         startActivity(viewHandActivity);
                     }
                 });
