@@ -15,6 +15,7 @@ import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.CheckedRouteCard;
 import com.example.michael.hrbunnies182.game.Draw;
 import com.example.michael.hrbunnies182.game.Player;
+import com.example.michael.hrbunnies182.game.PlayerColor;
 import com.example.michael.hrbunnies182.game.RouteCard;
 
 import java.util.ArrayList;
@@ -43,9 +44,11 @@ public class InitializePlayerActivity extends AppCompatActivity {
 
         final LinearLayout[] cards = new LinearLayout[3];
         cards[0] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard1));
-        final boolean[] checked = new boolean[3];
+        cards[1] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard2));
+        cards[2] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard3));
 
         Button thatsMe = (Button) findViewById(R.id.buttonMe);
+        final Button keep = (Button) findViewById(R.id.buttonKeepInitialDraw);
         thatsMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,37 +56,46 @@ public class InitializePlayerActivity extends AppCompatActivity {
                 // Draw cards
                 currentDraw = gameController.getAdapter().getNewDraw();
                 for (int i = 0; i < 3; i++) {
-                    ((TextView) cards[i].getChildAt(0)).setText(currentDraw.getCards().get(i).getCard().toString());
+                    final CheckedRouteCard card = currentDraw.getCards().get(i);
+                    final LinearLayout layout = cards[i];
+                    ((TextView) layout.getChildAt(0)).setText(card.getCard().toString());
+                    ((TextView) layout.getChildAt(1)).setText(String.valueOf(card.getCard().getLength()));
+                    cards[i].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            card.setChecked(!card.isChecked());
+                            int color = card.isChecked() ? R.color.darkBrown : R.color.lightBrown;
+                            layout.setBackgroundResource(color);
+                            int savedCount = 0;
+                            for (CheckedRouteCard card : currentDraw.getCards())
+                                if (card.isChecked())
+                                    savedCount++;
+                            keep.setEnabled(savedCount >= 2);
+                            keep.setBackgroundResource(keep.isEnabled() ? R.color.darkBrown : R.color.lightBrown);
+                        }
+                    });
                 }
 
                 // Go to draw screen
                 findViewById(R.id.layoutHandOffPhone).setVisibility(View.GONE);
                 findViewById(R.id.layoutDrawInitialCards).setVisibility(View.VISIBLE);
+                for (int k = 0; k < 3; k++) cards[k].setBackgroundResource(R.color.lightBrown);
+                keep.setBackgroundResource(R.color.lightBrown);
             }
         });
-
-        Button keep = (Button) findViewById(R.id.buttonKeepInitialDraw);
         keep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                int savedCount = 0;
-                for (CheckedRouteCard card : currentDraw.getCards())
-                    if (card.isChecked())
-                        savedCount++;
-                if (savedCount < 2) {
-                    //TODO: alert that too few cards were taken
-                    return;
-                }
                 gameController.getAdapter().makeChoice(currentDraw);
 
                 // Display hand
                 TextView hand = (TextView) findViewById(R.id.textViewHandCards);
-                String cards = "";
+                String cardsText = "";
                 for (RouteCard card : gameController.getAdapter().getPlayer().getCards()) {
-                    cards += card + "\n";
+                    cardsText += card + "\n";
                 }
-                hand.setText(cards);
+                hand.setText(cardsText);
 
                 // Go to hand screen
                 findViewById(R.id.layoutDrawInitialCards).setVisibility(View.GONE);
@@ -113,8 +125,20 @@ public class InitializePlayerActivity extends AppCompatActivity {
         if (remainingPlayers.size() > 0) {
             currentPlayer = remainingPlayers.remove(0);
             playerName.setText(currentPlayer.toString());
+            playerName.setBackgroundResource(getBackgroundColor(currentPlayer.getColor()));
             return true;
         }
         return false;
+    }
+
+    private int getBackgroundColor(PlayerColor color) {
+        switch (color) {
+            case RED: return R.color.red;
+            case BLUE: return R.color.blue;
+            case BLACK: return R.color.black;
+            case YELLOW: return R.color.yellow;
+            case GREEN: return R.color.green;
+        }
+        throw new NullPointerException();
     }
 }

@@ -36,10 +36,5 @@ public interface IViewToModelAdapter extends Serializable {
     /** Removes all trains from this edge on the board */
     void clearEdge(Point city1, Point city2);
 
-    /** Gets the length of the longest route of the player */
-    int getLengthOfLongestRoute(Player player);
-
-    int getTrainScore(Player player);
-
 
 }

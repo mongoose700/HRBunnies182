@@ -62,4 +62,8 @@ public class City implements Serializable{
     public Point getCoordinates() {
         return coordinates;
     }
+
+    public String toString() {
+        return name;
+    }
 }

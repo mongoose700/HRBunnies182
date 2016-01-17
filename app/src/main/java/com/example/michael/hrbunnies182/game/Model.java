@@ -74,17 +74,10 @@ public class Model implements Serializable {
 
             @Override
             public void clearEdge(Point city1, Point city2) {
-
-            }
-
-            @Override
-            public int getLengthOfLongestRoute(Player player) {
-                return 0;
-            }
-
-            @Override
-            public int getTrainScore(Player player) {
-                return 0;
+                Edge edge = gameMap.findEdge(city1, city2);
+                if (edge != null) {
+                    scoreMap.clearEdge(edge);
+                }
             }
         };
     }
