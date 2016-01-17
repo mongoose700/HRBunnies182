@@ -90,10 +90,13 @@ public class DrawCardsKeepSomeActivity extends AppCompatActivity {
 
                 gameController.getAdapter().makeChoice(currentDraw);
 
-                Intent viewHandActivity = new Intent(DrawCardsKeepSomeActivity.this, com.example.michael.hrbunnies182.view.ViewHandActivity.class);
-                viewHandActivity.putExtra("next_step_buttons", (Serializable) nextStepMap);
-                startActivity(viewHandActivity);
-
+                if (cardMin == 1) {
+                    Intent viewHandActivity = new Intent(DrawCardsKeepSomeActivity.this, com.example.michael.hrbunnies182.view.ViewHandActivity.class);
+                    viewHandActivity.putExtra("next_step_buttons", (Serializable) nextStepMap);
+                    startActivity(viewHandActivity);
+                } else {
+                    nextStepMap.get("Continue").takeNextStep(DrawCardsKeepSomeActivity.this);
+                }
             }
         });
     }
