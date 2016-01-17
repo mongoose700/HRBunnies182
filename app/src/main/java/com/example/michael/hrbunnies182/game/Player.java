@@ -15,6 +15,7 @@ public class Player implements Serializable {
     private String name;
     private String pin;
     private int trainsRemaining;
+    private int longestRoute;
 
     public Player(PlayerColor color) {
         this.score = 0;
@@ -92,5 +93,13 @@ public class Player implements Serializable {
         result = 31 * result + (pin != null ? pin.hashCode() : 0);
         result = 31 * result + trainsRemaining;
         return result;
+    }
+
+    public int getLongestRoute() {
+        return longestRoute;
+    }
+
+    public void setLongestRoute(int longestRoute) {
+        this.longestRoute = longestRoute;
     }
 }

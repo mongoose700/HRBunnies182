@@ -4,6 +4,7 @@ import java.io.Serializable;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
+import android.graphics.Point;
 import android.util.Pair;
 
 import com.example.michael.hrbunnies182.R;
@@ -28,7 +29,7 @@ import java.util.regex.Pattern;
  * Created by Michael on 1/15/2016.
  */
 public class GameMap implements Serializable {
-    // Pairs city to city, with duplicates
+    // Pairs city to city, without duplicates
     private Set<Edge> edges;
 
     // Pairs city to city, with duplicates
@@ -337,5 +338,12 @@ public class GameMap implements Serializable {
 
     public Set<Edge> getEdges() {
         return edges;
+    }
+
+    public Edge findEdge(Point city1, Point city2) {
+        for (Edge edge : edges) {
+
+        }
+        return null;
     }
 }

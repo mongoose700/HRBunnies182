@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/layoutEnterScores">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_gravity="center"
+        android:src="@drawable/ticket_to_ride"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom|center_vertical"
+        android:orientation="vertical">
+
+        <RadioButton
+        android:id="@+id/radioRed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Red" />
+
+        <RadioButton
+            android:id="@+id/radioBlue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Blue" />
+
+        <RadioButton
+            android:id="@+id/radioGreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Green" />
+
+        <RadioButton
+            android:id="@+id/radioYellow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Yellow" />
+
+        <RadioButton
+            android:id="@+id/radioBlack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Black" />
+
+        <RadioButton
+            android:id="@+id/radioClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLEAR" />
+
+    </RadioGroup>
+
+
+</FrameLayout>
