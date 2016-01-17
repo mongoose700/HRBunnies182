@@ -65,6 +65,13 @@
         android:layout_gravity="center">
         </LinearLayout>
 
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
         <Button
             android:layout_gravity="center"
             android:layout_height="48dp"
@@ -73,6 +80,7 @@
             android:layout_marginBottom="15px"
             android:paddingLeft="30px"
             android:paddingRight="30px"
+            android:layout_marginRight="30px"
             android:background="@color/darkBrown"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"
@@ -80,32 +88,34 @@
             android:id="@+id/buttonBackPlayerHand" />
 
         <Button
-            android:layout_gravity="center"
             android:layout_height="48dp"
             android:layout_width="wrap_content"
             android:layout_marginTop="20px"
             android:layout_marginBottom="15px"
             android:paddingLeft="30px"
             android:paddingRight="30px"
-            android:background="@color/darkBrown"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white"
-            android:text="Continue"
-            android:id="@+id/buttonContinuePlayerHand"/>
-
-        <Button
-            android:layout_gravity="center"
-            android:layout_height="48dp"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="20px"
-            android:layout_marginBottom="15px"
-            android:paddingLeft="30px"
-            android:paddingRight="30px"
+            android:layout_marginLeft="30px"
             android:background="@color/darkBrown"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"
             android:text="Draw"
             android:id="@+id/buttonDrawCards"/>
+
+                    </LinearLayout>
+
+                <Button
+                    android:layout_gravity="center"
+                    android:layout_height="48dp"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:layout_marginBottom="15px"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:background="@color/darkBrown"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/white"
+                    android:text="Continue"
+                    android:id="@+id/buttonContinuePlayerHand"/>
 
     </LinearLayout>
     <TextView
