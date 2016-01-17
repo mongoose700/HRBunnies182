@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.Player;
@@ -27,9 +28,7 @@ public class SelectPlayerActivity extends AppCompatActivity {
         setContentView(R.layout.select_player_gameplay);
 
         final Intent viewHandActivity = new Intent(this, com.example.michael.hrbunnies182.view.ViewHandActivity.class);
-
-        Bundle appData = getIntent().getBundleExtra("APP_DATA");
-        final Controller gameController = (Controller) appData.getSerializable("GAME_CONTROLLER");
+        final Controller gameController = ((MyApplication) this.getApplication()).getGame();
 
         HashMap<Integer, PlayerColor> colorButtons = new HashMap<>();
         colorButtons.put(R.id.buttonRedPlayer, PlayerColor.RED);
@@ -55,15 +54,8 @@ public class SelectPlayerActivity extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        Bundle newAppData = new Bundle();
-                        newAppData.putSerializable("GAME_CONTROLLER", gameController);
-                        newAppData.putSerializable("CURRENT_PLAYER", curPlayer);
-                        viewHandActivity.putExtra("APP_DATA", newAppData);
-
+                        gameController.getAdapter().setPlayer(curPlayer);
                         startActivity(viewHandActivity);
-
-                        me.finish();
                     }
                 });
             }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.Player;
@@ -52,11 +53,7 @@ public class ChoosePlayersActivity extends AppCompatActivity {
                     return;
                 }
 
-                Controller gameController = new Controller(activeColors, me);
-
-                Bundle appData = new Bundle();
-                appData.putSerializable("GAME_CONTROLLER", gameController);
-                initializePlayerActivity.putExtra("APP_DATA", appData);
+                ((MyApplication) me.getApplication()).initializeGame(activeColors, me);
 
                 startActivity(initializePlayerActivity);
             }

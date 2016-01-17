@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.Player;
@@ -23,16 +24,20 @@ import java.util.HashSet;
  */
 public class ViewHandActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_hand);
 
-        Bundle appData = getIntent().getBundleExtra("APP_DATA");
-        final Controller gameController = (Controller) appData.getSerializable("GAME_CONTROLLER");
-        final Player currentPlayer = (Player) appData.getSerializable("CURRENT_PLAYER");
+        onRestart();
+    }
+
+    protected void onRestart() {
+
+        super.onRestart();
+
+        final Controller gameController = ((MyApplication) this.getApplication()).getGame();
+        final Player currentPlayer = gameController.getAdapter().getPlayer();
 
         ((TextView) findViewById(R.id.textViewPlayerName)).setText(currentPlayer.toString());
 
@@ -52,13 +57,6 @@ public class ViewHandActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Bundle newAppData = new Bundle();
-                newAppData.putSerializable("GAME_CONTROLLER", gameController);
-                selectPlayerActivity.putExtra("APP_DATA", newAppData);
-
-                startActivity(selectPlayerActivity);
-
                 me.finish();
             }
         });
@@ -66,15 +64,7 @@ public class ViewHandActivity extends AppCompatActivity {
         draw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Bundle newAppData = new Bundle();
-                newAppData.putSerializable("GAME_CONTROLLER", gameController);
-                newAppData.putSerializable("CURRENT_PLAYER", currentPlayer);
-                makeDrawActivity.putExtra("APP_DATA", newAppData);
-
                 startActivity(makeDrawActivity);
-
-                me.finish();
             }
         });
     }

@@ -19,10 +19,16 @@ public interface IViewToModelAdapter extends Serializable {
 
     /** Returns a new Draw of up to three cards from the deck of available cards
      * for the given Player to choose */
-    Draw getNewDraw(Player player, int numKept);
+    Draw getNewDraw();
 
     /** Accepts a Draw returned by getNewDraw, with certain cards now designated as kept */
     void makeChoice(Draw choice);
+
+    /** Sets the current player */
+    void setPlayer(Player player);
+
+    /** Returns the current player */
+    Player getPlayer();
 
     /** Adds the trains of a certain player to the edge on the board */
     void addEdge(Player player, Point city1, Point city2);

@@ -8,6 +8,7 @@ import com.example.michael.hrbunnies182.controller.IViewToModelAdapter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -21,6 +22,8 @@ public class Model implements Serializable {
     private List<Player> players;
     private GameMap gameMap;
     private ScoreMap scoreMap;
+    private GameMap map;
+    private Player curPlayer;
 
     public Model(Set<PlayerColor> colors, Activity activity) {
         gameMap = new GameMap("usa.xml", activity);
@@ -30,7 +33,7 @@ public class Model implements Serializable {
             players.add(new Player(color));
         }
         Collections.shuffle(players);
-        scoreMap = new ScoreMap(gameMap, new TreeSet<>(players));
+        scoreMap = new ScoreMap(gameMap, new HashSet<>(players));
     }
 
     public IViewToModelAdapter getAdapter() {
@@ -41,14 +44,24 @@ public class Model implements Serializable {
             }
 
             @Override
-            public Draw getNewDraw(Player player, int numKept) {
-                return deck.drawCards(player, numKept);
+            public Draw getNewDraw() {
+                return deck.drawCards();
             }
 
             @Override
             public void makeChoice(Draw choice) {
                 deck.returnCards(choice);
-                choice.giveCardsToPlayer();
+                choice.giveCardsToPlayer(curPlayer);
+            }
+
+            @Override
+            public void setPlayer(Player player) {
+                curPlayer = player;
+            }
+
+            @Override
+            public Player getPlayer() {
+                return curPlayer;
             }
 
             @Override

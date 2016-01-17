@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.CheckedRouteCard;
@@ -29,19 +30,16 @@ public class MakeDrawActivity extends AppCompatActivity {
         setContentView(R.layout.draw_cards);
 
         final Intent viewHandActivity = new Intent(this, com.example.michael.hrbunnies182.view.ViewHandActivity.class);
+        final Controller gameController = ((MyApplication) this.getApplication()).getGame();
 
-        Bundle appData = getIntent().getBundleExtra("APP_DATA");
-        final Controller gameController = (Controller) appData.getSerializable("GAME_CONTROLLER");
-        final Player currentPlayer = (Player) appData.getSerializable("CURRENT_PLAYER");
-
-        ((TextView) findViewById(R.id.textViewPlayerName)).setText(currentPlayer.toString());
+        ((TextView) findViewById(R.id.textViewPlayerName)).setText(gameController.getAdapter().getPlayer().toString());
 
         final CheckBox[] checkboxes = new CheckBox[3];
         checkboxes[0] = ((CheckBox) findViewById(R.id.checkBoxInitialCard1));
         checkboxes[1] = ((CheckBox) findViewById(R.id.checkBoxInitialCard2));
         checkboxes[2] = ((CheckBox) findViewById(R.id.checkBoxInitialCard3));
 
-        final Draw currentDraw = gameController.getAdapter().getNewDraw(currentPlayer, 1);
+        final Draw currentDraw = gameController.getAdapter().getNewDraw();
         for (int i = 0; i < 3; i++) {
             if (currentDraw.getCards().size() <= i) {
                 checkboxes[i].setVisibility(View.GONE);
@@ -82,17 +80,6 @@ public class MakeDrawActivity extends AppCompatActivity {
                     }
                 }
                 gameController.getAdapter().makeChoice(currentDraw);
-
-                System.out.println(currentPlayer.getCards().size() + " SIZE");
-
-                // Exit
-
-                Bundle newAppData = new Bundle();
-                newAppData.putSerializable("GAME_CONTROLLER", gameController);
-                newAppData.putSerializable("CURRENT_PLAYER", currentPlayer);
-                viewHandActivity.putExtra("APP_DATA", newAppData);
-
-                startActivity(viewHandActivity);
 
                 me.finish();
             }

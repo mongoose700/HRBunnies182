@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.CheckedRouteCard;
@@ -32,13 +33,13 @@ public class InitializePlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initialize_player);
 
-        Bundle appData = getIntent().getBundleExtra("APP_DATA");
-        final Controller gameController = (Controller) appData.getSerializable("GAME_CONTROLLER");
+        final Controller gameController = ((MyApplication) this.getApplication()).getGame();
 
         remainingPlayers = new ArrayList<>();
         remainingPlayers.addAll(gameController.getAdapter().getPlayers());
         final TextView playerName = (TextView) findViewById(R.id.textViewPlayerName);
         nextPlayer(playerName);
+        gameController.getAdapter().setPlayer(currentPlayer);
 
         final Intent selectPlayerActivity = new Intent(this, com.example.michael.hrbunnies182.view.SelectPlayerActivity.class);
 
@@ -53,7 +54,7 @@ public class InitializePlayerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Draw cards
-                currentDraw = gameController.getAdapter().getNewDraw(currentPlayer, 2);
+                currentDraw = gameController.getAdapter().getNewDraw();
                 for (int i = 0; i < 3; i++) {
                     checkboxes[i].setText(currentDraw.getCards().get(i).getCard().toString());
                 }
@@ -95,7 +96,7 @@ public class InitializePlayerActivity extends AppCompatActivity {
                 // Display hand
                 TextView hand = (TextView) findViewById(R.id.textViewHandCards);
                 String cards = "";
-                for (RouteCard card : currentPlayer.getCards()) {
+                for (RouteCard card : gameController.getAdapter().getPlayer().getCards()) {
                     cards += card + "\n";
                 }
                 hand.setText(cards);
@@ -113,17 +114,12 @@ public class InitializePlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (nextPlayer(playerName)) {
+                    gameController.getAdapter().setPlayer(currentPlayer);
                     findViewById(R.id.layoutInitialHand).setVisibility(View.GONE);
                     findViewById(R.id.layoutHandOffPhone).setVisibility(View.VISIBLE);
                 }
                 else {
-                    Bundle newAppData = new Bundle();
-                    newAppData.putSerializable("GAME_CONTROLLER", gameController);
-                    selectPlayerActivity.putExtra("APP_DATA", newAppData);
-
                     startActivity(selectPlayerActivity);
-
-                    me.finish();
                 }
             }
         });
