@@ -143,4 +143,9 @@ public class InitializePlayerActivity extends AppCompatActivity {
         }
         throw new NullPointerException();
     }
+
+
+    @Override
+    public void onBackPressed() {
+    }
 }

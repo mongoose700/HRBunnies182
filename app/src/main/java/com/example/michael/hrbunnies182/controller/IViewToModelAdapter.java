@@ -2,11 +2,12 @@ package com.example.michael.hrbunnies182.controller;
 
 import android.graphics.Point;
 
+import com.example.michael.hrbunnies182.game.City;
 import com.example.michael.hrbunnies182.game.Draw;
-import com.example.michael.hrbunnies182.game.Edge;
 import com.example.michael.hrbunnies182.game.Player;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -37,4 +38,5 @@ public interface IViewToModelAdapter extends Serializable {
     void clearEdge(Point city1, Point city2);
 
 
+    Collection<City> getAllCities();
 }

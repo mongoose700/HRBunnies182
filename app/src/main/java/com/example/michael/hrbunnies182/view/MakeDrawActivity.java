@@ -14,8 +14,6 @@ import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.CheckedRouteCard;
 import com.example.michael.hrbunnies182.game.Draw;
-import com.example.michael.hrbunnies182.game.Player;
-import com.example.michael.hrbunnies182.game.RouteCard;
 
 import java.util.ArrayList;
 
@@ -84,5 +82,10 @@ public class MakeDrawActivity extends AppCompatActivity {
                 me.finish();
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
     }
 }
