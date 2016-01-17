@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.example.michael.hrbunnies182.MyApplication;
@@ -53,6 +56,24 @@ public class EnterScoresActivity extends AppCompatActivity {
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             System.out.println("LISTENER: Received an event moving from (" +
                     e1.getX() + ", " + e1.getY() + ") to (" + e2.getX() + ", " + e2.getY() + ")");
+
+            FrameLayout frame = (FrameLayout) findViewById(R.id.layoutEnterScores);
+            boolean foundFrame = false;
+            View imgFrame = null;
+            for (int i=0; i<(frame).getChildCount(); i++) {
+                imgFrame = frame.getChildAt(i);
+                if (imgFrame instanceof ImageView) {
+                    foundFrame = true;
+                    break;
+                }
+            }
+            if (!foundFrame) {
+                System.err.println("Unable to find map when entering scores!");
+                return true;
+            }
+
+            System.out.println("LISTENER: Current image bounds " +
+                    ((ImageView) imgFrame).getDrawable().getBounds());
 
             Point loc1 = getAdjustedPoint(e1);
             Point loc2 = getAdjustedPoint(e2);

@@ -257,624 +257,936 @@
     <edges>
         <edge>
             <cities>
-                <city>Vancouver</city>
-                <city>Calgary</city>
+                <city>
+                    <name>Vancouver</name>
+                </city>
+                <city>
+                    <name>Calgary</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Vancouver</city>
-                <city>Seattle</city>
+                <city>
+                    <name>Vancouver</name>
+                </city>
+                <city>
+                    <name>Seattle</name>
+                </city>
             </cities>
             <length>1</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Seattle</city>
-                <city>Calgary</city>
+                <city>
+                    <name>Seattle</name>
+                </city>
+                <city>
+                    <name>Calgary</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Seattle</city>
-                <city>Helena</city>
+                <city>
+                    <name>Seattle</name>
+                </city>
+                <city>
+                    <name>Helena</name>
+                </city>
             </cities>
             <length>6</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Seattle</city>
-                <city>Portland</city>
+                <city>
+                    <name>Seattle</name>
+                </city>
+                <city>
+                    <name>Portland</name>
+                </city>
             </cities>
             <length>1</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Portland</city>
-                <city>Salt Lake City</city>
+                <city>
+                    <name>Portland</name>
+                </city>
+                <city>
+                    <name>Salt Lake City</name>
+                </city>
             </cities>
             <length>6</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Portland</city>
-                <city>San Francisco</city>
+                <city>
+                    <name>Portland</name>
+                </city>
+                <city>
+                    <name>San Francisco</name>
+                </city>
             </cities>
             <length>5</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>San Francisco</city>
-                <city>Salt Lake City</city>
+                <city>
+                    <name>San Francisco</name>
+                </city>
+                <city>
+                    <name>Salt Lake City</name>
+                </city>
             </cities>
             <length>5</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>San Francisco</city>
-                <city>Los Angeles</city>
+                <city>
+                    <name>San Francisco</name>
+                </city>
+                <city>
+                    <name>Los Angeles</name>
+                </city>
             </cities>
             <length>3</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Los Angeles</city>
-                <city>Las Vegas</city>
+                <city>
+                    <name>Los Angeles</name>
+                </city>
+                <city>
+                    <name>Las Vegas</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Los Angeles</city>
-                <city>Phoenix</city>
+                <city>
+                    <name>Los Angeles</name>
+                </city>
+                <city>
+                    <name>Phoenix</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Los Angeles</city>
-                <city>El Paso</city>
+                <city>
+                    <name>Los Angeles</name>
+                </city>
+                <city>
+                    <name>El Paso</name>
+                </city>
             </cities>
             <length>6</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Calgary</city>
-                <city>Helena</city>
+                <city>
+                    <name>Calgary</name>
+                </city>
+                <city>
+                    <name>Helena</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Calgary</city>
-                <city>Winnipeg</city>
+                <city>
+                    <name>Calgary</name>
+                </city>
+                <city>
+                    <name>Winnipeg</name>
+                </city>
             </cities>
             <length>6</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Helena</city>
-                <city>Salt Lake City</city>
+                <city>
+                    <name>Helena</name>
+                </city>
+                <city>
+                    <name>Salt Lake City</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Helena</city>
-                <city>Denver</city>
+                <city>
+                    <name>Helena</name>
+                </city>
+                <city>
+                    <name>Denver</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Helena</city>
-                <city>Omaha</city>
+                <city>
+                    <name>Helena</name>
+                </city>
+                <city>
+                    <name>Omaha</name>
+                </city>
             </cities>
             <length>5</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Helena</city>
-                <city>Duluth</city>
+                <city>
+                    <name>Helena</name>
+                </city>
+                <city>
+                    <name>Duluth</name>
+                </city>
             </cities>
             <length>6</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Helena</city>
-                <city>Winnipeg</city>
+                <city>
+                    <name>Helena</name>
+                </city>
+                <city>
+                    <name>Winnipeg</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Salt Lake City</city>
-                <city>Las Vegas</city>
+                <city>
+                    <name>Salt Lake City</name>
+                </city>
+                <city>
+                    <name>Las Vegas</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Salt Lake City</city>
-                <city>Denver</city>
+                <city>
+                    <name>Salt Lake City</name>
+                </city>
+                <city>
+                    <name>Denver</name>
+                </city>
             </cities>
             <length>3</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Phoenix</city>
-                <city>El Paso</city>
+                <city>
+                    <name>Phoenix</name>
+                </city>
+                <city>
+                    <name>El Paso</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Phoenix</city>
-                <city>Santa Fe</city>
+                <city>
+                    <name>Phoenix</name>
+                </city>
+                <city>
+                    <name>Santa Fe</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Phoenix</city>
-                <city>Denver</city>
+                <city>
+                    <name>Phoenix</name>
+                </city>
+                <city>
+                    <name>Denver</name>
+                </city>
             </cities>
             <length>5</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Winnipeg</city>
-                <city>Sault St. Marie</city>
+                <city>
+                    <name>Winnipeg</name>
+                </city>
+                <city>
+                    <name>Sault St. Marie</name>
+                </city>
             </cities>
             <length>6</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Winnipeg</city>
-                <city>Duluth</city>
+                <city>
+                    <name>Winnipeg</name>
+                </city>
+                <city>
+                    <name>Duluth</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Denver</city>
-                <city>Santa Fe</city>
+                <city>
+                    <name>Denver</name>
+                </city>
+                <city>
+                    <name>Santa Fe</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Denver</city>
-                <city>Omaha</city>
+                <city>
+                    <name>Denver</name>
+                </city>
+                <city>
+                    <name>Omaha</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Denver</city>
-                <city>Kansas City</city>
+                <city>
+                    <name>Denver</name>
+                </city>
+                <city>
+                    <name>Kansas City</name>
+                </city>
             </cities>
             <length>4</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Denver</city>
-                <city>Oklahoma City</city>
+                <city>
+                    <name>Denver</name>
+                </city>
+                <city>
+                    <name>Oklahoma City</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Santa Fe</city>
-                <city>El Paso</city>
+                <city>
+                    <name>Santa Fe</name>
+                </city>
+                <city>
+                    <name>El Paso</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Santa Fe</city>
-                <city>Oklahoma City</city>
+                <city>
+                    <name>Santa Fe</name>
+                </city>
+                <city>
+                    <name>Oklahoma City</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>El Paso</city>
-                <city>Oklahoma City</city>
+                <city>
+                    <name>El Paso</name>
+                </city>
+                <city>
+                    <name>Oklahoma City</name>
+                </city>
             </cities>
             <length>5</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>El Paso</city>
-                <city>Dallas</city>
+                <city>
+                    <name>El Paso</name>
+                </city>
+                <city>
+                    <name>Dallas</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>El Paso</city>
-                <city>Houston</city>
+                <city>
+                    <name>El Paso</name>
+                </city>
+                <city>
+                    <name>Houston</name>
+                </city>
             </cities>
             <length>6</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Duluth</city>
-                <city>Omaha</city>
+                <city>
+                    <name>Duluth</name>
+                </city>
+                <city>
+                    <name>Omaha</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Duluth</city>
-                <city>Sault St. Marie</city>
+                <city>
+                    <name>Duluth</name>
+                </city>
+                <city>
+                    <name>Sault St. Marie</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Duluth</city>
-                <city>Toronto</city>
+                <city>
+                    <name>Duluth</name>
+                </city>
+                <city>
+                    <name>Toronto</name>
+                </city>
             </cities>
             <length>6</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Duluth</city>
-                <city>Chicago</city>
+                <city>
+                    <name>Duluth</name>
+                </city>
+                <city>
+                    <name>Chicago</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Omaha</city>
-                <city>Chicago</city>
+                <city>
+                    <name>Omaha</name>
+                </city>
+                <city>
+                    <name>Chicago</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Omaha</city>
-                <city>Kansas City</city>
+                <city>
+                    <name>Omaha</name>
+                </city>
+                <city>
+                    <name>Kansas City</name>
+                </city>
             </cities>
             <length>1</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Kansas City</city>
-                <city>Oklahoma City</city>
+                <city>
+                    <name>Kansas City</name>
+                </city>
+                <city>
+                    <name>Oklahoma City</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Kansas City</city>
-                <city>Saint Louis</city>
+                <city>
+                    <name>Kansas City</name>
+                </city>
+                <city>
+                    <name>Saint Louis</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Oklahoma City</city>
-                <city>Little Rock</city>
+                <city>
+                    <name>Oklahoma City</name>
+                </city>
+                <city>
+                    <name>Little Rock</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Oklahoma City</city>
-                <city>Dallas</city>
+                <city>
+                    <name>Oklahoma City</name>
+                </city>
+                <city>
+                    <name>Dallas</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Dallas</city>
-                <city>Little Rock</city>
+                <city>
+                    <name>Dallas</name>
+                </city>
+                <city>
+                    <name>Little Rock</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Dallas</city>
-                <city>Houston</city>
+                <city>
+                    <name>Dallas</name>
+                </city>
+                <city>
+                    <name>Houston</name>
+                </city>
             </cities>
             <length>1</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Houston</city>
-                <city>New Orleans</city>
+                <city>
+                    <name>Houston</name>
+                </city>
+                <city>
+                    <name>New Orleans</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Sault St. Marie</city>
-                <city>Montreal</city>
+                <city>
+                    <name>Sault St. Marie</name>
+                </city>
+                <city>
+                    <name>Montreal</name>
+                </city>
             </cities>
             <length>5</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Sault St. Marie</city>
-                <city>Toronto</city>
+                <city>
+                    <name>Sault St. Marie</name>
+                </city>
+                <city>
+                    <name>Toronto</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Chicago</city>
-                <city>Saint Louis</city>
+                <city>
+                    <name>Chicago</name>
+                </city>
+                <city>
+                    <name>Saint Louis</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Chicago</city>
-                <city>Toronto</city>
+                <city>
+                    <name>Chicago</name>
+                </city>
+                <city>
+                    <name>Toronto</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Chicago</city>
-                <city>Pittsburgh</city>
+                <city>
+                    <name>Chicago</name>
+                </city>
+                <city>
+                    <name>Pittsburgh</name>
+                </city>
             </cities>
             <length>3</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Saint Louis</city>
-                <city>Little Rock</city>
+                <city>
+                    <name>Saint Louis</name>
+                </city>
+                <city>
+                    <name>Little Rock</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Saint Louis</city>
-                <city>Pittsburgh</city>
+                <city>
+                    <name>Saint Louis</name>
+                </city>
+                <city>
+                    <name>Pittsburgh</name>
+                </city>
             </cities>
             <length>5</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Saint Louis</city>
-                <city>Nashville</city>
+                <city>
+                    <name>Saint Louis</name>
+                </city>
+                <city>
+                    <name>Nashville</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Little Rock</city>
-                <city>Nashville</city>
+                <city>
+                    <name>Little Rock</name>
+                </city>
+                <city>
+                    <name>Nashville</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Little Rock</city>
-                <city>New Orleans</city>
+                <city>
+                    <name>Little Rock</name>
+                </city>
+                <city>
+                    <name>New Orleans</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>New Orleans</city>
-                <city>Atlanta</city>
+                <city>
+                    <name>New Orleans</name>
+                </city>
+                <city>
+                    <name>Atlanta</name>
+                </city>
             </cities>
             <length>4</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>New Orleans</city>
-                <city>Miami</city>
+                <city>
+                    <name>New Orleans</name>
+                </city>
+                <city>
+                    <name>Miami</name>
+                </city>
             </cities>
             <length>6</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Toronto</city>
-                <city>Pittsburgh</city>
+                <city>
+                    <name>Toronto</name>
+                </city>
+                <city>
+                    <name>Pittsburgh</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Toronto</city>
-                <city>Montreal</city>
+                <city>
+                    <name>Toronto</name>
+                </city>
+                <city>
+                    <name>Montreal</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Pittsburgh</city>
-                <city>Nashville</city>
+                <city>
+                    <name>Pittsburgh</name>
+                </city>
+                <city>
+                    <name>Nashville</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Pittsburgh</city>
-                <city>New York</city>
+                <city>
+                    <name>Pittsburgh</name>
+                </city>
+                <city>
+                    <name>New York</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Pittsburgh</city>
-                <city>Washington</city>
+                <city>
+                    <name>Pittsburgh</name>
+                </city>
+                <city>
+                    <name>Washington</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Pittsburgh</city>
-                <city>Raleigh</city>
+                <city>
+                    <name>Pittsburgh</name>
+                </city>
+                <city>
+                    <name>Raleigh</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Nashville</city>
-                <city>Raleigh</city>
+                <city>
+                    <name>Nashville</name>
+                </city>
+                <city>
+                    <name>Raleigh</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Nashville</city>
-                <city>Atlanta</city>
+                <city>
+                    <name>Nashville</name>
+                </city>
+                <city>
+                    <name>Atlanta</name>
+                </city>
             </cities>
             <length>1</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Atlanta</city>
-                <city>Raleigh</city>
+                <city>
+                    <name>Atlanta</name>
+                </city>
+                <city>
+                    <name>Raleigh</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Atlanta</city>
-                <city>Charleston</city>
+                <city>
+                    <name>Atlanta</name>
+                </city>
+                <city>
+                    <name>Charleston</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Atlanta</city>
-                <city>Miami</city>
+                <city>
+                    <name>Atlanta</name>
+                </city>
+                <city>
+                    <name>Miami</name>
+                </city>
             </cities>
             <length>5</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Montreal</city>
-                <city>Boston</city>
+                <city>
+                    <name>Montreal</name>
+                </city>
+                <city>
+                    <name>Boston</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Montreal</city>
-                <city>New York</city>
+                <city>
+                    <name>Montreal</name>
+                </city>
+                <city>
+                    <name>New York</name>
+                </city>
             </cities>
             <length>3</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Boston</city>
-                <city>New York</city>
+                <city>
+                    <name>Boston</name>
+                </city>
+                <city>
+                    <name>New York</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>New York</city>
-                <city>Washington</city>
+                <city>
+                    <name>New York</name>
+                </city>
+                <city>
+                    <name>Washington</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Washington</city>
-                <city>Raleigh</city>
+                <city>
+                    <name>Washington</name>
+                </city>
+                <city>
+                    <name>Raleigh</name>
+                </city>
             </cities>
             <length>2</length>
             <width>2</width>
         </edge>
         <edge>
             <cities>
-                <city>Raleigh</city>
-                <city>Charleston</city>
+                <city>
+                    <name>Raleigh</name>
+                </city>
+                <city>
+                    <name>Charleston</name>
+                </city>
             </cities>
             <length>2</length>
             <width>1</width>
         </edge>
         <edge>
             <cities>
-                <city>Charleston</city>
-                <city>Miami</city>
+                <city>
+                    <name>Charleston</name>
+                </city>
+                <city>
+                    <name>Miami</name>
+                </city>
             </cities>
             <length>4</length>
             <width>1</width>

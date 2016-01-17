@@ -3,35 +3,69 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- HAND PHONE LAYOUT -->
+    <TextView
+        android:layout_width="fill_parent"
+        android:textColor="#FFFFFF"
+        android:background="@color/darkBrown"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="X Player"
+        android:padding="10px"
+        android:gravity="center"
+        android:id="@+id/textViewChoosePlayers" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/layoutHandOffPhone"
-        android:visibility="visible">
+        android:background="@color/lightBrown">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Please hand the phone to this player:"
-            android:id="@+id/textViewHandPhoneToPlayer" />
+            android:layout_weight="0.12"
+            android:layout_margin="20px"
+            android:background="@color/white">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="(player name)"
-            android:id="@+id/textViewPlayerName" />
+            <!-- HAND PHONE LAYOUT -->
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="That&apos;s me!"
-            android:id="@+id/buttonMe" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/layoutHandOffPhone"
+                    android:visibility="visible">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Please hand the phone to this player:"
+                    android:id="@+id/textViewHandPhoneToPlayer"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="(player name)"
+                    android:background="@color/black"
+                    android:paddingTop="10px"
+                    android:paddingBottom="10px"
+                    android:textColor="@color/white"
+                    android:layout_margin="20px"
+                    android:id="@+id/textViewPlayerName" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="That&apos;s me!"
+                    android:background="@color/darkBrown"
+                    android:textColor="@color/white"
+                    android:id="@+id/buttonMe" />
+                </LinearLayout>
 
     <!-- DRAW CARDS -->
 
@@ -39,36 +73,84 @@
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/layoutDrawInitialCards"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Choose at least 2 cards to keep"
+            android:layout_margin="20px"
+            android:layout_gravity="center"
             android:id="@+id/textViewChoose2Cards" />
 
-        <CheckBox
+        <LinearLayout android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBoxInitialCard1" />
+            android:layout_gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:background="@color/lightBrown"
+                android:gravity="center"
+                android:layout_margin="10px"
+                android:id="@+id/checkBoxInitialCard1">
+                <TextView android:text="City-City"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"/>
+                <TextView android:text="0"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="30sp"/>
+                </LinearLayout>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBoxInitialCard2" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:background="@color/lightBrown"
+                android:gravity="center"
+                android:layout_margin="10px"
+                android:id="@+id/checkBoxInitialCard2">
+                <TextView android:text="City-City"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"/>
+                <TextView android:text="0"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="30sp"/>
+            </LinearLayout>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBoxInitialCard3" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:background="@color/lightBrown"
+                android:gravity="center"
+                android:layout_margin="10px"
+                android:id="@+id/checkBoxInitialCard3">
+                <TextView android:text="City-City"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"/>
+                <TextView android:text="0"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="30sp"/>
+            </LinearLayout>
 
+        </LinearLayout>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/darkBrown"
             android:text="Keep"
             android:id="@+id/buttonKeepInitialDraw" />
 
@@ -80,7 +162,7 @@
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/layoutInitialHand"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,4 +186,6 @@
 
     </LinearLayout>
 
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
