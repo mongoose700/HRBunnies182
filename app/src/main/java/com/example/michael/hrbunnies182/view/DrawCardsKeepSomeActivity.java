@@ -53,12 +53,10 @@ public class DrawCardsKeepSomeActivity extends AppCompatActivity {
 //        cards[2] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard3));
         keep = (Button) findViewById(R.id.buttonKeepInitialDraw);
         keep.setEnabled(false);
+        keep.setBackgroundResource(R.color.lightBrown);
         TextView instructions = (TextView) findViewById(R.id.textViewChoose2Cards);
         instructions.setText("Choose at least " + (cardMin == 1 ? "1 new card" : cardMin + " cards") + " to keep");
         LinearLayout scrolledLayout = (LinearLayout) findViewById(R.id.route_images_drawing);
-        for (RouteCard card : player.getCards()) {
-            scrolledLayout.addView(RouteCardCreator.getInstance().getRouteCard(card, this));
-        }
         for (int i = 0; i < 3; i++) {
             final CheckedRouteCard card = currentDraw.getCards().get(i);
             final FrameLayout drawnCard = RouteCardCreator.getInstance().getRouteCard(card.getCard(), this);
@@ -82,6 +80,9 @@ public class DrawCardsKeepSomeActivity extends AppCompatActivity {
                 }
             });
         }
+        for (RouteCard card : player.getCards()) {
+            scrolledLayout.addView(RouteCardCreator.getInstance().getRouteCard(card, this));
+        }
 
         keep.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,5 +96,10 @@ public class DrawCardsKeepSomeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
     }
 }

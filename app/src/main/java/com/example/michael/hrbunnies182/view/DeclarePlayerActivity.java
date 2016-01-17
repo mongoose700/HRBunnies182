@@ -64,4 +64,9 @@ public class DeclarePlayerActivity extends AppCompatActivity {
         }
         throw new NullPointerException();
     }
+
+
+    @Override
+    public void onBackPressed() {
+    }
 }
