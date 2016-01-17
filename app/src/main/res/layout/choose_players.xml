@@ -3,100 +3,134 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
+    android:adjustViewBounds="true"
     android:background="@color/lightBrown">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:textColor="#FFFFFF"
-        android:background="@color/darkBrown"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Who&apos;s playing?"
-        android:padding="10px"
-        android:gravity="center"
-        android:id="@+id/textViewChoosePlayers" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/darkBrown">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Who&apos;s playing?"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
+            android:id="@+id/toolbar_title" />
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:layout_margin="20px"
+        android:paddingBottom="0px"
+        android:layout_marginBottom="0px"
         android:background="@color/white"
-        android:layout_weight="0.12">
+        android:adjustViewBounds="true">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="0.12"
             android:layout_margin="20px"
+            android:layout_marginBottom="0px"
+            android:paddingBottom="0px"
             android:background="@color/white">
 
             <CheckBox
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:background="@color/red"
                 android:text="Red"
+                android:paddingTop="15px"
+                android:paddingBottom="15px"
+                android:layout_marginBottom="10px"
                 android:id="@+id/checkBoxRed"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:checked="false" />
 
             <CheckBox
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:text="Blue"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:id="@+id/checkBoxBlue"
+                android:paddingTop="15px"
+                android:paddingBottom="15px"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
                 android:background="@color/blue"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:checked="false" />
 
             <CheckBox
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:text="Yellow"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:id="@+id/checkBoxYellow"
+                android:paddingTop="15px"
+                android:paddingBottom="15px"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
                 android:background="@color/yellow"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:checked="false" />
 
             <CheckBox
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:text="Green"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:id="@+id/checkBoxGreen"
+                android:paddingTop="15px"
+                android:paddingBottom="15px"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
                 android:background="@color/green"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:checked="false" />
 
             <CheckBox
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:text="Black"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:id="@+id/checkBoxBlack"
+                android:paddingTop="15px"
+                android:paddingBottom="15px"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
                 android:background="@color/black"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:checked="false" />
 
             <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="160px"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30px"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="0px"
+                android:paddingLeft="30px"
+                android:paddingRight="30px"
                 android:background="@color/darkBrown"
                 android:text="Ok!"
                 android:textColor="@color/white"
                 android:id="@+id/buttonOkToPlayers"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TableRow>
     </LinearLayout>
 
 </LinearLayout>
