@@ -33,52 +33,54 @@
         android:text="(cards go here)"
         android:id="@+id/textViewPlayerHandCards" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:layout_gravity="center"
-            android:layout_height="48dp"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="20px"
-            android:layout_marginBottom="10px"
-            android:paddingLeft="30px"
-            android:paddingRight="30px"
-            android:background="@color/darkBrown"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white"
-            android:text="Back"
-            android:id="@+id/buttonBackPlayerHand" />
 
-        <Button
-            android:layout_gravity="center"
-            android:layout_height="48dp"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_marginTop="20px"
-            android:layout_marginBottom="10px"
-            android:paddingLeft="30px"
-            android:paddingRight="30px"
-            android:background="@color/darkBrown"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white"
-            android:text="Continue"
-            android:id="@+id/buttonContinuePlayerHand" />
+            android:layout_height="match_parent">
 
-        <Button
-            android:layout_gravity="center"
-            android:layout_height="48dp"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="20px"
-            android:layout_marginBottom="10px"
-            android:paddingLeft="30px"
-            android:paddingRight="30px"
-            android:background="@color/darkBrown"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white"
-            android:text="Draw"
-            android:id="@+id/buttonDrawCards" />
-    </LinearLayout>
+            <Button
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="0px"
+                android:paddingLeft="30px"
+                android:paddingRight="30px"
+                android:background="@color/darkBrown"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:text="Back"
+                android:id="@+id/buttonBackPlayerHand" />
+
+            <Button
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="0px"
+                android:paddingLeft="30px"
+                android:paddingRight="30px"
+                android:background="@color/darkBrown"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:text="Continue"
+                android:id="@+id/buttonContinuePlayerHand" />
+
+            <Button
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="0px"
+                android:paddingLeft="30px"
+                android:paddingRight="30px"
+                android:background="@color/darkBrown"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:text="Draw"
+                android:id="@+id/buttonDrawCards" />
+        </LinearLayout>
 
 
     <LinearLayout
