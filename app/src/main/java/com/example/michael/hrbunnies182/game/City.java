@@ -1,5 +1,7 @@
 package com.example.michael.hrbunnies182.game;
 
+import android.graphics.Point;
+
 import java.io.Serializable;
 
 import java.util.HashMap;
@@ -11,10 +13,12 @@ import java.util.Map;
 public class City implements Serializable{
     private String name;
     private Map<String, Integer> neighbors;
+    private Point coordinates;
 
-    public City(String name) {
+    public City(String name, Point coordinates) {
         this.name = name;
         neighbors = new HashMap<>();
+        this.coordinates = coordinates;
     }
 
     public void addEdge(Edge edge) {
@@ -53,5 +57,9 @@ public class City implements Serializable{
             return neighbors.get(city.getName());
         }
         return Integer.MAX_VALUE;
+    }
+
+    public Point getCoordinates() {
+        return coordinates;
     }
 }
