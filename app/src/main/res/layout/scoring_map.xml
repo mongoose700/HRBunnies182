@@ -12,63 +12,101 @@
         android:scaleType="fitStart"
         android:src="@drawable/ticket_to_ride"/>
 
-    <RadioGroup
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|center_vertical"
-        android:orientation="vertical">
+        android:layout_gravity="right|center_vertical">
 
-        <RadioButton
-            android:id="@+id/radioRed"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onRadioButtonClicked"
-            android:text="Red" />
-
-        <RadioButton
-            android:id="@+id/radioBlue"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onRadioButtonClicked"
-            android:text="Blue" />
-
-        <RadioButton
-            android:id="@+id/radioGreen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onRadioButtonClicked"
-            android:text="Green" />
-
-        <RadioButton
-            android:id="@+id/radioYellow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onRadioButtonClicked"
-            android:text="Yellow" />
-
-        <RadioButton
-            android:id="@+id/radioBlack"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onRadioButtonClicked"
-            android:text="Black" />
-
-        <RadioButton
-            android:id="@+id/radioClear"
+        <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="CLEAR" />
+            android:layout_gravity="right|center_vertical"
+            android:orientation="vertical">
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/radioRed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onRadioButtonClicked"
+                android:text="Red" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_gravity="center_horizontal|bottom" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0    45"
+                android:layout_gravity="center"
+                android:id="@+id/scoreRed" />
+
+            <RadioButton
+                android:id="@+id/radioBlue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onRadioButtonClicked"
+                android:text="Blue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0    45"
+                android:layout_gravity="center"
+                android:id="@+id/scoreBlue" />
+
+            <RadioButton
+                android:id="@+id/radioGreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onRadioButtonClicked"
+                android:text="Green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0    45"
+                android:layout_gravity="center"
+                android:id="@+id/scoreGreen" />
+
+            <RadioButton
+                android:id="@+id/radioYellow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onRadioButtonClicked"
+                android:text="Yellow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0    45"
+                android:layout_gravity="center"
+                android:id="@+id/scoreYellow" />
+
+            <RadioButton
+                android:id="@+id/radioBlack"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onRadioButtonClicked"
+                android:text="Black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0    45"
+                android:layout_gravity="center"
+                android:id="@+id/scoreBlack" />
+
+            <RadioButton
+                android:id="@+id/radioClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="CLEAR" />
+
+        </RadioGroup>
+    </RelativeLayout>
 
 
 </FrameLayout>
