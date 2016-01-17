@@ -103,7 +103,7 @@ public class EnterScoresActivity extends AppCompatActivity {
 
         // Offset the scaling
         double scale = 2.4;
-        return new Point((int) (e.getX() / scale), (int) (e.getY() / scale));
+        return new Point((int) (e.getX() / scale), (int) (newY / scale));
     }
 
     private final GestureDetectorCompat wrapper = new GestureDetectorCompat(getBaseContext(), listener);

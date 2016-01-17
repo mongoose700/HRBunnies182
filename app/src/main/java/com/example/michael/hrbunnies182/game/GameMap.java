@@ -415,14 +415,17 @@ public class GameMap implements Serializable {
             double[] scores = new double[2];
             scores[0] = dist(city1, coords1) + dist(city2, coords2);
             scores[1] = dist(city1, coords2) + dist(city2, coords1);
-            for (double score : scores) {
+
+            for (double score: scores) {
                 if (score < bestScore) {
                     bestScore = score;
                     bestEdge = edge;
                 }
             }
         }
-        return bestScore < 100 ? bestEdge : null;
+        System.out.println("Potentially returning edge " + bestEdge + " with score " + bestScore);
+
+        return bestScore < 20 ? bestEdge : null;
     }
 
     private double dist(Point a, Point b) {

@@ -28,6 +28,7 @@ public class SelectPlayerActivity extends AppCompatActivity {
         setContentView(R.layout.select_player_gameplay);
 
         final Intent viewHandActivity = new Intent(this, com.example.michael.hrbunnies182.view.ViewHandActivity.class);
+        final Intent enterScoresActivity = new Intent(this, com.example.michael.hrbunnies182.view.EnterScoresActivity.class);
         final Controller gameController = ((MyApplication) this.getApplication()).getGame();
 
         HashMap<Integer, PlayerColor> colorButtons = new HashMap<>();
@@ -60,5 +61,14 @@ public class SelectPlayerActivity extends AppCompatActivity {
                 });
             }
         }
+
+        Button endButton = (Button) findViewById(R.id.buttonEndGame);
+        endButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(enterScoresActivity);
+            }
+        });
+
     }
 }
