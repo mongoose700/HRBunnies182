@@ -16,6 +16,7 @@ public class Player implements Serializable {
     private int trainsRemaining;
     private int longestRoute;
     private int trainScore;
+    private int routeScore;
 
     public Player(PlayerColor color) {
         this.color = color;
@@ -65,6 +66,7 @@ public class Player implements Serializable {
 
     public void incrementTrainsRemaining(int delta) {
         trainsRemaining += delta;
+        System.out.println("PLAYER " + name + " incremented trains remaining to " + trainsRemaining);
     }
 
     public int getLongestRoute() {
@@ -81,14 +83,21 @@ public class Player implements Serializable {
 
     public void setTrainScore(ScoreMap scoreMap) {
         this.trainScore = scoreMap.getTrainScore(this);
+        System.out.println("PLAYER " + name + " set train score to " + trainScore);
     }
 
     public int getRouteScore() {
-        return trainScore;
+        return routeScore;
     }
 
-    public void getRouteScore(ScoreMap scoreMap) {
-        this.trainScore = scoreMap.getRouteScore(this);
+    public void setRouteScore(ScoreMap scoreMap) {
+        this.routeScore = scoreMap.getRouteScore(this);
+        System.out.println("PLAYER " + name + " set route score to " + routeScore);
+    }
+
+    // TODO: Take longest road into account?
+    public int getTotalScore() {
+        return trainScore + routeScore;
     }
 
     @Override

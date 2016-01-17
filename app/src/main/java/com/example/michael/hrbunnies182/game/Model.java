@@ -69,6 +69,7 @@ public class Model implements Serializable {
                 Edge edge = gameMap.findEdge(city1, city2);
                 System.out.println("Model: Got edge " + edge);
                 if (edge != null) {
+                    System.out.println("Model: Adding edge " + edge + " to player " + player);
                     scoreMap.addOwner(edge, player);
                 }
             }

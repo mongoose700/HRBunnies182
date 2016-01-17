@@ -1,5 +1,6 @@
 package com.example.michael.hrbunnies182.view;
 
+import android.annotation.TargetApi;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
@@ -52,6 +54,7 @@ public class EnterScoresActivity extends AppCompatActivity {
          * @param velocityY Ignored
          * @return True
          */
+        @TargetApi(17)
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             System.out.println("LISTENER: Received an event moving from (" +
@@ -86,6 +89,34 @@ public class EnterScoresActivity extends AppCompatActivity {
             } else {
                 System.out.println("Asking the controller to add an edge!");
                 gameController.getAdapter().addEdge(curPlayer, loc1, loc2);
+
+                // The current player is the only one whose points could change
+                // Reset their radio button's label to show their score
+                // TODO: Extend this to all players for clearing (difficult as we don't have access to the edge)
+                System.out.println("Resetting score for player " + curPlayer);
+                switch (curPlayer.getColor()) {
+                    case BLACK:
+                        ((TextView) findViewById(R.id.scoreBlack)).setText(curPlayer.getTotalScore() +
+                                "    " + curPlayer.getTrainsRemaining());
+                        break;
+                    case BLUE:
+                        System.out.println("Actually resetting score!");
+                        ((TextView) findViewById(R.id.scoreBlue)).setText(curPlayer.getTotalScore() +
+                                "    " + curPlayer.getTrainsRemaining());
+                        break;
+                    case GREEN:
+                        ((TextView) findViewById(R.id.scoreGreen)).setText(curPlayer.getTotalScore() +
+                                "    " + curPlayer.getTrainsRemaining());
+                        break;
+                    case RED:
+                        ((TextView) findViewById(R.id.scoreRed)).setText(curPlayer.getTotalScore() +
+                                "    " + curPlayer.getTrainsRemaining());
+                        break;
+                    case YELLOW:
+                        ((TextView) findViewById(R.id.scoreYellow)).setText(curPlayer.getTotalScore() +
+                                "    " + curPlayer.getTrainsRemaining());
+                        break;
+                }
             }
 
             return true;
@@ -121,25 +152,29 @@ public class EnterScoresActivity extends AppCompatActivity {
             activePlayers.put(player.getColor(), player);
         }
 
-
         // Remove invalid buttons
         for (PlayerColor color: PlayerColor.values()) {
             if (!activePlayers.containsKey(color)) {
                 switch (color) {
                     case BLACK:
                         findViewById(R.id.radioBlack).setVisibility(View.GONE);
+                        findViewById(R.id.scoreBlack).setVisibility(View.GONE);
                         break;
                     case BLUE:
                         findViewById(R.id.radioBlue).setVisibility(View.GONE);
+                        findViewById(R.id.scoreBlue).setVisibility(View.GONE);
                         break;
                     case GREEN:
                         findViewById(R.id.radioGreen).setVisibility(View.GONE);
+                        findViewById(R.id.scoreGreen).setVisibility(View.GONE);
                         break;
                     case RED:
                         findViewById(R.id.radioRed).setVisibility(View.GONE);
+                        findViewById(R.id.scoreRed).setVisibility(View.GONE);
                         break;
                     case YELLOW:
                         findViewById(R.id.radioYellow).setVisibility(View.GONE);
+                        findViewById(R.id.scoreYellow).setVisibility(View.GONE);
                         break;
                 }
             }

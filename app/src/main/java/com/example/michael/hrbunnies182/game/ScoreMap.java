@@ -25,24 +25,31 @@ public class ScoreMap {
      */
     public boolean addOwner(Edge edge, Player player) {
         if (!canAddOwner(edge, player)) {
+            System.out.println("ScoreMap: Unable to add edge");
+            System.out.println("Owners: " + owners);
             return false;
         }
+        System.out.println("ScoreMap: Adding edge " + edge + " to player " + player);
         owners.get(edge).add(player);
         player.incrementTrainsRemaining(-edge.getLength());
         player.setLongestRoute(this);
+        player.setTrainScore(this);
+        player.setRouteScore(this);
         return true;
     }
 
     private boolean canAddOwner(Edge edge, Player player) {
         return edge.getLength() <= player.getTrainsRemaining()
                 && !owners.get(edge).contains(player)
-                && owners.values().size() < edge.getWidth();
+                && owners.get(edge).size() < edge.getWidth();
     }
 
     public void clearEdge(Edge edge) {
         for (Player player : owners.get(edge)) {
             player.incrementTrainsRemaining(edge.getLength());
             player.setLongestRoute(this);
+            player.setTrainScore(this);
+            player.setRouteScore(this);
         }
         owners.get(edge).clear();
     }
