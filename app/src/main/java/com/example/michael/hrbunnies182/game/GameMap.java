@@ -253,7 +253,11 @@ public class GameMap implements Serializable {
             {
                 if (eventType == XmlPullParser.START_TAG) {
                     if (xpp.getName().equals(CITIES)) {
-                        extractCities(xpp);
+                        ArrayList<City> cityArrayList = extractCities(xpp);
+                        cityList = new String[cityArrayList.size()];
+                        for (int i = 0; i < cityList.length; i++) {
+                            cityList[i] = cityArrayList.get(i).getName();
+                        }
                     } else if (xpp.getName().equals(EDGES)) {
                         initEdges(xpp);
                     } else {
