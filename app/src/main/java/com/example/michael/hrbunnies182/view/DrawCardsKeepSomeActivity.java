@@ -51,11 +51,13 @@ public class DrawCardsKeepSomeActivity extends AppCompatActivity {
         cards[2] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard3));
         keep = (Button) findViewById(R.id.buttonKeepInitialDraw);
         keep.setEnabled(false);
+        TextView instructions = (TextView) findViewById(R.id.textViewChoose2Cards);
+        instructions.setText("Choose at least " + (cardMin == 1 ? "1 card" : cardMin + " cards") + " to keep");
 
         for (int i = 0; i < 3; i++) {
             final CheckedRouteCard card = currentDraw.getCards().get(i);
             final LinearLayout layout = cards[i];
-            ((TextView) layout.getChildAt(0)).setText(card.getCard().toString());
+            ((TextView) layout.getChildAt(0)).setText(card.getCard().getFirstCity().getName() + " - " + card.getCard().getSecondCity().getName());
             ((TextView) layout.getChildAt(1)).setText(String.valueOf(card.getCard().getLength()));
             cards[i].setOnClickListener(new View.OnClickListener() {
                 @Override

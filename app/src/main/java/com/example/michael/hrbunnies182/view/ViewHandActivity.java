@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.michael.hrbunnies182.MyApplication;
@@ -17,6 +16,7 @@ import com.example.michael.hrbunnies182.game.RouteCard;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -44,42 +44,70 @@ public class ViewHandActivity extends AppCompatActivity {
         }
         ((TextView) findViewById(R.id.textViewPlayerHandCards)).setText(cards);
 
-        LinearLayout buttons = (LinearLayout) findViewById(R.id.buttonList);
+/*        FrameLayout frame = new FrameLayout(getBaseContext());
+        ImageView image = new ImageView(getBaseContext());
+        image.setBackgroundResource(R.drawable.destination_card);
+        ((LinearLayout) findViewById(R.id.route_images)).addView(frame);
+        frame.addView(image);
+        ImageView icon = new ImageView(getBaseContext());
+        // Some existing RelativeLayout from your layout xml
+        RelativeLayout rl1 = new RelativeLayout(getBaseContext());
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(20, 20);
+        RouteCard card = currentPlayer.getCards().get(0);
+        Point coords = card.getFirstCity().getCoordinates();
+        params.leftMargin = coords.x;
+        params.topMargin = coords.y;
+        rl1.addView(icon, params);
+        icon.setBackgroundResource(R.drawable.destination_icon);
+        frame.addView(rl1);
 
-        Map<String, NextStep> nextSteps = (Map<String, NextStep>) getIntent().getExtras().getSerializable("next_step_buttons");
+        RelativeLayout rl2 = new RelativeLayout(getBaseContext());
+        RelativeLayout.LayoutParams rl2params = new RelativeLayout.LayoutParams(400, 25);
+        rl2params.leftMargin = 20;
+        rl2params.topMargin = 20;
 
-        for (final Map.Entry<String, NextStep> e : nextSteps.entrySet()) {
-            Button button = new Button(getBaseContext());
-            button.setText(e.getKey());
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    e.getValue().takeNextStep(ViewHandActivity.this);
-                }
-            });
-            buttons.addView(button);
-        }
+        TextView cardTitle = new TextView(getBaseContext());
+        cardTitle.setText(card.getFirstCity().getName() + " * " + card.getSecondCity().getName());
+        rl2.addView(cardTitle, rl2params);
+        frame.addView(rl2);*/
 
-        Button back = (Button) findViewById(R.id.buttonBackPlayerHand);
-        Button draw = (Button) findViewById(R.id.buttonDrawCards);
+//        LinearLayout buttons = (LinearLayout) findViewById(R.id.buttonList);
+
+        final Map<String, NextStep> nextSteps = (Map<String, NextStep>) getIntent().getExtras().getSerializable("next_step_buttons");
+
+//        for (final Map.Entry<String, NextStep> e : nextSteps.entrySet()) {
+//            Button button = new Button(getBaseContext());
+//            button.setText(e.getKey());
+//            button.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    e.getValue().takeNextStep(ViewHandActivity.this);
+//                }
+//            });
+//            buttons.addView(button);
+//        }
+
+        Map<String, Button> buttons = new HashMap<>();
+        buttons.put("Back", (Button) findViewById(R.id.buttonBackPlayerHand));
+        buttons.put("Draw", (Button) findViewById(R.id.buttonDrawCards));
+        buttons.put("Continue", (Button) findViewById(R.id.buttonContinuePlayerHand));
 
         final Intent makeDrawActivity = new Intent(this, com.example.michael.hrbunnies182.view.MakeDrawActivity.class);
         final Intent selectPlayerActivity = new Intent(this, com.example.michael.hrbunnies182.view.SelectPlayerActivity.class);
         final Activity me = this;
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                me.finish();
+        for (final Map.Entry<String, Button> b : buttons.entrySet()) {
+            if (nextSteps.containsKey(b.getKey())) {
+                b.getValue().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        nextSteps.get(b.getKey()).takeNextStep(ViewHandActivity.this);
+                    }
+                });
+            } else {
+                b.getValue().setVisibility(View.GONE);
             }
-        });
-
-        draw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(makeDrawActivity);
-            }
-        });
+        }
     }
 
     public static interface NextStep extends Serializable {
