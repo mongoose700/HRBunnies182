@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:textColor="#FFFFFF"
+        android:background="@color/darkBrown"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="X Player"
+        android:padding="10px"
+        android:gravity="center"
+        android:id="@+id/textViewChoosePlayers" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightBrown">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.12"
+            android:layout_margin="20px"
+            android:background="@color/white">
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical" android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/layoutDrawInitialCards">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Choose at least 2 cards to keep"
+                    android:layout_margin="20px"
+                    android:layout_gravity="center"
+                    android:id="@+id/textViewChoose2Cards" />
+
+                <LinearLayout android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:background="@color/lightBrown"
+                        android:gravity="center"
+                        android:layout_margin="10px"
+                        android:id="@+id/checkBoxInitialCard1">
+                        <TextView android:text="City-City"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"/>
+                        <TextView android:text="0"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="30sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:background="@color/lightBrown"
+                        android:gravity="center"
+                        android:layout_margin="10px"
+                        android:id="@+id/checkBoxInitialCard2">
+                        <TextView android:text="City-City"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"/>
+                        <TextView android:text="0"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="30sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:background="@color/lightBrown"
+                        android:gravity="center"
+                        android:layout_margin="10px"
+                        android:id="@+id/checkBoxInitialCard3">
+                        <TextView android:text="City-City"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"/>
+                        <TextView android:text="0"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="30sp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/darkBrown"
+                    android:text="Keep"
+                    android:id="@+id/buttonKeepInitialDraw" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

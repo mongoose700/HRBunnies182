@@ -16,7 +16,9 @@ public class MyApplication extends Application {
     private Controller gameController;
 
     public void initializeGame(Set<PlayerColor> colors, Activity act) {
+        System.out.println("Initializing game");
         gameController = new Controller(colors, act);
+        System.out.println("Initialized game");
     }
 
     public Controller getGame() {

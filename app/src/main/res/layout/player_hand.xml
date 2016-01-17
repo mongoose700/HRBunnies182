@@ -21,11 +21,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
+        android:visibility="gone"
         android:id="@+id/buttonBackPlayerHand" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Draw"
+        android:visibility="gone"
         android:id="@+id/buttonDrawCards" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonList"></LinearLayout>
 </LinearLayout>
