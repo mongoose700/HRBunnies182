@@ -48,6 +48,10 @@ public class GameMap implements Serializable {
     private String WIDTH = "width";
     private String NAME = "name";
     private String COORDINATES = "coordinates";
+    private String PATHS = "paths";
+    private String PATH = "path";
+    private String TRAINS = "trains";
+    private String TRAIN = "train";
 
     /**
      * Create a new map (initializing the cities and edges between them)
@@ -369,6 +373,7 @@ public class GameMap implements Serializable {
     private Edge extractEdge(XmlResourceParser xpp) throws XmlPullParserException, IOException {
         int eventType = xpp.getEventType();
         ArrayList<City> cities = new ArrayList<>();
+        List<List<Train>> trains = new ArrayList<>();
         int length = 0;
         int width = 0;
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(EDGE))) {
@@ -379,6 +384,8 @@ public class GameMap implements Serializable {
                     length = extractInt(xpp);
                 } else if (xpp.getName().equals(WIDTH)) {
                     width = extractInt(xpp);
+                } else if (xpp.getName().equals(PATHS)) {
+                    trains = extractPaths(xpp);
                 } else {
                     xpp.next();
                 }
@@ -386,7 +393,64 @@ public class GameMap implements Serializable {
             }
         }
         xpp.next();
-        return new Edge(cities.get(0), cities.get(1), length, width);
+        return new Edge(cities.get(0), cities.get(1), length, width, trains);
+    }
+
+    private List<List<Train>> extractPaths(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+        int eventType = xpp.getEventType();
+        List<List<Train>> paths = new ArrayList<>();
+        while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(PATHS))) {
+            if (eventType == XmlPullParser.START_TAG) {
+                if (xpp.getName().equals(PATH)) {
+                    paths.add(extractPath(xpp));
+                } else {
+                    xpp.next();
+                }
+                eventType = xpp.getEventType();
+            }
+        }
+        xpp.next();
+        return paths;
+    }
+
+    private List<Train> extractPath(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+        int eventType = xpp.getEventType();
+        List<Train> path = new ArrayList<>();
+        while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(PATH))) {
+            if (eventType == XmlPullParser.START_TAG) {
+                if (xpp.getName().equals(TRAIN)) {
+                    path.add(extractTrain(xpp));
+                } else {
+                    xpp.next();
+                }
+                eventType = xpp.getEventType();
+            }
+        }
+        xpp.next();
+        return path;
+    }
+
+    private Train extractTrain(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+        int eventType = xpp.getEventType();
+        int x = -1;
+        int y = -1;
+        double theta = Double.NaN;
+        while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(PATH))) {
+            if (eventType == XmlPullParser.START_TAG) {
+                if (xpp.getName().equals("x")) {
+                    x = extractInt(xpp);
+                } else if (xpp.getName().equals("y")) {
+                    y = extractInt(xpp);
+                } else if (xpp.getName().equals("theta")) {
+                    theta = extractDouble(xpp);
+                } else {
+                    xpp.next();
+                }
+                eventType = xpp.getEventType();
+            }
+        }
+        xpp.next();
+        return new Train(x, y, theta);
     }
 
     private String extractString(XmlResourceParser xpp) throws IOException, XmlPullParserException {
@@ -399,6 +463,10 @@ public class GameMap implements Serializable {
 
     private int extractInt(XmlResourceParser xpp) throws IOException, XmlPullParserException {
         return Integer.parseInt(extractString(xpp));
+    }
+
+    private double extractDouble(XmlResourceParser xpp) throws IOException, XmlPullParserException {
+        return Double.parseDouble(extractString(xpp));
     }
 
     public Set<Edge> getEdges() {
