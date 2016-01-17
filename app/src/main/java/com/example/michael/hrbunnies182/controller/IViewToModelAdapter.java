@@ -4,6 +4,7 @@ import android.graphics.Point;
 
 import com.example.michael.hrbunnies182.game.City;
 import com.example.michael.hrbunnies182.game.Draw;
+import com.example.michael.hrbunnies182.game.Edge;
 import com.example.michael.hrbunnies182.game.Player;
 
 import java.io.Serializable;
@@ -31,12 +32,14 @@ public interface IViewToModelAdapter extends Serializable {
     /** Returns the current player */
     Player getPlayer();
 
-    /** Adds the trains of a certain player to the edge on the board */
-    void addEdge(Player player, Point city1, Point city2);
+    /** Adds the trains of a certain player to the edge on the board, and returns the edge created */
+    Edge addEdge(Player player, Point city1, Point city2);
 
     /** Removes all trains from this edge on the board */
     void clearEdge(Point city1, Point city2);
 
+    /** Checks how many people own this edge */
+    int countOwners(Edge edge);
 
     Collection<City> getAllCities();
 }

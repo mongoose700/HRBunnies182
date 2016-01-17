@@ -136,4 +136,9 @@ public class ViewHandActivity extends AppCompatActivity {
             activity.startActivity(drawCardsActivity);
         }
     }
+
+
+    @Override
+    public void onBackPressed() {
+    }
 }

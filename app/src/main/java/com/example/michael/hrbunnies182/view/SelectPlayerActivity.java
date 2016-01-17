@@ -75,4 +75,9 @@ public class SelectPlayerActivity extends AppCompatActivity {
         });
 
     }
+
+
+    @Override
+    public void onBackPressed() {
+    }
 }

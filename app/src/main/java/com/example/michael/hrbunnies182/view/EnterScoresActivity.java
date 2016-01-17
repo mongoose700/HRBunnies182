@@ -2,7 +2,15 @@ package com.example.michael.hrbunnies182.view;
 
 import android.annotation.TargetApi;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -18,10 +26,13 @@ import android.widget.TextView;
 import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
+import com.example.michael.hrbunnies182.game.Edge;
 import com.example.michael.hrbunnies182.game.Player;
 import com.example.michael.hrbunnies182.game.PlayerColor;
+import com.example.michael.hrbunnies182.game.Train;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Jesse on 1/16/2016.
@@ -36,6 +47,8 @@ public class EnterScoresActivity extends AppCompatActivity {
     private final HashMap<PlayerColor, Player> activePlayers = new HashMap<>();
 
     private Controller gameController;
+
+    private final HashMap<PlayerColor, Integer> colorMap = new HashMap<>();
 
     // Set up a listener on the viewscreen for touches
     private final GestureDetector.SimpleOnGestureListener listener = new GestureDetector.SimpleOnGestureListener() {
@@ -60,28 +73,10 @@ public class EnterScoresActivity extends AppCompatActivity {
             System.out.println("LISTENER: Received an event moving from (" +
                     e1.getX() + ", " + e1.getY() + ") to (" + e2.getX() + ", " + e2.getY() + ")");
 
-            FrameLayout frame = (FrameLayout) findViewById(R.id.layoutEnterScores);
-            boolean foundFrame = false;
-            View imgFrame = null;
-            for (int i=0; i<(frame).getChildCount(); i++) {
-                imgFrame = frame.getChildAt(i);
-                if (imgFrame instanceof ImageView) {
-                    foundFrame = true;
-                    break;
-                }
-            }
-            if (!foundFrame) {
-                System.err.println("Unable to find map when entering scores!");
-                return true;
-            }
-
-            System.out.println("LISTENER: Current image bounds " +
-                    ((ImageView) imgFrame).getDrawable().getBounds());
-
             Point loc1 = getAdjustedPoint(e1);
             Point loc2 = getAdjustedPoint(e2);
 
-            System.out.println("LISTENER: Got points " + loc1 + ", " + loc2);
+//            System.out.println("LISTENER: Got points " + loc1 + ", " + loc2);
 
             if (curPlayer == null) {
                 System.out.println("Asking the controller to clear an edge!");
@@ -91,7 +86,10 @@ public class EnterScoresActivity extends AppCompatActivity {
                 }
             } else {
                 System.out.println("Asking the controller to add an edge!");
-                gameController.getAdapter().addEdge(curPlayer, loc1, loc2);
+                Edge newEdge;
+                if ((newEdge = gameController.getAdapter().addEdge(curPlayer, loc1, loc2)) != null) {
+                    addEdgeToScreen(newEdge);
+                }
 
                 // The current player is the only one whose points could change
                 resetScore(curPlayer);
@@ -103,17 +101,51 @@ public class EnterScoresActivity extends AppCompatActivity {
     };
 
     /**
+     * Add an edge to the screen
+     */
+    private void addEdgeToScreen(Edge edge) {
+        System.out.println("Adding an edge to the screen: " + edge);
+        ImageView mapView = (ImageView) findViewById(R.id.imageView);
+
+        Bitmap bitmap = Bitmap.createBitmap(((BitmapDrawable) mapView.getDrawable()).getBitmap().getWidth(),
+                ((BitmapDrawable) mapView.getDrawable()).getBitmap().getHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(colorMap.get(curPlayer.getColor()));
+
+        canvas.drawBitmap(((BitmapDrawable) mapView.getDrawable()).getBitmap(), 0, 0, new Paint());
+
+        // Check which train to use from this edge
+        int numOwners = gameController.getAdapter().countOwners(edge);
+        List<Train> trainList = edge.getTrains().get(numOwners - 1);
+
+        for (Train train: trainList) {
+            float centerX = (float) (train.getCoordinates().x * 3);
+            float centerY = (float) (train.getCoordinates().y * 3);
+//                System.out.println("Drawing a rectangle at " + centerX + ", " + centerY);
+            RectF trainCar = new RectF(centerX - 10, centerY - 25, centerX + 10, centerY + 25);
+            canvas.save(Canvas.MATRIX_SAVE_FLAG);
+            canvas.rotate((float) train.getTheta(), centerX, centerY);
+            canvas.drawRect(trainCar, paint);
+            canvas.restore();
+        }
+
+        mapView.setImageBitmap(bitmap);
+    }
+
+    /**
      * Reset this player's score and trains remaining
      */
     private void resetScore(Player player) {
-        System.out.println("Resetting score for player " + player);
+//        System.out.println("Resetting score for player " + player);
         switch (player.getColor()) {
             case BLACK:
                 ((TextView) findViewById(R.id.scoreBlack)).setText(player.getTotalScore() +
                         "    " + player.getTrainsRemaining());
                 break;
             case BLUE:
-                System.out.println("Actually resetting score!");
+//                System.out.println("Actually resetting score!");
                 ((TextView) findViewById(R.id.scoreBlue)).setText(player.getTotalScore() +
                         "    " + player.getTrainsRemaining());
                 break;
@@ -153,6 +185,13 @@ public class EnterScoresActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scoring_map);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        // Pair player colors with Android color IDs
+        colorMap.put(PlayerColor.RED, Color.RED);
+        colorMap.put(PlayerColor.BLUE, Color.BLUE);
+        colorMap.put(PlayerColor.GREEN, Color.GREEN);
+        colorMap.put(PlayerColor.YELLOW, Color.YELLOW);
+        colorMap.put(PlayerColor.BLACK, Color.BLACK);
 
         // Assemble a list of all players paired with their colors
         gameController = ((MyApplication) this.getApplication()).getGame();

@@ -148,4 +148,8 @@ public class ScoreMap {
         }
         return edges;
     }
+
+    public int countOwners(Edge edge) {
+        return owners.get(edge).size();
+    }
 }
