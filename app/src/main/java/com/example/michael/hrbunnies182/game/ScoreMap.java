@@ -27,6 +27,7 @@ public class ScoreMap {
         }
         owners.get(edge).add(player);
         player.incrementTrainsRemaining(-edge.getLength());
+        player.setLongestRoute(getLongestRouteLength(player));
         return true;
     }
 
@@ -39,16 +40,23 @@ public class ScoreMap {
     public void clearEdge(Edge edge) {
         for (Player player : owners.get(edge)) {
             player.incrementTrainsRemaining(edge.getLength());
+            player.setLongestRoute(getLongestRouteLength(player));
         }
         owners.get(edge).clear();
     }
 
-    public int getLongestRouteLength(Player player) {
-        Graph g = createGraph(player);
-        return 0;
+    private int getLongestRouteLength(Player player) {
+        return createGraph(player).longestRouteLength();
     }
 
-    public Graph createGraph(Player player) {
-        return null;
+    private Graph createGraph(Player player) {
+        Graph graph = new Graph();
+        for (Edge edge : owners.keySet()) {
+            if (owners.get(edge).contains(player)) {
+                graph.addEdge(edge);
+            }
+        }
+        graph.optimize();
+        return graph;
     }
 }
