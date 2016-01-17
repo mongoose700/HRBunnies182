@@ -78,6 +78,8 @@ public class EnterScoresActivity extends AppCompatActivity {
             Point loc1 = getAdjustedPoint(e1);
             Point loc2 = getAdjustedPoint(e2);
 
+            System.out.println("LISTENER: Got points " + loc1 + ", " + loc2);
+
             if (curPlayer == null) {
                 System.out.println("Asking the controller to clear an edge!");
                 gameController.getAdapter().clearEdge(loc1, loc2);
@@ -96,7 +98,12 @@ public class EnterScoresActivity extends AppCompatActivity {
      * @return The location of the event relative to the map
      */
     private Point getAdjustedPoint(MotionEvent e) {
-        return new Point((int) e.getX(), (int) e.getY());
+        // Offset the y-axis
+        float newY = e.getY() - 70;
+
+        // Offset the scaling
+        double scale = 2.4;
+        return new Point((int) (e.getX() / scale), (int) (newY / scale));
     }
 
     private final GestureDetectorCompat wrapper = new GestureDetectorCompat(getBaseContext(), listener);

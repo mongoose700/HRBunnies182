@@ -255,6 +255,7 @@ public class GameMap implements Serializable {
         Resources res = activity.getResources();
         XmlResourceParser xpp = res.getXml(R.xml.usa);
         int eventType = 0;
+        System.out.println("Initializing map");
         try {
             eventType = xpp.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT)
@@ -474,22 +475,26 @@ public class GameMap implements Serializable {
     }
 
     public Edge findEdge(Point city1, Point city2) {
+
         Edge bestEdge = null;
-        double bestScore = 0;
+        double bestScore = Double.MAX_VALUE;
         for (Edge edge : edges) {
             Point coords1 = edge.getFirstCity().getCoordinates();
             Point coords2 = edge.getSecondCity().getCoordinates();
             double[] scores = new double[2];
             scores[0] = dist(city1, coords1) + dist(city2, coords2);
             scores[1] = dist(city1, coords2) + dist(city2, coords1);
-            for (double score : scores) {
+
+            for (double score: scores) {
                 if (score < bestScore) {
                     bestScore = score;
                     bestEdge = edge;
                 }
             }
         }
-        return bestScore < 100 ? bestEdge : null;
+        System.out.println("Potentially returning edge " + bestEdge + " with score " + bestScore);
+
+        return bestScore < 20 ? bestEdge : null;
     }
 
     private double dist(Point a, Point b) {

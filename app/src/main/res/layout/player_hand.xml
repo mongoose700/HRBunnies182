@@ -3,12 +3,28 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/darkBrown">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X Player"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
+            android:id="@+id/toolbar_title_player_name_hand" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Player"
-        android:id="@+id/textViewPlayerName" />
+        android:id="@+id/route_images"
+        android:orientation="vertical"></LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,15 +33,57 @@
         android:text="(cards go here)"
         android:id="@+id/textViewPlayerHandCards" />
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
-        android:id="@+id/buttonBackPlayerHand" />
+        android:orientation="horizontal">
+        <Button
+            android:layout_gravity="center"
+            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20px"
+            android:layout_marginBottom="10px"
+            android:paddingLeft="30px"
+            android:paddingRight="30px"
+            android:background="@color/darkBrown"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            android:text="Back"
+            android:id="@+id/buttonBackPlayerHand" />
 
-    <Button
+        <Button
+            android:layout_gravity="center"
+            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20px"
+            android:layout_marginBottom="10px"
+            android:paddingLeft="30px"
+            android:paddingRight="30px"
+            android:background="@color/darkBrown"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            android:text="Continue"
+            android:id="@+id/buttonContinuePlayerHand" />
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20px"
+            android:layout_marginBottom="10px"
+            android:paddingLeft="30px"
+            android:paddingRight="30px"
+            android:background="@color/darkBrown"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            android:text="Draw"
+            android:id="@+id/buttonDrawCards" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Draw"
-        android:id="@+id/buttonDrawCards" />
+        android:id="@+id/buttonList"></LinearLayout>
 </LinearLayout>

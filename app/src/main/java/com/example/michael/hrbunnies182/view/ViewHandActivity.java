@@ -6,18 +6,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.Player;
-import com.example.michael.hrbunnies182.game.PlayerColor;
 import com.example.michael.hrbunnies182.game.RouteCard;
 
+import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Map;
 
 /**
  * Created by Jenna on 1/16/2016.
@@ -29,17 +29,14 @@ public class ViewHandActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_hand);
 
-        onRestart();
-    }
-
-    protected void onRestart() {
-
-        super.onRestart();
-
         final Controller gameController = ((MyApplication) this.getApplication()).getGame();
         final Player currentPlayer = gameController.getAdapter().getPlayer();
 
-        ((TextView) findViewById(R.id.textViewPlayerName)).setText(currentPlayer.toString());
+        String playerColorName = currentPlayer.getColor().toString();
+        String newColorName = Character.toUpperCase(playerColorName.charAt(0)) + playerColorName.substring(1).toLowerCase();
+
+        TextView playerTitle = (TextView) findViewById(R.id.toolbar_title_player_name_hand);
+        playerTitle.setText(newColorName + " Player");
 
         String cards = "";
         for (RouteCard card : currentPlayer.getCards()) {
@@ -47,25 +44,115 @@ public class ViewHandActivity extends AppCompatActivity {
         }
         ((TextView) findViewById(R.id.textViewPlayerHandCards)).setText(cards);
 
-        Button back = (Button) findViewById(R.id.buttonBackPlayerHand);
-        Button draw = (Button) findViewById(R.id.buttonDrawCards);
+/*        FrameLayout frame = new FrameLayout(getBaseContext());
+        ImageView image = new ImageView(getBaseContext());
+        image.setBackgroundResource(R.drawable.destination_card);
+        ((LinearLayout) findViewById(R.id.route_images)).addView(frame);
+        frame.addView(image);
+        ImageView icon = new ImageView(getBaseContext());
+        // Some existing RelativeLayout from your layout xml
+        RelativeLayout rl1 = new RelativeLayout(getBaseContext());
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(20, 20);
+        RouteCard card = currentPlayer.getCards().get(0);
+        Point coords = card.getFirstCity().getCoordinates();
+        params.leftMargin = coords.x;
+        params.topMargin = coords.y;
+        rl1.addView(icon, params);
+        icon.setBackgroundResource(R.drawable.destination_icon);
+        frame.addView(rl1);
+
+        RelativeLayout rl2 = new RelativeLayout(getBaseContext());
+        RelativeLayout.LayoutParams rl2params = new RelativeLayout.LayoutParams(400, 25);
+        rl2params.leftMargin = 20;
+        rl2params.topMargin = 20;
+
+        TextView cardTitle = new TextView(getBaseContext());
+        cardTitle.setText(card.getFirstCity().getName() + " * " + card.getSecondCity().getName());
+        rl2.addView(cardTitle, rl2params);
+        frame.addView(rl2);*/
+
+//        LinearLayout buttons = (LinearLayout) findViewById(R.id.buttonList);
+
+        final Map<String, NextStep> nextSteps = (Map<String, NextStep>) getIntent().getExtras().getSerializable("next_step_buttons");
+
+//        for (final Map.Entry<String, NextStep> e : nextSteps.entrySet()) {
+//            Button button = new Button(getBaseContext());
+//            button.setText(e.getKey());
+//            button.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    e.getValue().takeNextStep(ViewHandActivity.this);
+//                }
+//            });
+//            buttons.addView(button);
+//        }
+
+        Map<String, Button> buttons = new HashMap<>();
+        buttons.put("Back", (Button) findViewById(R.id.buttonBackPlayerHand));
+        buttons.put("Draw", (Button) findViewById(R.id.buttonDrawCards));
+        buttons.put("Continue", (Button) findViewById(R.id.buttonContinuePlayerHand));
 
         final Intent makeDrawActivity = new Intent(this, com.example.michael.hrbunnies182.view.MakeDrawActivity.class);
         final Intent selectPlayerActivity = new Intent(this, com.example.michael.hrbunnies182.view.SelectPlayerActivity.class);
         final Activity me = this;
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                me.finish();
+        for (final Map.Entry<String, Button> b : buttons.entrySet()) {
+            if (nextSteps.containsKey(b.getKey())) {
+                b.getValue().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        nextSteps.get(b.getKey()).takeNextStep(ViewHandActivity.this);
+                    }
+                });
+            } else {
+                b.getValue().setVisibility(View.GONE);
             }
-        });
+        }
+    }
 
-        draw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(makeDrawActivity);
+    public static interface NextStep extends Serializable {
+        void takeNextStep(ViewHandActivity activity);
+    }
+
+    public static class InitializeNextPlayer implements NextStep {
+
+        private int nextPlayerIndex;
+
+        public InitializeNextPlayer(int nextPlayerIndex) {
+            System.out.println("next player index: " + nextPlayerIndex);
+            this.nextPlayerIndex = nextPlayerIndex;
+        }
+
+        @Override
+        public void takeNextStep(ViewHandActivity activity) {
+
+            MyApplication app = ((MyApplication) activity.getApplication());
+            if (nextPlayerIndex >= app.getGame().getAdapter().getPlayers().size()) {
+
+                Intent selectPlayerActivity = new Intent(activity.getApplicationContext(), com.example.michael.hrbunnies182.view.SelectPlayerActivity.class);
+                activity.startActivity(selectPlayerActivity);
+            } else {
+                Intent declarePlayerActivity = new Intent(activity.getApplicationContext(), com.example.michael.hrbunnies182.view.DeclarePlayerActivity.class);
+                declarePlayerActivity.putExtra("player_num", nextPlayerIndex);
+                activity.startActivity(declarePlayerActivity);
             }
-        });
+        }
+    }
+
+    public static class GoBack implements NextStep {
+        @Override
+        public void takeNextStep(ViewHandActivity activity) {
+            activity.finish();
+        }
+    }
+
+    public static class DrawMoreCards implements NextStep {
+        @Override
+        public void takeNextStep(ViewHandActivity activity) {
+            Intent drawCardsActivity = new Intent(activity.getApplicationContext(), DrawCardsKeepSomeActivity.class);
+            drawCardsActivity.putExtra("card_min", 1);
+            drawCardsActivity.putExtra("next_step_buttons", (Serializable) Collections.singletonMap("Continue", new ViewHandActivity.InitializeNextPlayer(Integer.MAX_VALUE)));
+            activity.startActivity(drawCardsActivity);
+        }
     }
 }

@@ -29,11 +29,13 @@ public class InitializePlayerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("Creating InitializePlayerActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initialize_player);
 
         final Controller gameController = ((MyApplication) this.getApplication()).getGame();
 
+        System.out.println("Obtained game controller");
         remainingPlayers = new ArrayList<>();
         remainingPlayers.addAll(gameController.getAdapter().getPlayers());
         final TextView playerName = (TextView) findViewById(R.id.textViewPlayerName);

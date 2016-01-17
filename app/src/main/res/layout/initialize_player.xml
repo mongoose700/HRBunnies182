@@ -23,15 +23,15 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.12"
             android:layout_margin="20px"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:weightSum="1">
 
             <!-- HAND PHONE LAYOUT -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:id="@+id/layoutHandOffPhone"
                     android:visibility="visible">

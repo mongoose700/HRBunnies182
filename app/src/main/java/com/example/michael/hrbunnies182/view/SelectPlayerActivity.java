@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 
 import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
@@ -14,8 +13,9 @@ import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.Player;
 import com.example.michael.hrbunnies182.game.PlayerColor;
 
+import java.io.Serializable;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Map;
 
 /**
  * Created by Jenna on 1/16/2016.
@@ -28,6 +28,7 @@ public class SelectPlayerActivity extends AppCompatActivity {
         setContentView(R.layout.select_player_gameplay);
 
         final Intent viewHandActivity = new Intent(this, com.example.michael.hrbunnies182.view.ViewHandActivity.class);
+        final Intent enterScoresActivity = new Intent(this, com.example.michael.hrbunnies182.view.EnterScoresActivity.class);
         final Controller gameController = ((MyApplication) this.getApplication()).getGame();
 
         HashMap<Integer, PlayerColor> colorButtons = new HashMap<>();
@@ -55,10 +56,23 @@ public class SelectPlayerActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         gameController.getAdapter().setPlayer(curPlayer);
+                        Map<String, ViewHandActivity.NextStep> map = new HashMap<>();
+                        map.put("Back", new ViewHandActivity.GoBack());
+                        map.put("Draw", new ViewHandActivity.DrawMoreCards());
+                        viewHandActivity.putExtra("next_step_buttons", (Serializable) map);
                         startActivity(viewHandActivity);
                     }
                 });
             }
         }
+
+        Button endButton = (Button) findViewById(R.id.buttonEndGame);
+        endButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(enterScoresActivity);
+            }
+        });
+
     }
 }
