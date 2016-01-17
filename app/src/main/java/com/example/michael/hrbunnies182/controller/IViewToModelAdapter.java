@@ -38,6 +38,8 @@ public interface IViewToModelAdapter extends Serializable {
     /** Removes all trains from this edge on the board */
     void clearEdge(Point city1, Point city2);
 
+    /** Checks how many people own this edge */
+    int countOwners(Edge edge);
 
     Collection<City> getAllCities();
 }

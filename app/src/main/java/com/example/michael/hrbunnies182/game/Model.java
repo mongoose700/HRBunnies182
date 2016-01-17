@@ -92,6 +92,11 @@ public class Model implements Serializable {
             }
 
             @Override
+            public int countOwners(Edge edge) {
+                return scoreMap.countOwners(edge);
+            }
+
+            @Override
             public Collection<City> getAllCities() {
                 return gameMap.getCities();
             }

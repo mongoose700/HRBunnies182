@@ -48,6 +48,8 @@ public class EnterScoresActivity extends AppCompatActivity {
 
     private Controller gameController;
 
+    private final HashMap<PlayerColor, Integer> colorMap = new HashMap<>();
+
     // Set up a listener on the viewscreen for touches
     private final GestureDetector.SimpleOnGestureListener listener = new GestureDetector.SimpleOnGestureListener() {
 
@@ -110,29 +112,26 @@ public class EnterScoresActivity extends AppCompatActivity {
                 Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.RED); // TODO
+        paint.setColor(colorMap.get(curPlayer.getColor()));
 
         canvas.drawBitmap(((BitmapDrawable) mapView.getDrawable()).getBitmap(), 0, 0, new Paint());
 
-        for (List<Train> trainList: edge.getTrains()) {
-            for (Train train: trainList) {
-                float centerX = (float) (train.getCoordinates().x * 3);
-                float centerY = (float) (train.getCoordinates().y * 3);
+        // Check which train to use from this edge
+        int numOwners = gameController.getAdapter().countOwners(edge);
+        List<Train> trainList = edge.getTrains().get(numOwners - 1);
+
+        for (Train train: trainList) {
+            float centerX = (float) (train.getCoordinates().x * 3);
+            float centerY = (float) (train.getCoordinates().y * 3);
 //                System.out.println("Drawing a rectangle at " + centerX + ", " + centerY);
-                RectF trainCar = new RectF(centerX - 10, centerY - 25, centerX + 10, centerY + 25);
-                canvas.save(Canvas.MATRIX_SAVE_FLAG);
-                canvas.rotate((float) train.getTheta(), centerX, centerY);
-//                Matrix m = new Matrix();
-//                m.setRotate((float) train.getTheta(), centerX, centerY);
-//                m.mapRect(trainCar);
-                canvas.drawRect(trainCar, paint);
-                canvas.restore();
-            }
+            RectF trainCar = new RectF(centerX - 10, centerY - 25, centerX + 10, centerY + 25);
+            canvas.save(Canvas.MATRIX_SAVE_FLAG);
+            canvas.rotate((float) train.getTheta(), centerX, centerY);
+            canvas.drawRect(trainCar, paint);
+            canvas.restore();
         }
 
         mapView.setImageBitmap(bitmap);
-//        mapView.setWillNotDraw(false);
-
     }
 
     /**
@@ -186,6 +185,13 @@ public class EnterScoresActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scoring_map);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        // Pair player colors with Android color IDs
+        colorMap.put(PlayerColor.RED, Color.RED);
+        colorMap.put(PlayerColor.BLUE, Color.BLUE);
+        colorMap.put(PlayerColor.GREEN, Color.GREEN);
+        colorMap.put(PlayerColor.YELLOW, Color.YELLOW);
+        colorMap.put(PlayerColor.BLACK, Color.BLACK);
 
         // Assemble a list of all players paired with their colors
         gameController = ((MyApplication) this.getApplication()).getGame();
