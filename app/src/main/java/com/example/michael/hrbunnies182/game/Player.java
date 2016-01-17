@@ -23,7 +23,7 @@ public class Player implements Serializable {
         this.cards = new ArrayList<>();
         this.name = color.name();
         this.pin = null;
-        this.trainsRemaining = Integer.MAX_VALUE; //45;
+        this.trainsRemaining = 45;
     }
 
     public void addCards(List<RouteCard> addedCards) {

@@ -4,6 +4,7 @@ import android.graphics.Point;
 
 import com.example.michael.hrbunnies182.game.City;
 import com.example.michael.hrbunnies182.game.Draw;
+import com.example.michael.hrbunnies182.game.Edge;
 import com.example.michael.hrbunnies182.game.Player;
 
 import java.io.Serializable;
