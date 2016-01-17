@@ -378,9 +378,25 @@ public class GameMap implements Serializable {
     }
 
     public Edge findEdge(Point city1, Point city2) {
+        Edge bestEdge = null;
+        double bestScore = 0;
         for (Edge edge : edges) {
-
+            Point coords1 = edge.getFirstCity().getCoordinates();
+            Point coords2 = edge.getSecondCity().getCoordinates();
+            double[] scores = new double[2];
+            scores[0] = dist(city1, coords1) + dist(city2, coords2);
+            scores[1] = dist(city1, coords2) + dist(city2, coords1);
+            for (double score : scores) {
+                if (score < bestScore) {
+                    bestScore = score;
+                    bestEdge = edge;
+                }
+            }
         }
-        return null;
+        return bestScore < 100 ? bestEdge : null;
+    }
+
+    private double dist(Point a, Point b) {
+        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
     }
 }
