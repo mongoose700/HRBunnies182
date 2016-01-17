@@ -2,63 +2,101 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@color/lightBrown">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:textColor="#FFFFFF"
+        android:background="@color/darkBrown"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Who&apos;s playing?"
+        android:padding="10px"
+        android:gravity="center"
+        android:id="@+id/textViewChoosePlayers" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20px"
+        android:background="@color/white"
         android:layout_weight="0.12">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Who&apos;s playing?"
-            android:id="@+id/textViewChoosePlayers" />
+            android:layout_weight="0.12"
+            android:layout_margin="20px"
+            android:background="@color/white">
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Red"
-            android:id="@+id/checkBoxRed"
-            android:checked="false" />
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/red"
+                android:text="Red"
+                android:id="@+id/checkBoxRed"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:checked="false" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Blue"
-            android:id="@+id/checkBoxBlue"
-            android:checked="false" />
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Blue"
+                android:layout_marginTop="10px"
+                android:id="@+id/checkBoxBlue"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:background="@color/blue"
+                android:checked="false" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yellow"
-            android:id="@+id/checkBoxYellow"
-            android:checked="false" />
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Yellow"
+                android:layout_marginTop="10px"
+                android:id="@+id/checkBoxYellow"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:background="@color/yellow"
+                android:checked="false" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Green"
-            android:id="@+id/checkBoxGreen"
-            android:checked="false" />
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Green"
+                android:layout_marginTop="10px"
+                android:id="@+id/checkBoxGreen"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:background="@color/green"
+                android:checked="false" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Black"
-            android:id="@+id/checkBoxBlack"
-            android:checked="false" />
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Black"
+                android:layout_marginTop="10px"
+                android:id="@+id/checkBoxBlack"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:background="@color/black"
+                android:checked="false" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ok!"
-            android:id="@+id/buttonOkToPlayers"
-            android:layout_gravity="center_horizontal" />
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="160px"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30px"
+                android:background="@color/darkBrown"
+                android:text="Ok!"
+                android:textColor="@color/white"
+                android:id="@+id/buttonOkToPlayers"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
