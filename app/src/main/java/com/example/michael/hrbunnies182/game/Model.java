@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -83,12 +84,14 @@ public class Model implements Serializable {
             }
 
             @Override
-            public void clearEdge(Point city1, Point city2) {
+            public Edge clearEdge(Point city1, Point city2) {
                 Edge edge = gameMap.findEdge(city1, city2);
                 System.out.println("Model: Clearing edge " + edge);
                 if (edge != null) {
                     scoreMap.clearEdge(edge);
+                    return edge;
                 }
+                return null;
             }
 
             @Override
@@ -99,6 +102,11 @@ public class Model implements Serializable {
             @Override
             public Collection<City> getAllCities() {
                 return gameMap.getCities();
+            }
+
+            @Override
+            public Map<Player, Scores> getAllScores() {
+                return scoreMap.getAllScores(players);
             }
         };
     }

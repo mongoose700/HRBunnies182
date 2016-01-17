@@ -1,6 +1,7 @@
 package com.example.michael.hrbunnies182.view;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,13 +12,18 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -26,6 +32,7 @@ import android.widget.TextView;
 import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
+import com.example.michael.hrbunnies182.game.City;
 import com.example.michael.hrbunnies182.game.Edge;
 import com.example.michael.hrbunnies182.game.Player;
 import com.example.michael.hrbunnies182.game.PlayerColor;
@@ -76,15 +83,19 @@ public class EnterScoresActivity extends AppCompatActivity {
             Point loc1 = getAdjustedPoint(e1);
             Point loc2 = getAdjustedPoint(e2);
 
-//            System.out.println("LISTENER: Got points " + loc1 + ", " + loc2);
+            System.out.println("LISTENER: Got points " + loc1 + ", " + loc2);
 
-            if (curPlayer == null) {
-                System.out.println("Asking the controller to clear an edge!");
-                gameController.getAdapter().clearEdge(loc1, loc2);
-                for (Player player: activePlayers.values()) {
-                    resetScore(player);
-                }
-            } else {
+            if (curPlayer != null) {
+//                System.out.println("Asking the controller to clear an edge!");
+//                Edge clearedEdge = gameController.getAdapter().clearEdge(loc1, loc2);
+//                if (clearedEdge != null) {
+//                    System.out.println("Clearing edge " + clearedEdge);
+//                    removeEdgeFromScreen(clearedEdge);
+//                    for (Player player : activePlayers.values()) {
+//                        resetScore(player);
+//                    }
+//                }
+//            } else {
                 System.out.println("Asking the controller to add an edge!");
                 Edge newEdge;
                 if ((newEdge = gameController.getAdapter().addEdge(curPlayer, loc1, loc2)) != null) {
@@ -106,9 +117,12 @@ public class EnterScoresActivity extends AppCompatActivity {
     private void addEdgeToScreen(Edge edge) {
         System.out.println("Adding an edge to the screen: " + edge);
         ImageView mapView = (ImageView) findViewById(R.id.imageView);
+//        SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
 
-        Bitmap bitmap = Bitmap.createBitmap(((BitmapDrawable) mapView.getDrawable()).getBitmap().getWidth(),
-                ((BitmapDrawable) mapView.getDrawable()).getBitmap().getHeight(),
+        int mapWidth = ((BitmapDrawable) mapView.getDrawable()).getBitmap().getWidth();
+        int mapHeight = ((BitmapDrawable) mapView.getDrawable()).getBitmap().getHeight();
+
+        Bitmap bitmap = Bitmap.createBitmap(mapWidth, mapHeight,
                 Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -121,9 +135,10 @@ public class EnterScoresActivity extends AppCompatActivity {
         List<Train> trainList = edge.getTrains().get(numOwners - 1);
 
         for (Train train: trainList) {
-            float centerX = (float) (train.getCoordinates().x * 3);
-            float centerY = (float) (train.getCoordinates().y * 3);
-//                System.out.println("Drawing a rectangle at " + centerX + ", " + centerY);
+            float centerX = (float) (train.getCoordinates().x * mapWidth / 624.0);
+            float centerY = (float) (train.getCoordinates().y * mapHeight / 417.0);
+//            System.out.println("Drawing a rectangle at " + centerX + ", " + centerY);
+//            System.out.println("Scaling by " + mapWidth / 624.0 + " and " + mapHeight / 417.0);
             RectF trainCar = new RectF(centerX - 10, centerY - 25, centerX + 10, centerY + 25);
             canvas.save(Canvas.MATRIX_SAVE_FLAG);
             canvas.rotate((float) train.getTheta(), centerX, centerY);
@@ -132,7 +147,46 @@ public class EnterScoresActivity extends AppCompatActivity {
         }
 
         mapView.setImageBitmap(bitmap);
+//        LayerDrawable drawable = new LayerDrawable(new Drawable[] { });
+
+//        surfaceView.draw(canvas);
     }
+
+    /**
+     * Remove the given edge from the view
+     * @param edge
+     */
+    private void removeEdgeFromScreen(Edge edge) {
+        ImageView mapView = (ImageView) findViewById(R.id.imageView);
+
+        int mapWidth = ((BitmapDrawable) mapView.getDrawable()).getBitmap().getWidth();
+        int mapHeight = ((BitmapDrawable) mapView.getDrawable()).getBitmap().getHeight();
+
+        Bitmap bitmap = Bitmap.createBitmap(mapWidth, mapHeight,
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.TRANSPARENT);
+
+        canvas.drawBitmap(((BitmapDrawable) mapView.getDrawable()).getBitmap(), 0, 0, new Paint());
+
+        for (List<Train> trainList: edge.getTrains()) {
+            for (Train train : trainList) {
+                float centerX = (float) (train.getCoordinates().x * mapWidth / 624.0);
+                float centerY = (float) (train.getCoordinates().y * mapHeight / 417.0);
+//                System.out.println("Drawing a rectangle at " + centerX + ", " + centerY);
+//                System.out.println("Scaling by " + mapWidth / 624.0 + " and " + mapHeight / 417.0);
+                RectF trainCar = new RectF(centerX - 10, centerY - 25, centerX + 10, centerY + 25);
+                canvas.save(Canvas.MATRIX_SAVE_FLAG);
+                canvas.rotate((float) train.getTheta(), centerX, centerY);
+                canvas.drawRect(trainCar, paint);
+                canvas.restore();
+            }
+        }
+
+        mapView.setImageBitmap(bitmap);
+    }
+
 
     /**
      * Reset this player's score and trains remaining
@@ -141,25 +195,20 @@ public class EnterScoresActivity extends AppCompatActivity {
 //        System.out.println("Resetting score for player " + player);
         switch (player.getColor()) {
             case BLACK:
-                ((TextView) findViewById(R.id.scoreBlack)).setText(player.getTotalScore() +
-                        "    " + player.getTrainsRemaining());
+                ((TextView) findViewById(R.id.scoreBlack)).setText("Trains left: " + player.getTrainsRemaining() + "  ");
                 break;
             case BLUE:
 //                System.out.println("Actually resetting score!");
-                ((TextView) findViewById(R.id.scoreBlue)).setText(player.getTotalScore() +
-                        "    " + player.getTrainsRemaining());
+                ((TextView) findViewById(R.id.scoreBlue)).setText("Trains left: " + player.getTrainsRemaining() + "  ");
                 break;
             case GREEN:
-                ((TextView) findViewById(R.id.scoreGreen)).setText(player.getTotalScore() +
-                        "    " + player.getTrainsRemaining());
+                ((TextView) findViewById(R.id.scoreGreen)).setText("Trains left: " + player.getTrainsRemaining() + "  ");
                 break;
             case RED:
-                ((TextView) findViewById(R.id.scoreRed)).setText(player.getTotalScore() +
-                        "    " + player.getTrainsRemaining());
+                ((TextView) findViewById(R.id.scoreRed)).setText("Trains left: " + player.getTrainsRemaining() + "  ");
                 break;
             case YELLOW:
-                ((TextView) findViewById(R.id.scoreYellow)).setText(player.getTotalScore() +
-                        "    " + player.getTrainsRemaining());
+                ((TextView) findViewById(R.id.scoreYellow)).setText("Trains left: " + player.getTrainsRemaining() + "  ");
                 break;
         }
     }
@@ -170,12 +219,17 @@ public class EnterScoresActivity extends AppCompatActivity {
      * @return The location of the event relative to the map
      */
     private Point getAdjustedPoint(MotionEvent e) {
-        // Offset the y-axis
-        float newY = e.getY() - 70;
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
 
-        // Offset the scaling
-        double scale = 2.4;
-        return new Point((int) (e.getX() / scale), (int) (newY / scale));
+        Rect r = new Rect();
+        Point offset = new Point(0, 0);
+        ImageView mapView = (ImageView) findViewById(R.id.imageView);
+        mapView.getGlobalVisibleRect(r, offset);
+//        System.out.println("Adjusted height scale: " + ((size.y - offset.y) / 417.0));
+
+        return new Point((int) (e.getX() / ((size.y - offset.y) / 417.0)), (int) ((e.getY() - offset.y) / ((size.y - offset.y) / 417.0)));
     }
 
     private final GestureDetectorCompat wrapper = new GestureDetectorCompat(getBaseContext(), listener);
@@ -227,6 +281,16 @@ public class EnterScoresActivity extends AppCompatActivity {
                 }
             }
         }
+
+        Button ok = (Button) findViewById(R.id.buttonDone);
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent results = new Intent(EnterScoresActivity.this, com.example.michael.hrbunnies182.view.ResultsActivity.class);
+                startActivity(results);
+            }
+        });
     }
 
     // Forward touches to the gestureDetector
@@ -270,10 +334,10 @@ public class EnterScoresActivity extends AppCompatActivity {
                     curPlayer = activePlayers.get(PlayerColor.GREEN);
                 break;
 
-            case R.id.radioClear:
-                if (checked)
-                    curPlayer = null;
-                break;
+//            case R.id.radioClear:
+//                if (checked)
+//                    curPlayer = null;
+//                break;
         }
     }
 

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:adjustViewBounds="true"
+    android:background="@color/lightBrown">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/darkBrown">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Who&apos;s playing?"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
+            android:id="@+id/toolbar_title" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_margin="20px"
+        android:paddingBottom="0px"
+        android:layout_marginBottom="0px"
+        android:background="@color/white"
+        android:adjustViewBounds="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="0.12"
+            android:layout_margin="20px"
+            android:layout_marginBottom="0px"
+            android:paddingBottom="0px"
+            android:background="@color/white">
+
+            <TextView
+                android:textSize="25dp"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@color/red"
+                android:text="Red"
+                android:paddingTop="15px"
+                android:paddingBottom="15px"
+                android:layout_marginBottom="10px"
+                android:id="@+id/first"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:checked="false" />
+
+            <TextView
+                android:textSize="25dp"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:text="Blue"
+                android:layout_marginBottom="10px"
+                android:id="@+id/second"
+                android:paddingTop="15px"
+                android:paddingBottom="15px"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:background="@color/blue"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:checked="false" />
+
+            <TextView
+                android:textSize="25dp"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:text="Yellow"
+                android:layout_marginBottom="10px"
+                android:id="@+id/third"
+                android:paddingTop="15px"
+                android:paddingBottom="15px"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:background="@color/yellow"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:checked="false" />
+
+            <TextView
+                android:textSize="25dp"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:text="Green"
+                android:layout_marginBottom="10px"
+                android:id="@+id/fourth"
+                android:paddingTop="15px"
+                android:paddingBottom="15px"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:background="@color/green"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:checked="false" />
+
+            <TextView
+                android:textSize="25dp"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:text="Black"
+                android:layout_marginBottom="10px"
+                android:id="@+id/fifth"
+                android:paddingTop="15px"
+                android:paddingBottom="15px"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:background="@color/black"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:checked="false" />
+
+            <Button
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="0px"
+                android:paddingLeft="30px"
+                android:paddingRight="30px"
+                android:background="@color/darkBrown"
+                android:text="Ok!"
+                android:textColor="@color/white"
+                android:id="@+id/buttonOkToPlayers"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TableRow>
+    </LinearLayout>
+
+</LinearLayout>

@@ -25,8 +25,8 @@
 
             <RadioButton
                 android:id="@+id/radioRed"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:text="Red" />
 
@@ -34,14 +34,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="0    45"
+                android:text="Trains left: 45  "
                 android:layout_gravity="center"
                 android:id="@+id/scoreRed" />
 
             <RadioButton
                 android:id="@+id/radioBlue"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:text="Blue" />
 
@@ -49,14 +49,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="0    45"
+                android:text="Trains left: 45"
                 android:layout_gravity="center"
                 android:id="@+id/scoreBlue" />
 
             <RadioButton
                 android:id="@+id/radioGreen"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:text="Green" />
 
@@ -64,29 +64,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="0    45"
+                android:text="Trains left: 45"
                 android:layout_gravity="center"
                 android:id="@+id/scoreGreen" />
 
             <RadioButton
                 android:id="@+id/radioYellow"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
-                android:text="Yellow" />
+                android:text="Yellow  " />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="0    45"
+                android:text="Trains left: 45"
                 android:layout_gravity="center"
                 android:id="@+id/scoreYellow" />
 
             <RadioButton
                 android:id="@+id/radioBlack"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:text="Black" />
 
@@ -94,19 +94,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="0    45"
+                android:text="Trains left: 45"
                 android:layout_gravity="center"
                 android:id="@+id/scoreBlack" />
 
-            <RadioButton
-                android:id="@+id/radioClear"
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="CLEAR" />
+                android:text="Done"
+                android:id="@+id/buttonDone" />
 
         </RadioGroup>
+
     </RelativeLayout>
+
 
 
 </FrameLayout>
