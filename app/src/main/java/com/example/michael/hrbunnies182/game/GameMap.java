@@ -13,6 +13,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -173,6 +174,9 @@ public class GameMap implements Serializable {
         Integer[][] minDists = new Integer[cityList.length][cityList.length];
 
         // Initialize all distances to infinity, except for neighbors and city-to-itself
+        System.out.println("Initializing distances in min-dist search");
+        System.out.println("CityList: " + Arrays.toString(cityList));
+        System.out.println("Cities: " + cities);
         for (int i = 0; i < cityList.length; i++) {
             for (int j = 0; j < cityList.length; j++) {
                 minDists[i][j] = cities.get(cityList[i]).getDistance(cities.get(cityList[j]));
@@ -202,7 +206,7 @@ public class GameMap implements Serializable {
      *
      * @param num1 The first number being added
      * @param num2 The second number being added
-     * @return The smaller of
+     * @return The smaller of num1 + num2 (pre-overflow) and Integer.MAX_VALUE
      */
     private Integer safeInfAdd(int num1, int num2) {
         if (num1 == Integer.MAX_VALUE || num2 == Integer.MAX_VALUE) {
@@ -253,18 +257,25 @@ public class GameMap implements Serializable {
             {
                 if (eventType == XmlPullParser.START_TAG) {
                     if (xpp.getName().equals(CITIES)) {
+//                        System.out.println("INITMAP: Started extracting cities");
                         ArrayList<City> cityArrayList = extractCities(xpp);
                         cityList = new String[cityArrayList.size()];
                         for (int i = 0; i < cityList.length; i++) {
                             cityList[i] = cityArrayList.get(i).getName();
+                            cities.put(cityArrayList.get(i).getName(), cityArrayList.get(i));
                         }
+//                        System.out.println("INITMAP: Finished extracting cities");
                     } else if (xpp.getName().equals(EDGES)) {
+//                        System.out.println("INITMAP: Started initializing edges");
                         initEdges(xpp);
+//                        System.out.println("INITMAP: Finished initializing edges");
                     } else {
+//                        System.out.println("INITMAP: Rejecting invalid event " + xpp.getName() +
+//                                " with type " + XmlPullParser.TYPES[eventType]);
                         eventType = xpp.next();
                     }
                 } else {
-                    System.out.println("Moving on from non-start event " + XmlPullParser.TYPES[eventType]);
+//                    System.out.println("Moving on from non-start event " + XmlPullParser.TYPES[eventType]);
                     eventType = xpp.next();
                 }
             }
@@ -274,12 +285,15 @@ public class GameMap implements Serializable {
     }
 
     private ArrayList<City> extractCities(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+//        System.out.println("EXTRACTCITIES: Started extracting cities");
         int eventType = xpp.next();
         ArrayList<City> newCities = new ArrayList<>(2);
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(CITIES))) {
             newCities.add(extractCity(xpp));
             eventType = xpp.getEventType();
+//            System.out.println("EXTRACTCITIES: Extracted city; newCities: " + newCities);
         }
+//        System.out.println("EXTRACTCITIES: Finished extracting cities: " + newCities);
         xpp.next();
         return newCities;
     }
@@ -291,15 +305,29 @@ public class GameMap implements Serializable {
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(CITY))) {
             if (eventType == XmlPullParser.START_TAG) {
                 if (xpp.getName().equals(NAME)) {
+//                    System.out.println("EXTRACTCITY: Starting to extract a name");
                     name = extractString(xpp);
+//                    System.out.println("EXTRACTCITY: Finished extracting " + name);
                 } else if (xpp.getName().equals(COORDINATES)) {
+//                    System.out.println("EXTRACTCITY: Starting to extract coordinates");
                     coordinates = extractCoordinates(xpp);
+//                    System.out.println("EXTRACTCITY: Finished extracting " + coordinates);
                 } else {
+//                    System.out.println("EXTRACTCITY: Rejecting event with name " +
+//                            xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
                     xpp.next();
                 }
                 eventType = xpp.getEventType();
+//                System.out.println("EXTRACTCITY: Finished extracting a city; current event has name " +
+//                        xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
+            } else {
+//                System.out.println("EXTRACTCITY: Skipping non-START event with name " +
+//                        xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
+                xpp.next();
+                eventType = xpp.getEventType();
             }
         }
+//        System.out.println("EXTRACTCITY: Realized I reached the end of a city");
         xpp.next();
         if (cities.containsKey(name)) {
             return cities.get(name);
