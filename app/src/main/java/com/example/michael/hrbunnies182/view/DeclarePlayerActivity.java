@@ -29,11 +29,16 @@ public class DeclarePlayerActivity extends AppCompatActivity {
         final Controller gameController = ((MyApplication) this.getApplication()).getGame();
         gameController.getAdapter().setPlayer(gameController.getAdapter().getPlayers().get(playerIndex));
 
-
         Player player = gameController.getAdapter().getPlayers().get(playerIndex);
-        final TextView playerName = (TextView) findViewById(R.id.textViewPlayerName);
+        String playerColorName = player.getColor().toString();
+        String newColorName = Character.toUpperCase(playerColorName.charAt(0)) + playerColorName.substring(1).toLowerCase();
+
+        TextView playerTitle = (TextView) findViewById(R.id.toolbar_title_player_name);
+        playerTitle.setText(newColorName + " Player");
+
+        TextView playerName = (TextView) findViewById(R.id.textViewPlayerName);
         playerName.setBackgroundResource(getBackgroundColor(player.getColor()));
-        playerName.setText(player.getColor() + " PLAYER");
+        playerName.setText(newColorName);
 
 
         Button thatsMe = (Button) findViewById(R.id.buttonMe);

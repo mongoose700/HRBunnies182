@@ -13,6 +13,7 @@ import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.CheckedRouteCard;
 import com.example.michael.hrbunnies182.game.Draw;
+import com.example.michael.hrbunnies182.game.Player;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -36,6 +37,14 @@ public class DrawCardsKeepSomeActivity extends AppCompatActivity {
 
 
         gameController = ((MyApplication) this.getApplication()).getGame();
+
+        Player player = gameController.getAdapter().getPlayer();
+        String playerColorName = player.getColor().toString();
+        String newColorName = Character.toUpperCase(playerColorName.charAt(0)) + playerColorName.substring(1).toLowerCase();
+
+        TextView playerTitle = (TextView) findViewById(R.id.toolbar_title_player_name_draw);
+        playerTitle.setText(newColorName + " Player");
+
         currentDraw = gameController.getAdapter().getNewDraw();
         cards[0] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard1));
         cards[1] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard2));

@@ -32,7 +32,11 @@ public class ViewHandActivity extends AppCompatActivity {
         final Controller gameController = ((MyApplication) this.getApplication()).getGame();
         final Player currentPlayer = gameController.getAdapter().getPlayer();
 
-        ((TextView) findViewById(R.id.textViewPlayerName)).setText(currentPlayer.toString());
+        String playerColorName = currentPlayer.getColor().toString();
+        String newColorName = Character.toUpperCase(playerColorName.charAt(0)) + playerColorName.substring(1).toLowerCase();
+
+        TextView playerTitle = (TextView) findViewById(R.id.toolbar_title_player_name_hand);
+        playerTitle.setText(newColorName + " Player");
 
         String cards = "";
         for (RouteCard card : currentPlayer.getCards()) {

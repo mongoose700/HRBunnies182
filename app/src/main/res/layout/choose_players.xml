@@ -26,7 +26,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:layout_margin="20px"
         android:paddingBottom="0px"
         android:layout_marginBottom="0px"
@@ -36,7 +36,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="0.12"
             android:layout_margin="20px"
             android:layout_marginBottom="0px"
@@ -45,11 +45,12 @@
 
             <CheckBox
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:background="@color/red"
                 android:text="Red"
                 android:paddingTop="15px"
                 android:paddingBottom="15px"
+                android:layout_marginBottom="10px"
                 android:id="@+id/checkBoxRed"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
@@ -58,9 +59,9 @@
 
             <CheckBox
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:text="Blue"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:id="@+id/checkBoxBlue"
                 android:paddingTop="15px"
                 android:paddingBottom="15px"
@@ -72,9 +73,9 @@
 
             <CheckBox
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:text="Yellow"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:id="@+id/checkBoxYellow"
                 android:paddingTop="15px"
                 android:paddingBottom="15px"
@@ -86,9 +87,9 @@
 
             <CheckBox
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:text="Green"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:id="@+id/checkBoxGreen"
                 android:paddingTop="15px"
                 android:paddingBottom="15px"
@@ -100,9 +101,9 @@
 
             <CheckBox
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:text="Black"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:id="@+id/checkBoxBlack"
                 android:paddingTop="15px"
                 android:paddingBottom="15px"
@@ -114,17 +115,22 @@
 
             <Button
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="160px"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="20px"
                 android:layout_marginBottom="0px"
-                android:paddingBottom="0px"
+                android:paddingLeft="30px"
+                android:paddingRight="30px"
                 android:background="@color/darkBrown"
                 android:text="Ok!"
                 android:textColor="@color/white"
                 android:id="@+id/buttonOkToPlayers"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TableRow>
     </LinearLayout>
 
 </LinearLayout>

@@ -40,13 +40,14 @@
             android:layout_margin="20px"
             android:layout_marginBottom="-20dp"
             android:paddingBottom="0px"
-            android:background="@color/green">
+            android:background="@color/white">
 
             <Button
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:background="@color/red"
                 android:text="Red"
+                android:layout_marginBottom="10px"
                 android:paddingTop="5px"
                 android:paddingBottom="5px"
                 android:textColor="@color/white"
@@ -55,9 +56,9 @@
 
             <Button
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:text="Blue"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:paddingTop="5px"
                 android:paddingBottom="5px"
                 android:textColor="@color/white"
@@ -67,9 +68,9 @@
 
             <Button
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:text="Yellow"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:paddingTop="5px"
                 android:paddingBottom="5px"
                 android:textColor="@color/white"
@@ -79,9 +80,9 @@
 
             <Button
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:text="Green"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:paddingTop="5px"
                 android:paddingBottom="5px"
                 android:textColor="@color/white"
@@ -91,9 +92,9 @@
 
             <Button
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:text="Black"
-                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
                 android:paddingTop="5px"
                 android:paddingBottom="5px"
                 android:textColor="@color/white"
@@ -103,11 +104,12 @@
 
             <Button
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginTop="30px"
+                android:layout_marginTop="20px"
                 android:layout_marginBottom="0px"
-                android:paddingBottom="0px"
+                android:paddingLeft="30px"
+                android:paddingRight="30px"
                 android:background="@color/darkBrown"
                 android:textColor="@color/white"
                 android:layout_gravity="center_horizontal"

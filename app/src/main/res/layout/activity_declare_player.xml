@@ -3,16 +3,22 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:textColor="#FFFFFF"
-        android:background="@color/darkBrown"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="X Player"
-        android:padding="10px"
-        android:gravity="center"
-        android:id="@+id/textViewChoosePlayers" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/darkBrown">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X Player"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
+            android:id="@+id/toolbar_title_player_name" />
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
@@ -23,15 +29,15 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.12"
             android:layout_margin="20px"
+            android:padding="20px"
             android:background="@color/white">
 
             <!-- HAND PHONE LAYOUT -->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:id="@+id/layoutHandOffPhone"
                 android:visibility="visible">
@@ -40,29 +46,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_margin="20px"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Please hand the phone to this player:"
                     android:id="@+id/textViewHandPhoneToPlayer"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:gravity="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="(player name)"
                     android:background="@color/black"
-                    android:paddingTop="10px"
-                    android:paddingBottom="10px"
                     android:textColor="@color/white"
-                    android:layout_margin="20px"
+                    android:layout_margin="15px"
                     android:id="@+id/textViewPlayerName" />
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_height="48dp"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:layout_marginBottom="10px"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
                     android:text="That&apos;s me!"
                     android:background="@color/darkBrown"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/white"
                     android:id="@+id/buttonMe" />
             </LinearLayout>
