@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.michael.hrbunnies182.MyApplication;
@@ -15,11 +15,9 @@ import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.CheckedRouteCard;
 import com.example.michael.hrbunnies182.game.Draw;
 import com.example.michael.hrbunnies182.game.Player;
-import com.example.michael.hrbunnies182.game.PlayerColor;
 import com.example.michael.hrbunnies182.game.RouteCard;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class InitializePlayerActivity extends AppCompatActivity {
@@ -43,10 +41,9 @@ public class InitializePlayerActivity extends AppCompatActivity {
 
         final Intent selectPlayerActivity = new Intent(this, com.example.michael.hrbunnies182.view.SelectPlayerActivity.class);
 
-        final CheckBox [] checkboxes = new CheckBox[3];
-        checkboxes[0] = ((CheckBox) findViewById(R.id.checkBoxInitialCard1));
-        checkboxes[1] = ((CheckBox) findViewById(R.id.checkBoxInitialCard2));
-        checkboxes[2] = ((CheckBox) findViewById(R.id.checkBoxInitialCard3));
+        final LinearLayout[] cards = new LinearLayout[3];
+        cards[0] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard1));
+        final boolean[] checked = new boolean[3];
 
         Button thatsMe = (Button) findViewById(R.id.buttonMe);
         thatsMe.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +53,7 @@ public class InitializePlayerActivity extends AppCompatActivity {
                 // Draw cards
                 currentDraw = gameController.getAdapter().getNewDraw();
                 for (int i = 0; i < 3; i++) {
-                    checkboxes[i].setText(currentDraw.getCards().get(i).getCard().toString());
+                    ((TextView) cards[i].getChildAt(0)).setText(currentDraw.getCards().get(i).getCard().toString());
                 }
 
                 // Go to draw screen
@@ -70,26 +67,13 @@ public class InitializePlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // Check for 2 saved cards
-                ArrayList<String> saved = new ArrayList<String>();
-                for (CheckBox box : checkboxes) {
-                    if (box.isChecked()) {
-                        saved.add(box.getText().toString());
-                    }
-                }
-                if (saved.size() < 2) {
+                int savedCount = 0;
+                for (CheckedRouteCard card : currentDraw.getCards())
+                    if (card.isChecked())
+                        savedCount++;
+                if (savedCount < 2) {
                     //TODO: alert that too few cards were taken
                     return;
-                }
-                for (int i = 0; i < 3; i++) {
-                    checkboxes[i].setChecked(false);
-                }
-                for (String cardName : saved) {
-                    for (CheckedRouteCard card : currentDraw.getCards()) {
-                        if (cardName.equals(card.getCard().toString())) {
-                            card.setChecked(true);
-                        }
-                    }
                 }
                 gameController.getAdapter().makeChoice(currentDraw);
 
