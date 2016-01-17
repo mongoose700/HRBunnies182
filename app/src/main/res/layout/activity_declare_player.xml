@@ -51,7 +51,7 @@
                     android:text="Please pass the phone to this player:"
                     android:id="@+id/textViewHandPhoneToPlayer"/>
 
-                <TextView
+                <Button
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:gravity="center"
