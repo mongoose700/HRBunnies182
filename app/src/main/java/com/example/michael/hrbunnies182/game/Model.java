@@ -69,13 +69,16 @@ public class Model implements Serializable {
             }
 
             @Override
-            public void addEdge(Player player, Point city1, Point city2) {
+            public Edge addEdge(Player player, Point city1, Point city2) {
                 Edge edge = gameMap.findEdge(city1, city2);
                 System.out.println("Model: Got edge " + edge);
                 if (edge != null) {
                     System.out.println("Model: Adding edge " + edge + " to player " + player);
-                    scoreMap.addOwner(edge, player);
+                    if (scoreMap.addOwner(edge, player)) {
+                        return edge;
+                    }
                 }
+                return null;
             }
 
             @Override

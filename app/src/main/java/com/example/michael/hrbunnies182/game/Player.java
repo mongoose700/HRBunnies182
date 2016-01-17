@@ -23,12 +23,12 @@ public class Player implements Serializable {
         this.cards = new ArrayList<>();
         this.name = color.name();
         this.pin = null;
-        this.trainsRemaining = 45;
+        this.trainsRemaining = Integer.MAX_VALUE; //45;
     }
 
     public void addCards(List<RouteCard> addedCards) {
         cards.addAll(addedCards);
-        System.out.println("Added a card to player with name " + name);
+//        System.out.println("Added a card to player with name " + name);
     }
 
     public List<RouteCard> getCards() {
@@ -67,7 +67,7 @@ public class Player implements Serializable {
 
     public void incrementTrainsRemaining(int delta) {
         trainsRemaining += delta;
-        System.out.println("PLAYER " + name + " incremented trains remaining to " + trainsRemaining);
+//        System.out.println("PLAYER " + name + " incremented trains remaining to " + trainsRemaining);
     }
 
     public int getLongestRoute() {
@@ -84,7 +84,7 @@ public class Player implements Serializable {
 
     public void setTrainScore(ScoreMap scoreMap) {
         this.trainScore = scoreMap.getTrainScore(this);
-        System.out.println("PLAYER " + name + " set train score to " + trainScore);
+//        System.out.println("PLAYER " + name + " set train score to " + trainScore);
     }
 
     public int getRouteScore() {
@@ -93,7 +93,7 @@ public class Player implements Serializable {
 
     public void setRouteScore(ScoreMap scoreMap) {
         this.routeScore = scoreMap.getRouteScore(this);
-        System.out.println("PLAYER " + name + " set route score to " + routeScore);
+//        System.out.println("PLAYER " + name + " set route score to " + routeScore);
     }
 
     // TODO: Take longest road into account?

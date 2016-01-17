@@ -178,9 +178,9 @@ public class GameMap implements Serializable {
         Integer[][] minDists = new Integer[cityList.length][cityList.length];
 
         // Initialize all distances to infinity, except for neighbors and city-to-itself
-        System.out.println("Initializing distances in min-dist search");
-        System.out.println("CityList: " + Arrays.toString(cityList));
-        System.out.println("Cities: " + cities);
+//        System.out.println("Initializing distances in min-dist search");
+//        System.out.println("CityList: " + Arrays.toString(cityList));
+//        System.out.println("Cities: " + cities);
         for (int i = 0; i < cityList.length; i++) {
             for (int j = 0; j < cityList.length; j++) {
                 minDists[i][j] = cities.get(cityList[i]).getDistance(cities.get(cityList[j]));
@@ -255,32 +255,32 @@ public class GameMap implements Serializable {
         Resources res = activity.getResources();
         XmlResourceParser xpp = res.getXml(R.xml.usa);
         int eventType = 0;
-        System.out.println("Initializing map");
+//        System.out.println("Initializing map");
         try {
             eventType = xpp.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT)
             {
                 if (eventType == XmlPullParser.START_TAG) {
                     if (xpp.getName().equals(CITIES)) {
-                        System.out.println("INITMAP: Started extracting cities");
+//                        System.out.println("INITMAP: Started extracting cities");
                         ArrayList<City> cityArrayList = extractCities(xpp);
                         cityList = new String[cityArrayList.size()];
                         for (int i = 0; i < cityList.length; i++) {
                             cityList[i] = cityArrayList.get(i).getName();
                             cities.put(cityArrayList.get(i).getName(), cityArrayList.get(i));
                         }
-                        System.out.println("INITMAP: Finished extracting cities");
+//                        System.out.println("INITMAP: Finished extracting cities");
                     } else if (xpp.getName().equals(EDGES)) {
-                        System.out.println("INITMAP: Started initializing edges");
+//                        System.out.println("INITMAP: Started initializing edges");
                         initEdges(xpp);
-                        System.out.println("INITMAP: Finished initializing edges");
+//                        System.out.println("INITMAP: Finished initializing edges");
                     } else {
-                        System.out.println("INITMAP: Rejecting invalid event " + xpp.getName() +
-                                " with type " + XmlPullParser.TYPES[eventType]);
+//                        System.out.println("INITMAP: Rejecting invalid event " + xpp.getName() +
+//                                " with type " + XmlPullParser.TYPES[eventType]);
                         eventType = xpp.next();
                     }
                 } else {
-                    System.out.println("Moving on from non-start event " + XmlPullParser.TYPES[eventType]);
+//                    System.out.println("Moving on from non-start event " + XmlPullParser.TYPES[eventType]);
                     eventType = xpp.next();
                 }
             }
@@ -380,28 +380,30 @@ public class GameMap implements Serializable {
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(EDGE))) {
             if (eventType == XmlPullParser.START_TAG) {
                 if (xpp.getName().equals(CITIES)) {
-                    System.out.println("EXTRACTEDGE: Started extracting cities");
+//                    System.out.println("EXTRACTEDGE: Started extracting cities");
                     cities = extractCities(xpp);
-                    System.out.println("EXTRACTEDGE: Finished extracting cities");
+//                    System.out.println("EXTRACTEDGE: Finished extracting cities");
                 } else if (xpp.getName().equals(LENGTH)) {
-                    System.out.println("EXTRACTEDGE: Started extracting length");
+//                    System.out.println("EXTRACTEDGE: Started extracting length");
                     length = extractInt(xpp);
-                    System.out.println("EXTRACTEDGE: Finished extracting length");
+//                    System.out.println("EXTRACTEDGE: Finished extracting length");
                 } else if (xpp.getName().equals(WIDTH)) {
-                    System.out.println("EXTRACTEDGE: Started extracting width");
+//                    System.out.println("EXTRACTEDGE: Started extracting width");
                     width = extractInt(xpp);
-                    System.out.println("EXTRACTEDGE: Finished extracting width");
+//                    System.out.println("EXTRACTEDGE: Finished extracting width");
                 } else if (xpp.getName().equals(PATHS)) {
-                    System.out.println("EXTRACTEDGE: Started extracting path");
+//                    System.out.println("EXTRACTEDGE: Started extracting path");
                     trains = extractPaths(xpp);
-                    System.out.println("EXTRACTEDGE: Finished extracting path");
+//                    System.out.println("EXTRACTEDGE: Finished extracting path");
                 } else {
                     xpp.next();
                 }
                 eventType = xpp.getEventType();
             } else {
-                System.out.println("EXTRACTEDGE: Skipping non-START event with name " +
-                        xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
+//                System.out.println("EXTRACTEDGE: Skipping non-START event with name " +
+//                        xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
+                xpp.next();
+                eventType = xpp.getEventType();
             }
         }
         xpp.next();
@@ -414,16 +416,16 @@ public class GameMap implements Serializable {
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(PATHS))) {
             if (eventType == XmlPullParser.START_TAG) {
                 if (xpp.getName().equals(PATH)) {
-                    System.out.println("EXTRACTPATHS: Started extracting path");
+//                    System.out.println("EXTRACTPATHS: Started extracting path");
                     paths.add(extractPath(xpp));
-                    System.out.println("EXTRACTPATHS: Finished extracting path");
+//                    System.out.println("EXTRACTPATHS: Finished extracting path");
                 } else {
                     xpp.next();
                 }
                 eventType = xpp.getEventType();
             } else {
-                System.out.println("EXTRACTPATHS: Skipping non-START event with name " +
-                        xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
+//                System.out.println("EXTRACTPATHS: Skipping non-START event with name " +
+//                        xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
                 eventType = xpp.next();
             }
         }
@@ -437,16 +439,16 @@ public class GameMap implements Serializable {
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(PATH))) {
             if (eventType == XmlPullParser.START_TAG) {
                 if (xpp.getName().equals(TRAIN)) {
-                    System.out.println("EXTRACTPATH: Started extracting train");
+//                    System.out.println("EXTRACTPATH: Started extracting train");
                     path.add(extractTrain(xpp));
-                    System.out.println("EXTRACTPATH: Finished extracting train");
+//                    System.out.println("EXTRACTPATH: Finished extracting train");
                 } else {
                     xpp.next();
                 }
                 eventType = xpp.getEventType();
             } else {
-                System.out.println("EXTRACTPATH: Skipping non-START event with name " +
-                        xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
+//                System.out.println("EXTRACTPATH: Skipping non-START event with name " +
+//                        xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
                 eventType = xpp.next();
             }
         }
@@ -472,8 +474,8 @@ public class GameMap implements Serializable {
                 }
                 eventType = xpp.getEventType();
             } else {
-                System.out.println("EXTRACTTRAIN: Skipping non-START event with name " +
-                        xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
+//                System.out.println("EXTRACTTRAIN: Skipping non-START event with name " +
+//                        xpp.getName() + " and type " + XmlPullParser.TYPES[eventType]);
                 eventType = xpp.next();
             }
         }
@@ -519,7 +521,7 @@ public class GameMap implements Serializable {
                 }
             }
         }
-        System.out.println("Potentially returning edge " + bestEdge + " with score " + bestScore);
+//        System.out.println("Potentially returning edge " + bestEdge + " with score " + bestScore);
 
         return bestScore < 20 ? bestEdge : null;
     }

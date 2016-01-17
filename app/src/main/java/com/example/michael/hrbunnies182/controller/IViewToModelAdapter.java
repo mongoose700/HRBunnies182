@@ -30,8 +30,8 @@ public interface IViewToModelAdapter extends Serializable {
     /** Returns the current player */
     Player getPlayer();
 
-    /** Adds the trains of a certain player to the edge on the board */
-    void addEdge(Player player, Point city1, Point city2);
+    /** Adds the trains of a certain player to the edge on the board, and returns the edge created */
+    Edge addEdge(Player player, Point city1, Point city2);
 
     /** Removes all trains from this edge on the board */
     void clearEdge(Point city1, Point city2);
