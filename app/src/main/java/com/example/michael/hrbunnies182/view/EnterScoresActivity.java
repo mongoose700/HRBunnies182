@@ -86,42 +86,51 @@ public class EnterScoresActivity extends AppCompatActivity {
             if (curPlayer == null) {
                 System.out.println("Asking the controller to clear an edge!");
                 gameController.getAdapter().clearEdge(loc1, loc2);
+                for (Player player: activePlayers.values()) {
+                    resetScore(player);
+                }
             } else {
                 System.out.println("Asking the controller to add an edge!");
                 gameController.getAdapter().addEdge(curPlayer, loc1, loc2);
 
                 // The current player is the only one whose points could change
-                // Reset their radio button's label to show their score
-                // TODO: Extend this to all players for clearing (difficult as we don't have access to the edge)
-                System.out.println("Resetting score for player " + curPlayer);
-                switch (curPlayer.getColor()) {
-                    case BLACK:
-                        ((TextView) findViewById(R.id.scoreBlack)).setText(curPlayer.getTotalScore() +
-                                "    " + curPlayer.getTrainsRemaining());
-                        break;
-                    case BLUE:
-                        System.out.println("Actually resetting score!");
-                        ((TextView) findViewById(R.id.scoreBlue)).setText(curPlayer.getTotalScore() +
-                                "    " + curPlayer.getTrainsRemaining());
-                        break;
-                    case GREEN:
-                        ((TextView) findViewById(R.id.scoreGreen)).setText(curPlayer.getTotalScore() +
-                                "    " + curPlayer.getTrainsRemaining());
-                        break;
-                    case RED:
-                        ((TextView) findViewById(R.id.scoreRed)).setText(curPlayer.getTotalScore() +
-                                "    " + curPlayer.getTrainsRemaining());
-                        break;
-                    case YELLOW:
-                        ((TextView) findViewById(R.id.scoreYellow)).setText(curPlayer.getTotalScore() +
-                                "    " + curPlayer.getTrainsRemaining());
-                        break;
-                }
+                resetScore(curPlayer);
+
             }
 
             return true;
         }
     };
+
+    /**
+     * Reset this player's score and trains remaining
+     */
+    private void resetScore(Player player) {
+        System.out.println("Resetting score for player " + player);
+        switch (player.getColor()) {
+            case BLACK:
+                ((TextView) findViewById(R.id.scoreBlack)).setText(player.getTotalScore() +
+                        "    " + player.getTrainsRemaining());
+                break;
+            case BLUE:
+                System.out.println("Actually resetting score!");
+                ((TextView) findViewById(R.id.scoreBlue)).setText(player.getTotalScore() +
+                        "    " + player.getTrainsRemaining());
+                break;
+            case GREEN:
+                ((TextView) findViewById(R.id.scoreGreen)).setText(player.getTotalScore() +
+                        "    " + player.getTrainsRemaining());
+                break;
+            case RED:
+                ((TextView) findViewById(R.id.scoreRed)).setText(player.getTotalScore() +
+                        "    " + player.getTrainsRemaining());
+                break;
+            case YELLOW:
+                ((TextView) findViewById(R.id.scoreYellow)).setText(player.getTotalScore() +
+                        "    " + player.getTrainsRemaining());
+                break;
+        }
+    }
 
     /**
      * Adjust for scaling and the map corner

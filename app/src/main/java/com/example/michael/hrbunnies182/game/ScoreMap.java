@@ -26,11 +26,12 @@ public class ScoreMap {
     public boolean addOwner(Edge edge, Player player) {
         if (!canAddOwner(edge, player)) {
             System.out.println("ScoreMap: Unable to add edge");
-            System.out.println("Owners: " + owners);
+//            System.out.println("Owners: " + owners);
             return false;
         }
         System.out.println("ScoreMap: Adding edge " + edge + " to player " + player);
         owners.get(edge).add(player);
+//        System.out.println("OWNERS: " + owners);
         player.incrementTrainsRemaining(-edge.getLength());
         player.setLongestRoute(this);
         player.setTrainScore(this);
@@ -39,19 +40,29 @@ public class ScoreMap {
     }
 
     private boolean canAddOwner(Edge edge, Player player) {
+        // 'contains' doesn't seem to be working very well
+        boolean alreadyOwns = false;
+        for (Player owner: owners.get(edge)) {
+            if (owner.equals(player)) {
+                alreadyOwns = true;
+                break;
+            }
+        }
+
         return edge.getLength() <= player.getTrainsRemaining()
-                && !owners.get(edge).contains(player)
+                && !alreadyOwns
                 && owners.get(edge).size() < edge.getWidth();
     }
 
     public void clearEdge(Edge edge) {
-        for (Player player : owners.get(edge)) {
+        Set<Player> oldOwners = owners.get(edge);
+        owners.get(edge).clear();
+        for (Player player : oldOwners) {
             player.incrementTrainsRemaining(edge.getLength());
             player.setLongestRoute(this);
             player.setTrainScore(this);
             player.setRouteScore(this);
         }
-        owners.get(edge).clear();
     }
 
     public int getLongestRouteLength(Player player) {
@@ -69,18 +80,30 @@ public class ScoreMap {
 
     public int getTrainScore(Player player) {
         int score = 0;
+        System.out.println("PLAYER EDGES: " + getEdges(player));
         for (Edge edge : getEdges(player)) {
             score += edge.getValue();
         }
+        System.out.println("Returning train score " + score);
         return score;
     }
 
     public int getRouteScore(Player player) {
         int score = 0;
         Map<City, Set<City>> ccs = getCCs(player);
+        System.out.println("Calculating route score with cards: " + player.getCards());
         for (RouteCard card : player.getCards()) {
-            score += card.getLength() * (ccs.get(card.getFirstCity()).contains(card.getSecondCity()) ? 1 : -1);
+            // Check whether the route succeeded, noting if they failed ccs might not contain the card
+            int success = 0;
+            if (ccs.get(card.getFirstCity()) == null || !ccs.get(card.getFirstCity()).contains(card.getSecondCity())) {
+                success = -1;
+            } else {
+                success = 1;
+            }
+
+            score += card.getLength() * success;
         }
+        System.out.println("Returning route score " + score);
         return score;
     }
 
@@ -107,11 +130,21 @@ public class ScoreMap {
     }
 
     private List<Edge> getEdges(Player player) {
+//        System.out.println("OWNERS WHEN GETTING EDGES: " + owners);
+//        System.out.println("Player being tested: " + player);
         List<Edge> edges = new ArrayList<Edge>();
         for (Edge edge : owners.keySet()) {
-            if (owners.get(edge).contains(player)) {
-                edges.add(edge);
+            for (Player owner: owners.get(edge)) {
+//                System.out.println("Comparing player " + player + " with owner " + owner);
+                if (player.equals(owner)) {
+                    edges.add(edge);
+                }
             }
+//            System.out.println("Edge: " + edge + "; owners: " + owners.get(edge) +
+//                    "; contains player? " + owners.get(edge).contains(player));
+//            if (owners.get(edge).contains(player)) {
+//                edges.add(edge);
+//            }
         }
         return edges;
     }

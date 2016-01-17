@@ -28,6 +28,7 @@ public class Player implements Serializable {
 
     public void addCards(List<RouteCard> addedCards) {
         cards.addAll(addedCards);
+        System.out.println("Added a card to player with name " + name);
     }
 
     public List<RouteCard> getCards() {
@@ -110,6 +111,7 @@ public class Player implements Serializable {
         if (trainsRemaining != player.trainsRemaining) return false;
         if (longestRoute != player.longestRoute) return false;
         if (trainScore != player.trainScore) return false;
+        if (routeScore != player.routeScore) return false;
         if (color != player.color) return false;
         if (cards != null ? !cards.equals(player.cards) : player.cards != null) return false;
         if (name != null ? !name.equals(player.name) : player.name != null) return false;
@@ -126,6 +128,7 @@ public class Player implements Serializable {
         result = 31 * result + trainsRemaining;
         result = 31 * result + longestRoute;
         result = 31 * result + trainScore;
+        result = 31 * result + routeScore;
         return result;
     }
 }
