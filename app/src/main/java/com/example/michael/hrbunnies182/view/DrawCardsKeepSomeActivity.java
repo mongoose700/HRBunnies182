@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.example.michael.hrbunnies182.controller.Controller;
 import com.example.michael.hrbunnies182.game.CheckedRouteCard;
 import com.example.michael.hrbunnies182.game.Draw;
 import com.example.michael.hrbunnies182.game.Player;
+import com.example.michael.hrbunnies182.game.RouteCard;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -23,7 +25,7 @@ public class DrawCardsKeepSomeActivity extends AppCompatActivity {
     Draw currentDraw;
     Controller gameController;
     Button keep;
-    final LinearLayout[] cards = new LinearLayout[3];
+//    final LinearLayout[] cards = new LinearLayout[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +48,31 @@ public class DrawCardsKeepSomeActivity extends AppCompatActivity {
         playerTitle.setText(newColorName + " Player");
 
         currentDraw = gameController.getAdapter().getNewDraw();
-        cards[0] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard1));
-        cards[1] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard2));
-        cards[2] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard3));
+//        cards[0] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard1));
+//        cards[1] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard2));
+//        cards[2] = ((LinearLayout) findViewById(R.id.checkBoxInitialCard3));
         keep = (Button) findViewById(R.id.buttonKeepInitialDraw);
         keep.setEnabled(false);
         TextView instructions = (TextView) findViewById(R.id.textViewChoose2Cards);
-        instructions.setText("Choose at least " + (cardMin == 1 ? "1 card" : cardMin + " cards") + " to keep");
-
+        instructions.setText("Choose at least " + (cardMin == 1 ? "1 new card" : cardMin + " cards") + " to keep");
+        LinearLayout scrolledLayout = (LinearLayout) findViewById(R.id.route_images_drawing);
+        for (RouteCard card : player.getCards()) {
+            scrolledLayout.addView(RouteCardCreator.getInstance().getRouteCard(card, this));
+        }
         for (int i = 0; i < 3; i++) {
             final CheckedRouteCard card = currentDraw.getCards().get(i);
-            final LinearLayout layout = cards[i];
-            ((TextView) layout.getChildAt(0)).setText(card.getCard().getFirstCity().getName() + " - " + card.getCard().getSecondCity().getName());
-            ((TextView) layout.getChildAt(1)).setText(String.valueOf(card.getCard().getLength()));
-            cards[i].setOnClickListener(new View.OnClickListener() {
+            final FrameLayout drawnCard = RouteCardCreator.getInstance().getRouteCard(card.getCard(), this);
+            drawnCard.setAlpha(0.5f);
+//                    ((TextView) layout.getChildAt(0)).setText(card.getCard().getFirstCity().getName() + " - " + card.getCard().getSecondCity().getName());
+//            ((TextView) layout.getChildAt(1)).setText(String.valueOf(card.getCard().getLength()));
+            scrolledLayout.addView(drawnCard);
+            drawnCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     card.setChecked(!card.isChecked());
                     int color = card.isChecked() ? R.color.darkBrown : R.color.lightBrown;
-                    layout.setBackgroundResource(color);
+                    drawnCard.setAlpha(card.isChecked() ? 1f : 0.5f);
+//                    layout.setBackgroundResource(color);
                     int savedCount = 0;
                     for (CheckedRouteCard card : currentDraw.getCards())
                         if (card.isChecked())

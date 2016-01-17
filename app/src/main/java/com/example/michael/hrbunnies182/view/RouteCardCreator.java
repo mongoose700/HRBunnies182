@@ -1,6 +1,8 @@
 package com.example.michael.hrbunnies182.view;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -9,7 +11,9 @@ import android.widget.TextView;
 
 import com.example.michael.hrbunnies182.R;
 import com.example.michael.hrbunnies182.game.City;
+import com.example.michael.hrbunnies182.game.RouteCard;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -25,7 +29,7 @@ public class RouteCardCreator {
     private RouteCardCreator() {
     }
 
-    public FrameLayout getRouteCard(String name, Collection<City> cities, int value, Context context) {
+    public FrameLayout getRouteCard(String name, Collection<City> cities, int value, Context context, Resources resources, Resources.Theme theme) {
         FrameLayout frame = new FrameLayout(context);
         ImageView image = new ImageView(context);
         image.setBackgroundResource(R.drawable.destination_card);
@@ -40,15 +44,17 @@ public class RouteCardCreator {
 
         TextView cardTitle = new TextView(context);
         cardTitle.setText(name);
+        cardTitle.setTextColor(resources.getColor(R.color.redFont));
         rl2.addView(cardTitle, rl2params);
         frame.addView(rl2);
 
         TextView cardValue = new TextView(context);
         cardValue.setText(String.valueOf(value));
         cardValue.setTextSize(30);
+        cardValue.setTextColor(resources.getColor(R.color.redFont));
         RelativeLayout rl3 = new RelativeLayout(context);
         RelativeLayout.LayoutParams rl3params = new RelativeLayout.LayoutParams(100, 100);
-        rl3params.leftMargin = 460;
+        rl3params.leftMargin = value >= 10 ? 450 : 467;
         rl3params.topMargin = 250;
         rl3.addView(cardValue, rl3params);
         frame.addView(rl3);
@@ -68,5 +74,10 @@ public class RouteCardCreator {
         rl1.addView(icon, params);
         icon.setBackgroundResource(R.drawable.destination_icon);
         return rl1;
+    }
+
+    public FrameLayout getRouteCard(RouteCard card, Activity activity) {
+        return getRouteCard(card.getFirstCity() + " - " + card.getSecondCity(), Arrays.asList(card.getFirstCity(), card.getSecondCity()),
+                card.getLength(), activity.getBaseContext(), activity.getResources(), activity.getTheme());
     }
 }
