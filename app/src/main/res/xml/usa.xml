@@ -1,42 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
 <map_info>
     <cities>
-        <city>Vancouver</city>
-        <city>Seattle</city>
-        <city>Portland</city>
-        <city>San Francisco</city>
-        <city>Los Angeles</city>
-        <city>Calgary</city>
-        <city>Helena</city>
-        <city>Salt Lake City</city>
-        <city>Las Vegas</city>
-        <city>Phoenix</city>
-        <city>Winnipeg</city>
-        <city>Denver</city>
-        <city>Santa Fe</city>
-        <city>El Paso</city>
-        <city>Duluth</city>
-        <city>Omaha</city>
-        <city>Kansas City</city>
-        <city>Oklahoma City</city>
-        <city>Dallas</city>
-        <city>Houston</city>
-        <city>Sault St. Marie</city>
-        <city>Chicago</city>
-        <city>Saint Louis</city>
-        <city>Little Rock</city>
-        <city>New Orleans</city>
-        <city>Toronto</city>
-        <city>Pittsburgh</city>
-        <city>Nashville</city>
-        <city>Atlanta</city>
-        <city>Montreal</city>
-        <city>Boston</city>
-        <city>New York</city>
-        <city>Washington</city>
-        <city>Raleigh</city>
-        <city>Charleston</city>
-        <city>Miami</city>
+        <city>
+            <name>Vancouver</name>
+            <coordinates>
+                <x>69</x>
+                <y>67</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Seattle</name>
+            <coordinates>
+                <x>66</x>
+                <y>100</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Portland</name>
+            <coordinates>
+                <x>54</x>
+                <y>131</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>San Francisco</name>
+            <coordinates>
+                <x>46</x>
+                <y>249</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Los Angeles</name>
+            <coordinates>
+                <x>91</x>
+                <y>313</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Calgary</name>
+            <coordinates>
+                <x>148</x>
+                <y>57</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Helena</name>
+            <coordinates>
+                <x>209</x>
+                <y>136</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Salt Lake City</name>
+            <coordinates>
+                <x>164</x>
+                <y>210</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Las Vegas</name>
+            <coordinates>
+                <x>131</x>
+                <y>277</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Phoenix</name>
+            <coordinates>
+                <x>165</x>
+                <y>317</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Winnipeg</name>
+            <coordinates>
+                <x>284</x>
+                <y>62</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Denver</name>
+            <coordinates>
+                <x>244</x>
+                <y>230</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Santa Fe</name>
+            <coordinates>
+                <x>239</x>
+                <y>285</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>El Paso</name>
+            <coordinates>
+                <x>237</x>
+                <y>339</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Duluth</name>
+            <coordinates>
+                <x>352</x>
+                <y>132</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Omaha</name>
+            <coordinates>
+                <x>331</x>
+                <y>186</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Kansas City</name>
+            <coordinates>
+                <x>345</x>
+                <y>217</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Oklahoma</name>
+            <coordinates>
+                <x>333</x>
+                <y>271</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Dallas</name>
+            <coordinates>
+                <x>348</x>
+                <y>324</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Houston</name>
+            <coordinates>
+                <x>370</x>
+                <y>349</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Sault St. Marie</name>
+            <coordinates>
+                <x>428</x>
+                <y>91</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Chicago</name>
+            <coordinates>
+                <x>425</x>
+                <y>171</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Saint Louis</name>
+            <coordinates>
+                <x>401</x>
+                <y>220</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Little Rock</name>
+            <coordinates>
+                <x>388</x>
+                <y>274</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>New Orleans</name>
+            <coordinates>
+                <x>426</x>
+                <y>341</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Toronto</name>
+            <coordinates>
+                <x>491</x>
+                <y>106</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Pittsburgh</name>
+            <coordinates>
+                <x>505</x>
+                <y>162</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Nashville</name>
+            <coordinates>
+                <x>454</x>
+                <y>242</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Atlanta</name>
+            <coordinates>
+                <x>485</x>
+                <y>264</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Montreal</name>
+            <coordinates>
+                <x>543</x>
+                <y>52</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Boston</name>
+            <coordinates>
+                <x>588</x>
+                <y>89</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>New York</name>
+            <coordinates>
+                <x>555</x>
+                <y>134</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Washington</name>
+            <coordinates>
+                <x>563</x>
+                <y>189</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Raleigh</name>
+            <coordinates>
+                <x>525</x>
+                <y>229</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Charleston</name>
+            <coordinates>
+                <x>542</x>
+                <y>269</y>
+            </coordinates>
+        </city>
+        <city>
+            <name>Miami</name>
+            <coordinates>
+                <x>565</x>
+                <y>360</y>
+            </coordinates>
+        </city>
     </cities>
     <edges>
         <edge>

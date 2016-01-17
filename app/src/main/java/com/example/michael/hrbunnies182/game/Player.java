@@ -11,14 +11,13 @@ import java.util.List;
 public class Player implements Serializable {
     private final PlayerColor color;
     private final List<RouteCard> cards;
-    private int score;
     private String name;
     private String pin;
     private int trainsRemaining;
     private int longestRoute;
+    private int trainScore;
 
     public Player(PlayerColor color) {
-        this.score = 0;
         this.color = color;
         this.cards = new ArrayList<>();
         this.name = color.name();
@@ -68,6 +67,30 @@ public class Player implements Serializable {
         trainsRemaining += delta;
     }
 
+    public int getLongestRoute() {
+        return longestRoute;
+    }
+
+    public void setLongestRoute(ScoreMap scoreMap) {
+        this.longestRoute = scoreMap.getLongestRouteLength(this);
+    }
+
+    public int getTrainScore() {
+        return trainScore;
+    }
+
+    public void setTrainScore(ScoreMap scoreMap) {
+        this.trainScore = scoreMap.getTrainScore(this);
+    }
+
+    public int getRouteScore() {
+        return trainScore;
+    }
+
+    public void getRouteScore(ScoreMap scoreMap) {
+        this.trainScore = scoreMap.getRouteScore(this);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,8 +98,9 @@ public class Player implements Serializable {
 
         Player player = (Player) o;
 
-        if (score != player.score) return false;
         if (trainsRemaining != player.trainsRemaining) return false;
+        if (longestRoute != player.longestRoute) return false;
+        if (trainScore != player.trainScore) return false;
         if (color != player.color) return false;
         if (cards != null ? !cards.equals(player.cards) : player.cards != null) return false;
         if (name != null ? !name.equals(player.name) : player.name != null) return false;
@@ -88,18 +112,11 @@ public class Player implements Serializable {
     public int hashCode() {
         int result = color != null ? color.hashCode() : 0;
         result = 31 * result + (cards != null ? cards.hashCode() : 0);
-        result = 31 * result + score;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (pin != null ? pin.hashCode() : 0);
         result = 31 * result + trainsRemaining;
+        result = 31 * result + longestRoute;
+        result = 31 * result + trainScore;
         return result;
-    }
-
-    public int getLongestRoute() {
-        return longestRoute;
-    }
-
-    public void setLongestRoute(int longestRoute) {
-        this.longestRoute = longestRoute;
     }
 }

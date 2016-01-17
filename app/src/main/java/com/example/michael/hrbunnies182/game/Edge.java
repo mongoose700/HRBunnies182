@@ -10,6 +10,7 @@ public class Edge implements Serializable {
     private final int width;
     private final City firstCity;
     private final City secondCity;
+    private static final int[] VALUES = new int[]{1, 2, 4, 7, 10, 15};
 
     public Edge(City firstCity, City secondCity, int length, int width) {
         this.firstCity = firstCity;
@@ -52,5 +53,9 @@ public class Edge implements Serializable {
         result = 31 * result + (firstCity != null ? firstCity.hashCode() : 0);
         result = 31 * result + (secondCity != null ? secondCity.hashCode() : 0);
         return result;
+    }
+
+    public int getValue() {
+        return VALUES[length - 1];
     }
 }
