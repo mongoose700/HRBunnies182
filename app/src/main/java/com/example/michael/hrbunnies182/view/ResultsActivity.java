@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -55,7 +56,10 @@ public class ResultsActivity extends AppCompatActivity {
             if (sortedPlayers.size() <= i) {
                 view.setVisibility(View.GONE);
             } else {
-                view.setText((i + 1) + ": " + scores.get(sortedPlayers.get(i)));
+                SpannableStringBuilder span = scores.get(sortedPlayers.get(i)).toSpan();
+                span.insert(0, (i + 1) + ": ");
+                view.setText(span, TextView.BufferType.SPANNABLE);
+//                view.setText((i + 1) + ": " + scores.get(sortedPlayers.get(i)));
                 int color;
 //                System.out.println("Player color: " + sortedPlayers.get(i).getColor());
                 switch (sortedPlayers.get(i).getColor()) {

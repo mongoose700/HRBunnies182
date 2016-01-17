@@ -54,7 +54,6 @@
                 android:background="@color/white">
 
                 <TextView
-                    android:textSize="25dp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/red"
@@ -72,7 +71,6 @@
                     android:singleLine="false"  />
 
                 <TextView
-                    android:textSize="25dp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Blue"
@@ -90,7 +88,6 @@
                     android:singleLine="false"/>
 
                 <TextView
-                    android:textSize="25dp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Yellow"
@@ -108,7 +105,6 @@
                     android:singleLine="false" />
 
                 <TextView
-                    android:textSize="25dp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Green"
@@ -126,7 +122,6 @@
                     android:singleLine="false" />
 
                 <TextView
-                    android:textSize="25dp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Black"
