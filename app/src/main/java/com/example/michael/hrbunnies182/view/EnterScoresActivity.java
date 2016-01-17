@@ -54,19 +54,29 @@ public class EnterScoresActivity extends AppCompatActivity {
             System.out.println("LISTENER: Received an event moving from (" +
                     e1.getX() + ", " + e1.getY() + ") to (" + e2.getX() + ", " + e2.getY() + ")");
 
+            Point loc1 = getAdjustedPoint(e1);
+            Point loc2 = getAdjustedPoint(e2);
+
             if (curPlayer == null) {
                 System.out.println("Asking the controller to clear an edge!");
-                gameController.getAdapter().clearEdge(new Point((int) e1.getX(), (int) e1.getY()),
-                        new Point((int) e2.getX(), (int) e2.getY()));
+                gameController.getAdapter().clearEdge(loc1, loc2);
             } else {
                 System.out.println("Asking the controller to add an edge!");
-                gameController.getAdapter().addEdge(curPlayer, new Point((int) e1.getX(), (int) e1.getY()),
-                        new Point((int) e2.getX(), (int) e2.getY()));
+                gameController.getAdapter().addEdge(curPlayer, loc1, loc2);
             }
 
             return true;
         }
     };
+
+    /**
+     * Adjust for scaling and the map corner
+     * @param e A MotionEvent
+     * @return The location of the event relative to the map
+     */
+    private Point getAdjustedPoint(MotionEvent e) {
+        return new Point((int) e.getX(), (int) e.getY());
+    }
 
     private final GestureDetectorCompat wrapper = new GestureDetectorCompat(getBaseContext(), listener);
 
@@ -81,6 +91,30 @@ public class EnterScoresActivity extends AppCompatActivity {
 
         for (Player player : gameController.getAdapter().getPlayers()) {
             activePlayers.put(player.getColor(), player);
+        }
+
+
+        // Remove invalid buttons
+        for (PlayerColor color: PlayerColor.values()) {
+            if (!activePlayers.containsKey(color)) {
+                switch (color) {
+                    case BLACK:
+                        findViewById(R.id.radioBlack).setVisibility(View.GONE);
+                        break;
+                    case BLUE:
+                        findViewById(R.id.radioBlue).setVisibility(View.GONE);
+                        break;
+                    case GREEN:
+                        findViewById(R.id.radioGreen).setVisibility(View.GONE);
+                        break;
+                    case RED:
+                        findViewById(R.id.radioRed).setVisibility(View.GONE);
+                        break;
+                    case YELLOW:
+                        findViewById(R.id.radioYellow).setVisibility(View.GONE);
+                        break;
+                }
+            }
         }
     }
 
