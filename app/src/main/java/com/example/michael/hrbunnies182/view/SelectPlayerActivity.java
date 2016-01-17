@@ -26,7 +26,7 @@ public class SelectPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_player_gameplay);
 
-        final Intent initializePlayerActivity = new Intent(this, com.example.michael.hrbunnies182.view.InitializePlayerActivity.class);
+        final Intent viewHandActivity = new Intent(this, com.example.michael.hrbunnies182.view.ViewHandActivity.class);
 
         Bundle appData = getIntent().getBundleExtra("APP_DATA");
         final Controller gameController = (Controller) appData.getSerializable("GAME_CONTROLLER");
@@ -43,6 +43,8 @@ public class SelectPlayerActivity extends AppCompatActivity {
             activePlayers.put(player.getColor(), player);
         }
 
+        final Activity me = this;
+
         for (int id : colorButtons.keySet()) {
             Button button = (Button) findViewById(id);
             if (!activePlayers.keySet().contains(colorButtons.get(id))) {
@@ -54,14 +56,14 @@ public class SelectPlayerActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        // TODO: Next screen w/ player in bundle
-
                         Bundle newAppData = new Bundle();
                         newAppData.putSerializable("GAME_CONTROLLER", gameController);
                         newAppData.putSerializable("CURRENT_PLAYER", curPlayer);
-                        initializePlayerActivity.putExtra("APP_DATA", newAppData);
+                        viewHandActivity.putExtra("APP_DATA", newAppData);
 
-                        //startActivity(initializePlayerActivity);
+                        startActivity(viewHandActivity);
+
+                        me.finish();
                     }
                 });
             }

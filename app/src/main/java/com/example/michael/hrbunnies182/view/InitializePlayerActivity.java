@@ -1,5 +1,6 @@
 package com.example.michael.hrbunnies182.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -55,7 +56,6 @@ public class InitializePlayerActivity extends AppCompatActivity {
                 currentDraw = gameController.getAdapter().getNewDraw(currentPlayer, 2);
                 for (int i = 0; i < 3; i++) {
                     checkboxes[i].setText(currentDraw.getCards().get(i).getCard().toString());
-                    checkboxes[i].setChecked(false);
                 }
 
                 // Go to draw screen
@@ -80,6 +80,9 @@ public class InitializePlayerActivity extends AppCompatActivity {
                     //TODO: alert that too few cards were taken
                     return;
                 }
+                for (int i = 0; i < 3; i++) {
+                    checkboxes[i].setChecked(false);
+                }
                 for (String cardName : saved) {
                     for (CheckedRouteCard card : currentDraw.getCards()) {
                         if (cardName.equals(card.getCard().toString())) {
@@ -103,6 +106,8 @@ public class InitializePlayerActivity extends AppCompatActivity {
             }
         });
 
+        final Activity me = this;
+
         Button ok = (Button) findViewById(R.id.buttonHandOk);
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +122,8 @@ public class InitializePlayerActivity extends AppCompatActivity {
                     selectPlayerActivity.putExtra("APP_DATA", newAppData);
 
                     startActivity(selectPlayerActivity);
+
+                    me.finish();
                 }
             }
         });
