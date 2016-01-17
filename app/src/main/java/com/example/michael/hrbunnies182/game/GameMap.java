@@ -406,8 +406,9 @@ public class GameMap implements Serializable {
     }
 
     public Edge findEdge(Point city1, Point city2) {
+
         Edge bestEdge = null;
-        double bestScore = 0;
+        double bestScore = Double.MAX_VALUE;
         for (Edge edge : edges) {
             Point coords1 = edge.getFirstCity().getCoordinates();
             Point coords2 = edge.getSecondCity().getCoordinates();
