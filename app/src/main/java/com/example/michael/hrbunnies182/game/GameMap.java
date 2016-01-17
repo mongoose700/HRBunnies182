@@ -72,6 +72,8 @@ public class GameMap implements Serializable {
         // Shuffle the cards
         Collections.shuffle(cards);
 
+//        System.out.println("Deck: " + new Deck(cards));
+
         return new Deck(cards);
     }
 
@@ -104,6 +106,8 @@ public class GameMap implements Serializable {
         }
 
         Collections.shuffle(newCards);
+
+//        System.out.println("Deck: " + new Deck(newCards));
 
         return new Deck(newCards);
     }
@@ -228,10 +232,11 @@ public class GameMap implements Serializable {
             }
         }
     }
-    private void addEdge(String firstCityName, String secondCityName, int length, int width) {
-        City firstCity = cities.get(firstCityName);
-        City secondCity = cities.get(secondCityName);
-        edges.add(new Edge(firstCity, secondCity, length, width));
+
+    private void addEdge(Edge edge) {
+        edges.add(edge);
+        edge.getFirstCity().addEdge(edge);
+        edge.getSecondCity().addEdge(edge);
     }
 
     /**
@@ -275,7 +280,7 @@ public class GameMap implements Serializable {
         edges = new HashSet<>();
         int eventType = xpp.next();
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(EDGES))) {
-            edges.add(extractEdge(xpp));
+            addEdge(extractEdge(xpp));
             eventType = xpp.getEventType();
         }
         xpp.next();
