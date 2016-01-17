@@ -85,17 +85,17 @@ public class EnterScoresActivity extends AppCompatActivity {
 
             System.out.println("LISTENER: Got points " + loc1 + ", " + loc2);
 
-            if (curPlayer == null) {
-                System.out.println("Asking the controller to clear an edge!");
-                Edge clearedEdge = gameController.getAdapter().clearEdge(loc1, loc2);
-                if (clearedEdge != null) {
-                    System.out.println("Clearing edge " + clearedEdge);
-                    removeEdgeFromScreen(clearedEdge);
-                    for (Player player : activePlayers.values()) {
-                        resetScore(player);
-                    }
-                }
-            } else {
+            if (curPlayer != null) {
+//                System.out.println("Asking the controller to clear an edge!");
+//                Edge clearedEdge = gameController.getAdapter().clearEdge(loc1, loc2);
+//                if (clearedEdge != null) {
+//                    System.out.println("Clearing edge " + clearedEdge);
+//                    removeEdgeFromScreen(clearedEdge);
+//                    for (Player player : activePlayers.values()) {
+//                        resetScore(player);
+//                    }
+//                }
+//            } else {
                 System.out.println("Asking the controller to add an edge!");
                 Edge newEdge;
                 if ((newEdge = gameController.getAdapter().addEdge(curPlayer, loc1, loc2)) != null) {
@@ -195,25 +195,20 @@ public class EnterScoresActivity extends AppCompatActivity {
 //        System.out.println("Resetting score for player " + player);
         switch (player.getColor()) {
             case BLACK:
-                ((TextView) findViewById(R.id.scoreBlack)).setText(player.getTotalScore() +
-                        "    " + player.getTrainsRemaining());
+                ((TextView) findViewById(R.id.scoreBlack)).setText("Trains left: " + player.getTrainsRemaining() + "  ");
                 break;
             case BLUE:
 //                System.out.println("Actually resetting score!");
-                ((TextView) findViewById(R.id.scoreBlue)).setText(player.getTotalScore() +
-                        "    " + player.getTrainsRemaining());
+                ((TextView) findViewById(R.id.scoreBlue)).setText("Trains left: " + player.getTrainsRemaining() + "  ");
                 break;
             case GREEN:
-                ((TextView) findViewById(R.id.scoreGreen)).setText(player.getTotalScore() +
-                        "    " + player.getTrainsRemaining());
+                ((TextView) findViewById(R.id.scoreGreen)).setText("Trains left: " + player.getTrainsRemaining() + "  ");
                 break;
             case RED:
-                ((TextView) findViewById(R.id.scoreRed)).setText(player.getTotalScore() +
-                        "    " + player.getTrainsRemaining());
+                ((TextView) findViewById(R.id.scoreRed)).setText("Trains left: " + player.getTrainsRemaining() + "  ");
                 break;
             case YELLOW:
-                ((TextView) findViewById(R.id.scoreYellow)).setText(player.getTotalScore() +
-                        "    " + player.getTrainsRemaining());
+                ((TextView) findViewById(R.id.scoreYellow)).setText("Trains left: " + player.getTrainsRemaining() + "  ");
                 break;
         }
     }
@@ -232,7 +227,7 @@ public class EnterScoresActivity extends AppCompatActivity {
         Point offset = new Point(0, 0);
         ImageView mapView = (ImageView) findViewById(R.id.imageView);
         mapView.getGlobalVisibleRect(r, offset);
-        System.out.println("Adjusted height scale: " + ((size.y - offset.y) / 417.0));
+//        System.out.println("Adjusted height scale: " + ((size.y - offset.y) / 417.0));
 
         return new Point((int) (e.getX() / ((size.y - offset.y) / 417.0)), (int) ((e.getY() - offset.y) / ((size.y - offset.y) / 417.0)));
     }
@@ -258,29 +253,6 @@ public class EnterScoresActivity extends AppCompatActivity {
         for (Player player : gameController.getAdapter().getPlayers()) {
             activePlayers.put(player.getColor(), player);
         }
-
-        // Standardize the image bitmap for city coordinates
-        ImageView mapView = (ImageView) findViewById(R.id.imageView);
-
-        int mapWidth = ((BitmapDrawable) mapView.getDrawable()).getBitmap().getWidth();
-        int mapHeight = ((BitmapDrawable) mapView.getDrawable()).getBitmap().getHeight();
-
-        Bitmap bitmap = Bitmap.createBitmap(mapWidth, mapHeight,
-                Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        canvas.drawBitmap(((BitmapDrawable) mapView.getDrawable()).getBitmap(), 0, 0, new Paint());
-
-        System.out.println("Created width scale: " + (mapWidth / 624.0));
-        System.out.println("Created height scale: " + (mapHeight / 417.0));
-
-        for (City city: gameController.getAdapter().getAllCities()) {
-            // Get the position of the visible view and divide it
-            canvas.drawCircle((float) (city.getCoordinates().x * (mapWidth / 624.0)),
-                    (float) (city.getCoordinates().y * mapHeight / 417.0), 10, new Paint(Color.RED));
-
-        }
-
-        mapView.setImageBitmap(bitmap);
 
         // Remove invalid buttons
         for (PlayerColor color: PlayerColor.values()) {
@@ -310,7 +282,7 @@ public class EnterScoresActivity extends AppCompatActivity {
             }
         }
 
-        Button ok = (Button) findViewById(R.id.done);
+        Button ok = (Button) findViewById(R.id.buttonDone);
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -362,10 +334,10 @@ public class EnterScoresActivity extends AppCompatActivity {
                     curPlayer = activePlayers.get(PlayerColor.GREEN);
                 break;
 
-            case R.id.radioClear:
-                if (checked)
-                    curPlayer = null;
-                break;
+//            case R.id.radioClear:
+//                if (checked)
+//                    curPlayer = null;
+//                break;
         }
     }
 
