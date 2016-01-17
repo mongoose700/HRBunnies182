@@ -71,6 +71,7 @@ public class Model implements Serializable {
             @Override
             public void addEdge(Player player, Point city1, Point city2) {
                 Edge edge = gameMap.findEdge(city1, city2);
+                System.out.println("Model: Got edge " + edge);
                 if (edge != null) {
                     scoreMap.addOwner(edge, player);
                 }
@@ -79,6 +80,7 @@ public class Model implements Serializable {
             @Override
             public void clearEdge(Point city1, Point city2) {
                 Edge edge = gameMap.findEdge(city1, city2);
+                System.out.println("Model: Clearing edge " + edge);
                 if (edge != null) {
                     scoreMap.clearEdge(edge);
                 }

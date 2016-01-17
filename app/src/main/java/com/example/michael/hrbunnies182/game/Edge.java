@@ -58,4 +58,9 @@ public class Edge implements Serializable {
     public int getValue() {
         return VALUES[length - 1];
     }
+
+    public String toString() {
+        return firstCity.getName() + " to " + secondCity.getName() +
+                ": Length " + length + ", Width " + width;
+    }
 }
