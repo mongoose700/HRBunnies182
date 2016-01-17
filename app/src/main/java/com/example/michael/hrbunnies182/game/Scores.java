@@ -22,6 +22,7 @@ public class Scores {
 
     @Override
     public String toString() {
-        return trainScore + " + " + longestScore + " + " + routeScore + " = " + totalScore;
+        return "\tTrains: " + trainScore + "\n\tLongest Road: " + longestScore + "\n\tRoutes: " +
+                routeScore + "\n\tTotal: " + totalScore;
     }
 }

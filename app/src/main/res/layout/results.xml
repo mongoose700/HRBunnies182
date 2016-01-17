@@ -26,116 +26,133 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         android:layout_margin="20px"
         android:paddingBottom="0px"
         android:layout_marginBottom="0px"
         android:background="@color/white"
         android:adjustViewBounds="true">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_weight="0.12"
-            android:layout_margin="20px"
-            android:layout_marginBottom="0px"
-            android:paddingBottom="0px"
-            android:background="@color/white">
-
-            <TextView
-                android:textSize="25dp"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:background="@color/red"
-                android:text="Red"
-                android:paddingTop="15px"
-                android:paddingBottom="15px"
-                android:layout_marginBottom="10px"
-                android:id="@+id/first"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:checked="false" />
-
-            <TextView
-                android:textSize="25dp"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:text="Blue"
-                android:layout_marginBottom="10px"
-                android:id="@+id/second"
-                android:paddingTop="15px"
-                android:paddingBottom="15px"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:background="@color/blue"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:checked="false" />
-
-            <TextView
-                android:textSize="25dp"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:text="Yellow"
-                android:layout_marginBottom="10px"
-                android:id="@+id/third"
-                android:paddingTop="15px"
-                android:paddingBottom="15px"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:background="@color/yellow"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:checked="false" />
-
-            <TextView
-                android:textSize="25dp"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:text="Green"
-                android:layout_marginBottom="10px"
-                android:id="@+id/fourth"
-                android:paddingTop="15px"
-                android:paddingBottom="15px"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:background="@color/green"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:checked="false" />
-
-            <TextView
-                android:textSize="25dp"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:text="Black"
-                android:layout_marginBottom="10px"
-                android:id="@+id/fifth"
-                android:paddingTop="15px"
-                android:paddingBottom="15px"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:background="@color/black"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:checked="false" />
-
-            <Button
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginTop="20px"
-                android:layout_marginBottom="0px"
-                android:paddingLeft="30px"
-                android:paddingRight="30px"
-                android:background="@color/darkBrown"
-                android:text="Ok!"
-                android:textColor="@color/white"
-                android:id="@+id/buttonOkToPlayers"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
-
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></TableRow>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_gravity="center_horizontal" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.12"
+                android:layout_margin="20px"
+                android:layout_marginBottom="0px"
+                android:paddingBottom="0px"
+                android:background="@color/white">
+
+                <TextView
+                    android:textSize="25dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/red"
+                    android:text="Red"
+                    android:paddingTop="15px"
+                    android:paddingBottom="15px"
+                    android:layout_marginBottom="10px"
+                    android:id="@+id/first"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:checked="false"
+                    android:maxLines="4"
+                    android:singleLine="false"  />
+
+                <TextView
+                    android:textSize="25dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Blue"
+                    android:layout_marginBottom="10px"
+                    android:id="@+id/second"
+                    android:paddingTop="15px"
+                    android:paddingBottom="15px"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"
+                    android:background="@color/blue"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:checked="false"
+                    android:maxLines="4"
+                    android:singleLine="false"/>
+
+                <TextView
+                    android:textSize="25dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Yellow"
+                    android:layout_marginBottom="10px"
+                    android:id="@+id/third"
+                    android:paddingTop="15px"
+                    android:paddingBottom="15px"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"
+                    android:background="@color/yellow"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:checked="false"
+                    android:maxLines="4"
+                    android:singleLine="false" />
+
+                <TextView
+                    android:textSize="25dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Green"
+                    android:layout_marginBottom="10px"
+                    android:id="@+id/fourth"
+                    android:paddingTop="15px"
+                    android:paddingBottom="15px"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"
+                    android:background="@color/green"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:checked="false"
+                    android:maxLines="4"
+                    android:singleLine="false" />
+
+                <TextView
+                    android:textSize="25dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Black"
+                    android:layout_marginBottom="10px"
+                    android:id="@+id/fifth"
+                    android:paddingTop="15px"
+                    android:paddingBottom="15px"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"
+                    android:background="@color/black"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:checked="false"
+                    android:maxLines="4"
+                    android:singleLine="false" />
+
+                <Button
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20px"
+                    android:layout_marginBottom="0px"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:background="@color/darkBrown"
+                    android:text="Ok!"
+                    android:textColor="@color/white"
+                    android:id="@+id/buttonOkToPlayers"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </LinearLayout>
