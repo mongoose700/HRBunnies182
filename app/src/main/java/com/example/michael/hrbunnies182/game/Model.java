@@ -18,6 +18,7 @@ public class Model implements Serializable {
     private Deck deck;
     private List<Player> players;
     private GameMap map;
+    private Player curPlayer;
 
     public Model(Set<PlayerColor> colors, Activity activity) {
         map = new GameMap("usa.xml", activity);
@@ -37,14 +38,24 @@ public class Model implements Serializable {
             }
 
             @Override
-            public Draw getNewDraw(Player player, int numKept) {
-                return deck.drawCards(player, numKept);
+            public Draw getNewDraw() {
+                return deck.drawCards();
             }
 
             @Override
             public void makeChoice(Draw choice) {
                 deck.returnCards(choice);
-                choice.giveCardsToPlayer();
+                choice.giveCardsToPlayer(curPlayer);
+            }
+
+            @Override
+            public void setPlayer(Player player) {
+                curPlayer = player;
+            }
+
+            @Override
+            public Player getPlayer() {
+                return curPlayer;
             }
         };
     }

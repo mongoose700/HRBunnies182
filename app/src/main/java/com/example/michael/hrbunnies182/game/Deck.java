@@ -17,13 +17,13 @@ public class Deck implements Serializable {
     }
 
     /** Removes (up to) three cards from the deck, and puts them in a Draw */
-    public Draw drawCards(Player player, int mustKeep) {
+    public Draw drawCards() {
         ArrayList<CheckedRouteCard> drawnCards = new ArrayList<>(3);
         for (int i = 0; i < 3; i++) {
             if (cards.size() == 0) break;
             drawnCards.add(new CheckedRouteCard(cards.poll()));
         }
-        return new Draw(drawnCards, player, mustKeep);
+        return new Draw(drawnCards);
     }
 
     public void returnCards(Draw draw) {
