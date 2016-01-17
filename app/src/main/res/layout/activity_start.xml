@@ -5,7 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.michael.hrbunnies182.Start">
+    tools:context="com.example.michael.hrbunnies182.Start"
+
+    android:background="@color/lightBrown"
+
+    tools:showIn="@layout/content_start">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ticket_to_ride"
+        android:scaleType="centerCrop"
+        android:alpha=".3"
+        android:id="@+id/imageView2" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -16,19 +28,34 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="@color/darkBrown"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ticket to Ride - Expanded Deck"
+                android:layout_gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white"
+                android:id="@+id/toolbar_title" />
+
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
     <Button
+        android:layout_gravity="center"
+        android:layout_height="48dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:layout_marginBottom="10px"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:background="@color/darkBrown"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
         android:text="Start!"
-        android:id="@+id/buttonStart"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="55dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/buttonStart"/>
 
 </android.support.design.widget.CoordinatorLayout>

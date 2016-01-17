@@ -32,7 +32,7 @@ public class RouteCardCreator {
     public FrameLayout getRouteCard(String name, Collection<City> cities, int value, Context context, Resources resources, Resources.Theme theme) {
         FrameLayout frame = new FrameLayout(context);
         ImageView image = new ImageView(context);
-        image.setBackgroundResource(R.drawable.destination_card);
+        image.setBackgroundResource(R.drawable.destination_card_2);
         frame.addView(image);
         for (City city : cities)
             frame.addView(getCityDot(city, context));

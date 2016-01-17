@@ -13,7 +13,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -524,7 +523,7 @@ public class GameMap implements Serializable {
         }
 //        System.out.println("Potentially returning edge " + bestEdge + " with score " + bestScore);
 
-        return bestScore < 20 ? bestEdge : null;
+        return bestScore < 100 ? bestEdge : null;
     }
 
     private double dist(Point a, Point b) {

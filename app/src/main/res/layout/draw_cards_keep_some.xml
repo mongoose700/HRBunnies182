@@ -29,14 +29,14 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.12"
             android:layout_margin="20px"
             android:background="@color/white">
 
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:orientation="vertical" android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10px"
                 android:id="@+id/layoutDrawInitialCards">
 
                 <TextView
@@ -54,11 +54,15 @@
                     android:layout_weight="1"><LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
                     >
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:id="@+id/route_images_drawing"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:orientation="vertical"/>
 
                 </LinearLayout>
@@ -132,7 +136,7 @@
                     android:layout_height="48dp"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="20px"
-                    android:layout_marginBottom="10px"
+                    android:layout_marginBottom="15px"
                     android:paddingLeft="30px"
                     android:paddingRight="30px"
                     android:background="@color/darkBrown"

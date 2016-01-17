@@ -92,7 +92,7 @@ public class ViewHandActivity extends AppCompatActivity {
     }
 
     public static interface NextStep extends Serializable {
-        void takeNextStep(ViewHandActivity activity);
+        void takeNextStep(Activity activity);
     }
 
     public static class InitializeNextPlayer implements NextStep {
@@ -105,7 +105,7 @@ public class ViewHandActivity extends AppCompatActivity {
         }
 
         @Override
-        public void takeNextStep(ViewHandActivity activity) {
+        public void takeNextStep(Activity activity) {
 
             MyApplication app = ((MyApplication) activity.getApplication());
             if (nextPlayerIndex >= app.getGame().getAdapter().getPlayers().size()) {
@@ -122,14 +122,14 @@ public class ViewHandActivity extends AppCompatActivity {
 
     public static class GoBack implements NextStep {
         @Override
-        public void takeNextStep(ViewHandActivity activity) {
+        public void takeNextStep(Activity activity) {
             activity.finish();
         }
     }
 
     public static class DrawMoreCards implements NextStep {
         @Override
-        public void takeNextStep(ViewHandActivity activity) {
+        public void takeNextStep(Activity activity) {
             Intent drawCardsActivity = new Intent(activity.getApplicationContext(), DrawCardsKeepSomeActivity.class);
             drawCardsActivity.putExtra("card_min", 1);
             drawCardsActivity.putExtra("next_step_buttons", (Serializable) Collections.singletonMap("Continue", new ViewHandActivity.InitializeNextPlayer(Integer.MAX_VALUE)));

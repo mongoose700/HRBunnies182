@@ -37,8 +37,8 @@ public interface IViewToModelAdapter extends Serializable {
     /** Adds the trains of a certain player to the edge on the board, and returns the edge created */
     Edge addEdge(Player player, Point city1, Point city2);
 
-    /** Removes all trains from this edge on the board */
-    void clearEdge(Point city1, Point city2);
+    /** Removes all trains from this edge on the board, returning the cleared edge */
+    Edge clearEdge(Point city1, Point city2);
 
     /** Checks how many people own this edge */
     int countOwners(Edge edge);
