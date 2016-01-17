@@ -62,7 +62,7 @@ public class EnterScoresActivity extends AppCompatActivity {
 
         @Override
         public boolean onDown(MotionEvent e) {
-            System.out.println("LISTENER: Got an 'onDown' MotionEvent at location (" + e.getX() + ", " + e.getY() + ")");
+//            System.out.println("LISTENER: Got an 'onDown' MotionEvent at location (" + e.getX() + ", " + e.getY() + ")");
             return true;
         }
 
@@ -74,16 +74,15 @@ public class EnterScoresActivity extends AppCompatActivity {
          * @param velocityY Ignored
          * @return True
          */
-        @TargetApi(17)
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            System.out.println("LISTENER: Received an event moving from (" +
-                    e1.getX() + ", " + e1.getY() + ") to (" + e2.getX() + ", " + e2.getY() + ")");
+//            System.out.println("LISTENER: Received an event moving from (" +
+//                    e1.getX() + ", " + e1.getY() + ") to (" + e2.getX() + ", " + e2.getY() + ")");
 
             Point loc1 = getAdjustedPoint(e1);
             Point loc2 = getAdjustedPoint(e2);
 
-            System.out.println("LISTENER: Got points " + loc1 + ", " + loc2);
+//            System.out.println("LISTENER: Got points " + loc1 + ", " + loc2);
 
             if (curPlayer != null) {
 //                System.out.println("Asking the controller to clear an edge!");
@@ -96,7 +95,7 @@ public class EnterScoresActivity extends AppCompatActivity {
 //                    }
 //                }
 //            } else {
-                System.out.println("Asking the controller to add an edge!");
+//                System.out.println("Asking the controller to add an edge!");
                 Edge newEdge;
                 if ((newEdge = gameController.getAdapter().addEdge(curPlayer, loc1, loc2)) != null) {
                     addEdgeToScreen(newEdge);
@@ -115,7 +114,7 @@ public class EnterScoresActivity extends AppCompatActivity {
      * Add an edge to the screen
      */
     private void addEdgeToScreen(Edge edge) {
-        System.out.println("Adding an edge to the screen: " + edge);
+//        System.out.println("Adding an edge to the screen: " + edge);
         ImageView mapView = (ImageView) findViewById(R.id.imageView);
 //        SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
 

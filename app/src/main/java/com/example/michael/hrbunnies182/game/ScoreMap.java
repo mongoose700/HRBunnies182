@@ -25,11 +25,11 @@ public class ScoreMap {
      */
     public boolean addOwner(Edge edge, Player player) {
         if (!canAddOwner(edge, player)) {
-            System.out.println("ScoreMap: Unable to add edge");
+//            System.out.println("ScoreMap: Unable to add edge");
 //            System.out.println("Owners: " + owners);
             return false;
         }
-        System.out.println("ScoreMap: Adding edge " + edge + " to player " + player);
+//        System.out.println("ScoreMap: Adding edge " + edge + " to player " + player);
         owners.get(edge).add(player);
 //        System.out.println("OWNERS: " + owners);
         player.incrementTrainsRemaining(-edge.getLength());
@@ -80,18 +80,18 @@ public class ScoreMap {
 
     public int getTrainScore(Player player) {
         int score = 0;
-        System.out.println("PLAYER EDGES: " + getEdges(player));
+//        System.out.println("PLAYER EDGES: " + getEdges(player));
         for (Edge edge : getEdges(player)) {
             score += edge.getValue();
         }
-        System.out.println("Returning train score " + score);
+//        System.out.println("Returning train score " + score);
         return score;
     }
 
     public int getRouteScore(Player player) {
         int score = 0;
         Map<City, Set<City>> ccs = getCCs(player);
-        System.out.println("Calculating route score with cards: " + player.getCards());
+//        System.out.println("Calculating route score with cards: " + player.getCards());
         for (RouteCard card : player.getCards()) {
             // Check whether the route succeeded, noting if they failed ccs might not contain the card
             int success = 0;
@@ -103,7 +103,7 @@ public class ScoreMap {
 
             score += card.getLength() * success;
         }
-        System.out.println("Returning route score " + score);
+//        System.out.println("Returning route score " + score);
         return score;
     }
 

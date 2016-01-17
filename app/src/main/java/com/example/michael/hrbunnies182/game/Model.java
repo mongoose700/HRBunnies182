@@ -27,19 +27,19 @@ public class Model implements Serializable {
     private Player curPlayer;
 
     public Model(Set<PlayerColor> colors, Activity activity) {
-        System.out.println("Creating model");
+//        System.out.println("Creating model");
         gameMap = new GameMap("usa.xml", activity);
-        System.out.println("Made game map");
+//        System.out.println("Made game map");
         deck = gameMap.getDeck();
-        System.out.println("Got deck");
+//        System.out.println("Got deck");
         players = new ArrayList<>(colors.size());
         for (PlayerColor color : colors) {
             players.add(new Player(color));
-            System.out.println("Added players");
+//            System.out.println("Added players");
         }
         Collections.shuffle(players);
         scoreMap = new ScoreMap(gameMap, new HashSet<>(players));
-        System.out.println("Created model");
+//        System.out.println("Created model");
     }
 
     public IViewToModelAdapter getAdapter() {
@@ -73,9 +73,9 @@ public class Model implements Serializable {
             @Override
             public Edge addEdge(Player player, Point city1, Point city2) {
                 Edge edge = gameMap.findEdge(city1, city2);
-                System.out.println("Model: Got edge " + edge);
+//                System.out.println("Model: Got edge " + edge);
                 if (edge != null) {
-                    System.out.println("Model: Adding edge " + edge + " to player " + player);
+//                    System.out.println("Model: Adding edge " + edge + " to player " + player);
                     if (scoreMap.addOwner(edge, player)) {
                         return edge;
                     }
@@ -86,7 +86,7 @@ public class Model implements Serializable {
             @Override
             public Edge clearEdge(Point city1, Point city2) {
                 Edge edge = gameMap.findEdge(city1, city2);
-                System.out.println("Model: Clearing edge " + edge);
+//                System.out.println("Model: Clearing edge " + edge);
                 if (edge != null) {
                     scoreMap.clearEdge(edge);
                     return edge;
