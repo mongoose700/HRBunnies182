@@ -18,39 +18,45 @@
         android:orientation="vertical">
 
         <RadioButton
-        android:id="@+id/radioRed"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Red" />
+            android:id="@+id/radioRed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onRadioButtonClicked"
+            android:text="Red" />
 
         <RadioButton
             android:id="@+id/radioBlue"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:onClick="onRadioButtonClicked"
             android:text="Blue" />
 
         <RadioButton
             android:id="@+id/radioGreen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:onClick="onRadioButtonClicked"
             android:text="Green" />
 
         <RadioButton
             android:id="@+id/radioYellow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:onClick="onRadioButtonClicked"
             android:text="Yellow" />
 
         <RadioButton
             android:id="@+id/radioBlack"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:onClick="onRadioButtonClicked"
             android:text="Black" />
 
         <RadioButton
             android:id="@+id/radioClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:text="CLEAR" />
 
     </RadioGroup>

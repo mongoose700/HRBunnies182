@@ -1,9 +1,9 @@
 package com.example.michael.hrbunnies182.game;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Keeps track of which players have which edges
@@ -14,7 +14,7 @@ public class ScoreMap {
     public ScoreMap(GameMap gameMap, Set<Player> players) {
         owners = new HashMap<>();
         for (Edge edge : gameMap.getEdges()) {
-            owners.put(edge, new TreeSet<Player>());
+            owners.put(edge, new HashSet<Player>());
         }
     }
 

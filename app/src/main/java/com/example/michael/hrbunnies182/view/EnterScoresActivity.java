@@ -1,14 +1,22 @@
 package com.example.michael.hrbunnies182.view;
 
 import android.content.pm.ActivityInfo;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.RadioButton;
 
+import com.example.michael.hrbunnies182.MyApplication;
 import com.example.michael.hrbunnies182.R;
+import com.example.michael.hrbunnies182.controller.Controller;
+import com.example.michael.hrbunnies182.game.Player;
+import com.example.michael.hrbunnies182.game.PlayerColor;
+
+import java.util.HashMap;
 
 /**
  * Created by Jesse on 1/16/2016.
@@ -18,7 +26,14 @@ import com.example.michael.hrbunnies182.R;
  */
 public class EnterScoresActivity extends AppCompatActivity {
 
-    private GestureDetector.SimpleOnGestureListener listener = new GestureDetector.SimpleOnGestureListener() {
+    private Player curPlayer = null;
+
+    private final HashMap<PlayerColor, Player> activePlayers = new HashMap<>();
+
+    private Controller gameController;
+
+    // Set up a listener on the viewscreen for touches
+    private final GestureDetector.SimpleOnGestureListener listener = new GestureDetector.SimpleOnGestureListener() {
 
         @Override
         public boolean onDown(MotionEvent e) {
@@ -39,20 +54,68 @@ public class EnterScoresActivity extends AppCompatActivity {
             System.out.println("LISTENER: Received an event moving from (" +
                     e1.getX() + ", " + e1.getY() + ") to (" + e2.getX() + ", " + e2.getY() + ")");
 
+            Point loc1 = getAdjustedPoint(e1);
+            Point loc2 = getAdjustedPoint(e2);
+
+            if (curPlayer == null) {
+                System.out.println("Asking the controller to clear an edge!");
+                gameController.getAdapter().clearEdge(loc1, loc2);
+            } else {
+                System.out.println("Asking the controller to add an edge!");
+                gameController.getAdapter().addEdge(curPlayer, loc1, loc2);
+            }
+
             return true;
         }
     };
 
-    private GestureDetectorCompat wrapper = new GestureDetectorCompat(getBaseContext(), listener);
+    /**
+     * Adjust for scaling and the map corner
+     * @param e A MotionEvent
+     * @return The location of the event relative to the map
+     */
+    private Point getAdjustedPoint(MotionEvent e) {
+        return new Point((int) e.getX(), (int) e.getY());
+    }
+
+    private final GestureDetectorCompat wrapper = new GestureDetectorCompat(getBaseContext(), listener);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.scoring_map);
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+        // Assemble a list of all players paired with their colors
+        gameController = ((MyApplication) this.getApplication()).getGame();
+
+        for (Player player : gameController.getAdapter().getPlayers()) {
+            activePlayers.put(player.getColor(), player);
+        }
+
+
+        // Remove invalid buttons
+        for (PlayerColor color: PlayerColor.values()) {
+            if (!activePlayers.containsKey(color)) {
+                switch (color) {
+                    case BLACK:
+                        findViewById(R.id.radioBlack).setVisibility(View.GONE);
+                        break;
+                    case BLUE:
+                        findViewById(R.id.radioBlue).setVisibility(View.GONE);
+                        break;
+                    case GREEN:
+                        findViewById(R.id.radioGreen).setVisibility(View.GONE);
+                        break;
+                    case RED:
+                        findViewById(R.id.radioRed).setVisibility(View.GONE);
+                        break;
+                    case YELLOW:
+                        findViewById(R.id.radioYellow).setVisibility(View.GONE);
+                        break;
+                }
+            }
+        }
     }
 
     // Forward touches to the gestureDetector
@@ -60,6 +123,47 @@ public class EnterScoresActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event){
         this.wrapper.onTouchEvent(event);
         return super.onTouchEvent(event);
+    }
+
+    // Update the current player when the button is pressed
+    public void onRadioButtonClicked(View view) {
+
+        boolean checked = ((RadioButton) view).isChecked();
+
+//        System.out.println("ENTERSCORES: Resetting current player based on ID " + view.getId() + " and checked " + checked);
+//        System.out.println("ENTERSCORES: Colors: " + activePlayers);
+
+        switch (view.getId()) {
+            case R.id.radioBlack:
+                if (checked)
+                    curPlayer = activePlayers.get(PlayerColor.BLACK);
+                break;
+
+            case R.id.radioBlue:
+                if (checked)
+                    curPlayer = activePlayers.get(PlayerColor.BLUE);
+                break;
+
+            case R.id.radioRed:
+                if (checked)
+                    curPlayer = activePlayers.get(PlayerColor.RED);
+                break;
+
+            case R.id.radioYellow:
+                if (checked)
+                    curPlayer = activePlayers.get(PlayerColor.YELLOW);
+                break;
+
+            case R.id.radioGreen:
+                if (checked)
+                    curPlayer = activePlayers.get(PlayerColor.GREEN);
+                break;
+
+            case R.id.radioClear:
+                if (checked)
+                    curPlayer = null;
+                break;
+        }
     }
 
 }
