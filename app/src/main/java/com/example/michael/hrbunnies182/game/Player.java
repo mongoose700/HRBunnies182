@@ -46,6 +46,8 @@ public class Player implements Serializable {
         return name;
     }
 
+    public PlayerColor getColor() { return color; }
+
     public boolean hasPin() {
         return pin != null;
     }

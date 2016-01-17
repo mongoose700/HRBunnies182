@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class City implements Serializable{
     private String name;
-    private Map<City, Edge> neighbors;
+    private Map<String, Integer> neighbors;
 
     public City(String name) {
         this.name = name;
@@ -19,9 +19,9 @@ public class City implements Serializable{
 
     public void addEdge(Edge edge) {
         if (this.equals(edge.getFirstCity())) {
-            neighbors.put(edge.getSecondCity(), edge);
+            neighbors.put(edge.getSecondCity().getName(), edge.getLength());
         } else {
-            neighbors.put(edge.getFirstCity(), edge);
+            neighbors.put(edge.getFirstCity().getName(), edge.getLength());
         }
     }
 
@@ -49,8 +49,8 @@ public class City implements Serializable{
         if (this.equals(city)) {
             return 0;
         }
-        if (neighbors.containsKey(city)) {
-            return neighbors.get(city).getLength();
+        if (neighbors.containsKey(city.getName())) {
+            return neighbors.get(city.getName());
         }
         return Integer.MAX_VALUE;
     }

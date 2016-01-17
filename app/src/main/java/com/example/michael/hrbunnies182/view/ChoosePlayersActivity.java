@@ -41,7 +41,7 @@ public class ChoosePlayersActivity extends AppCompatActivity {
 
                 HashSet<PlayerColor> activeColors = new HashSet<>();
 
-                for (Integer id : colorBoxes.keySet()) {
+                for (int id : colorBoxes.keySet()) {
                     if (((CheckBox) findViewById(id)).isChecked()) {
                         activeColors.add(colorBoxes.get(id));
                     }
