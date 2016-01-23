@@ -49,7 +49,8 @@ public class ViewHandActivity extends AppCompatActivity {
 
         LinearLayout routeCardImages = (LinearLayout) findViewById(R.id.route_images);
         for (RouteCard card : currentPlayer.getCards()) {
-            FrameLayout frame = RouteCardCreator.getInstance().getRouteCard(card.getFirstCity() + " - " + card.getSecondCity(),Arrays.asList(card.getFirstCity(), card.getSecondCity()), card.getLength(), getBaseContext(), getResources(), getTheme());
+            // TODO: Switch back
+            FrameLayout frame = RouteCardCreator2.getInstance().getRouteCard(card.getFirstCity() + " - " + card.getSecondCity(),Arrays.asList(card.getFirstCity(), card.getSecondCity()), card.getLength(), getBaseContext(), getResources(), getTheme());
             routeCardImages.addView(frame);
         }
 //        LinearLayout buttons = (LinearLayout) findViewById(R.id.buttonList);

@@ -3,255 +3,399 @@
     <cities>
         <city>
             <name>Vancouver</name>
-            <coordinates>
+            <board_coordinates>
                 <x>69</x>
                 <y>67</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>42</x>
+                <y>46</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Seattle</name>
-            <coordinates>
+            <board_coordinates>
                 <x>66</x>
                 <y>100</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>38</x>
+                <y>54</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Portland</name>
-            <coordinates>
+            <board_coordinates>
                 <x>54</x>
                 <y>131</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>35</x>
+                <y>67</y>
+            </card_coordinates>
         </city>
         <city>
             <name>San Francisco</name>
-            <coordinates>
+            <board_coordinates>
                 <x>46</x>
                 <y>249</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>31</x>
+                <y>105</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Los Angeles</name>
-            <coordinates>
+            <board_coordinates>
                 <x>91</x>
                 <y>313</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>48</x>
+                <y>128</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Calgary</name>
-            <coordinates>
+            <board_coordinates>
                 <x>148</x>
                 <y>57</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>68</x>
+                <y>48</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Helena</name>
-            <coordinates>
+            <board_coordinates>
                 <x>209</x>
                 <y>136</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>87</x>
+                <y>72</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Salt Lake City</name>
-            <coordinates>
+            <board_coordinates>
                 <x>164</x>
                 <y>210</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>73</x>
+                <y>98</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Las Vegas</name>
-            <coordinates>
+            <board_coordinates>
                 <x>131</x>
                 <y>277</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>59</x>
+                <y>120</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Phoenix</name>
-            <coordinates>
+            <board_coordinates>
                 <x>165</x>
                 <y>317</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>67</x>
+                <y>129</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Winnipeg</name>
-            <coordinates>
+            <board_coordinates>
                 <x>284</x>
                 <y>62</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>114</x>
+                <y>53</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Denver</name>
-            <coordinates>
+            <board_coordinates>
                 <x>244</x>
                 <y>230</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>92</x>
+                <y>104</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Santa Fe</name>
-            <coordinates>
+            <board_coordinates>
                 <x>239</x>
                 <y>285</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>96</x>
+                <y>123</y>
+            </card_coordinates>
         </city>
         <city>
             <name>El Paso</name>
-            <coordinates>
+            <board_coordinates>
                 <x>237</x>
                 <y>339</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>93</x>
+                <y>143</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Duluth</name>
-            <coordinates>
+            <board_coordinates>
                 <x>352</x>
                 <y>132</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>141</x>
+                <y>77</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Omaha</name>
-            <coordinates>
+            <board_coordinates>
                 <x>331</x>
                 <y>186</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>132</x>
+                <y>94</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Kansas City</name>
-            <coordinates>
+            <board_coordinates>
                 <x>345</x>
                 <y>217</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>133</x>
+                <y>111</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Oklahoma City</name>
-            <coordinates>
+            <board_coordinates>
                 <x>333</x>
                 <y>271</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>127</x>
+                <y>125</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Dallas</name>
-            <coordinates>
+            <board_coordinates>
                 <x>348</x>
                 <y>324</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>128</x>
+                <y>142</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Houston</name>
-            <coordinates>
+            <board_coordinates>
                 <x>370</x>
                 <y>349</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>132</x>
+                <y>153</y>
+            </card_coordinates>
         </city>
         <city>
-            <name>Sault St. Marie</name>
-            <coordinates>
+            <name>Sault Ste. Marie</name>
+            <board_coordinates>
                 <x>428</x>
                 <y>91</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>173</x>
+                <y>64</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Chicago</name>
-            <coordinates>
+            <board_coordinates>
                 <x>425</x>
                 <y>171</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>163</x>
+                <y>89</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Saint Louis</name>
-            <coordinates>
+            <board_coordinates>
                 <x>401</x>
                 <y>220</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>151</x>
+                <y>108</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Little Rock</name>
-            <coordinates>
+            <board_coordinates>
                 <x>388</x>
                 <y>274</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>146</x>
+                <y>126</y>
+            </card_coordinates>
         </city>
         <city>
             <name>New Orleans</name>
-            <coordinates>
+            <board_coordinates>
                 <x>426</x>
                 <y>341</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>156</x>
+                <y>150</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Toronto</name>
-            <coordinates>
+            <board_coordinates>
                 <x>491</x>
                 <y>106</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>187</x>
+                <y>71</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Pittsburgh</name>
-            <coordinates>
+            <board_coordinates>
                 <x>505</x>
                 <y>162</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>193</x>
+                <y>91</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Nashville</name>
-            <coordinates>
+            <board_coordinates>
                 <x>454</x>
                 <y>242</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>170</x>
+                <y>119</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Atlanta</name>
-            <coordinates>
+            <board_coordinates>
                 <x>485</x>
                 <y>264</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>180</x>
+                <y>127</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Montreal</name>
-            <coordinates>
+            <board_coordinates>
                 <x>543</x>
                 <y>52</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>207</x>
+                <y>55</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Boston</name>
-            <coordinates>
+            <board_coordinates>
                 <x>588</x>
                 <y>89</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>218</x>
+                <y>72</y>
+            </card_coordinates>
         </city>
         <city>
             <name>New York</name>
-            <coordinates>
+            <board_coordinates>
                 <x>555</x>
                 <y>134</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>212</x>
+                <y>85</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Washington</name>
-            <coordinates>
+            <board_coordinates>
                 <x>563</x>
                 <y>189</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>206</x>
+                <y>103</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Raleigh</name>
-            <coordinates>
+            <board_coordinates>
                 <x>525</x>
                 <y>229</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>194</x>
+                <y>116</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Charleston</name>
-            <coordinates>
+            <board_coordinates>
                 <x>542</x>
                 <y>269</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>196</x>
+                <y>128</y>
+            </card_coordinates>
         </city>
         <city>
             <name>Miami</name>
-            <coordinates>
+            <board_coordinates>
                 <x>565</x>
                 <y>360</y>
-            </coordinates>
+            </board_coordinates>
+            <card_coordinates>
+                <x>197</x>
+                <y>160</y>
+            </card_coordinates>
         </city>
     </cities>
     <edges>
@@ -1278,7 +1422,7 @@
                     <name>Winnipeg</name>
                 </city>
                 <city>
-                    <name>Sault St. Marie</name>
+                    <name>Sault Ste. Marie</name>
                 </city>
             </cities>
             <length>6</length>
@@ -1762,7 +1906,7 @@
                     <name>Duluth</name>
                 </city>
                 <city>
-                    <name>Sault St. Marie</name>
+                    <name>Sault Ste. Marie</name>
                 </city>
             </cities>
             <length>3</length>
@@ -2185,7 +2329,7 @@
         <edge>
             <cities>
                 <city>
-                    <name>Sault St. Marie</name>
+                    <name>Sault Ste. Marie</name>
                 </city>
                 <city>
                     <name>Montreal</name>
@@ -2228,7 +2372,7 @@
         <edge>
             <cities>
                 <city>
-                    <name>Sault St. Marie</name>
+                    <name>Sault Ste. Marie</name>
                 </city>
                 <city>
                     <name>Toronto</name>

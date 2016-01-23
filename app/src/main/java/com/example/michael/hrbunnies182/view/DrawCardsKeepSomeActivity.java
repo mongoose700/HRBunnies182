@@ -59,7 +59,8 @@ public class DrawCardsKeepSomeActivity extends AppCompatActivity {
         LinearLayout scrolledLayout = (LinearLayout) findViewById(R.id.route_images_drawing);
         for (int i = 0; i < 3; i++) {
             final CheckedRouteCard card = currentDraw.getCards().get(i);
-            final FrameLayout drawnCard = RouteCardCreator.getInstance().getRouteCard(card.getCard(), this);
+            // TODO: Switch back to RouteCardCreator
+            final FrameLayout drawnCard = RouteCardCreator2.getInstance().getRouteCard(card.getCard(), this);
             drawnCard.setAlpha(0.5f);
 //                    ((TextView) layout.getChildAt(0)).setText(card.getCard().getFirstCity().getName() + " - " + card.getCard().getSecondCity().getName());
 //            ((TextView) layout.getChildAt(1)).setText(String.valueOf(card.getCard().getLength()));
@@ -81,7 +82,7 @@ public class DrawCardsKeepSomeActivity extends AppCompatActivity {
             });
         }
         for (RouteCard card : player.getCards()) {
-            scrolledLayout.addView(RouteCardCreator.getInstance().getRouteCard(card, this));
+            scrolledLayout.addView(RouteCardCreator2.getInstance().getRouteCard(card, this));
         }
 
         keep.setOnClickListener(new View.OnClickListener() {

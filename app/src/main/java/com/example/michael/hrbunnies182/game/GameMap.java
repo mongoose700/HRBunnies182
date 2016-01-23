@@ -47,7 +47,8 @@ public class GameMap implements Serializable {
     private String LENGTH = "length";
     private String WIDTH = "width";
     private String NAME = "name";
-    private String COORDINATES = "coordinates";
+    private String BOARD_COORDINATES = "board_coordinates";
+    private String CARD_COORDINATES = "card_coordinates";
     private String PATHS = "paths";
     private String PATH = "path";
     private String TRAINS = "trains";
@@ -305,7 +306,8 @@ public class GameMap implements Serializable {
 
     private City extractCity(XmlResourceParser xpp) throws XmlPullParserException, IOException {
         int eventType = xpp.getEventType();
-        Point coordinates = null;
+        Point boardCoordinates = null;
+        Point cardCoordinates = null;
         String name = null;
         while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(CITY))) {
             if (eventType == XmlPullParser.START_TAG) {
@@ -313,9 +315,13 @@ public class GameMap implements Serializable {
 //                    System.out.println("EXTRACTCITY: Starting to extract a name");
                     name = extractString(xpp);
 //                    System.out.println("EXTRACTCITY: Finished extracting " + name);
-                } else if (xpp.getName().equals(COORDINATES)) {
+                } else if (xpp.getName().equals(BOARD_COORDINATES)) {
 //                    System.out.println("EXTRACTCITY: Starting to extract coordinates");
-                    coordinates = extractCoordinates(xpp);
+                    boardCoordinates = extractCoordinates(xpp, BOARD_COORDINATES);
+//                    System.out.println("EXTRACTCITY: Finished extracting " + coordinates);
+                } else if (xpp.getName().equals(CARD_COORDINATES)) {
+//                    System.out.println("EXTRACTCITY: Starting to extract coordinates");
+                    cardCoordinates = extractCoordinates(xpp, CARD_COORDINATES);
 //                    System.out.println("EXTRACTCITY: Finished extracting " + coordinates);
                 } else {
 //                    System.out.println("EXTRACTCITY: Rejecting event with name " +
@@ -337,15 +343,15 @@ public class GameMap implements Serializable {
         if (cities.containsKey(name)) {
             return cities.get(name);
         } else {
-            return new City(name, coordinates);
+            return new City(name, boardCoordinates, cardCoordinates);
         }
     }
 
-    private Point extractCoordinates(XmlResourceParser xpp) throws XmlPullParserException, IOException {
+    private Point extractCoordinates(XmlResourceParser xpp, String coord_name) throws XmlPullParserException, IOException {
         int eventType = xpp.getEventType();
         int x = 0;
         int y = 0;
-        while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(COORDINATES))) {
+        while (!(eventType == XmlPullParser.END_TAG && xpp.getName().equals(coord_name))) {
             if (eventType == XmlPullParser.START_TAG) {
                 if (xpp.getName().equals("x")) {
                     x = extractInt(xpp);
@@ -503,13 +509,19 @@ public class GameMap implements Serializable {
         return edges;
     }
 
+    /**
+     * Finds the edge between these locations, using coordinates from the game board
+     * @param city1 The approximate location of the first city
+     * @param city2 The approximate location of the second city
+     * @return The edge between these cities, or null if no valid edge is found
+     */
     public Edge findEdge(Point city1, Point city2) {
 
         Edge bestEdge = null;
         double bestScore = Double.MAX_VALUE;
         for (Edge edge : edges) {
-            Point coords1 = edge.getFirstCity().getCoordinates();
-            Point coords2 = edge.getSecondCity().getCoordinates();
+            Point coords1 = edge.getFirstCity().getBoardCoordinates();
+            Point coords2 = edge.getSecondCity().getBoardCoordinates();
             double[] scores = new double[2];
             scores[0] = dist(city1, coords1) + dist(city2, coords2);
             scores[1] = dist(city1, coords2) + dist(city2, coords1);

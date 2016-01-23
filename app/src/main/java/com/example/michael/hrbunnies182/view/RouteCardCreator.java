@@ -69,7 +69,7 @@ public class RouteCardCreator {
         // Some existing RelativeLayout from your layout xml
         RelativeLayout rl1 = new RelativeLayout(context);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(20, 20);
-        Point coords = city.getCoordinates();
+        Point coords = city.getBoardCoordinates();
         params.leftMargin = coords.x * 27 / 40 + 20;
         params.topMargin = coords.y * 27 / 40 + 60;
         rl1.addView(icon, params);

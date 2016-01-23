@@ -13,12 +13,20 @@ import java.util.Map;
 public class City implements Serializable{
     private String name;
     private Map<String, Integer> neighbors;
-    private Point coordinates;
+    private Point boardCoordinates;
+    private Point cardCoordinates;
 
-    public City(String name, Point coordinates) {
+    /**
+     * Create a city with the coordinates for the board game or a route card.
+     * @param name The city name
+     * @param boardCoordinates The coordinates of the city on the game
+     * @param cardCoordinates The coordinates of the city on a route card
+     */
+    public City(String name, Point boardCoordinates, Point cardCoordinates) {
         this.name = name;
         neighbors = new HashMap<>();
-        this.coordinates = coordinates;
+        this.boardCoordinates = boardCoordinates;
+        this.cardCoordinates = cardCoordinates;
     }
 
     public void addEdge(Edge edge) {
@@ -59,8 +67,12 @@ public class City implements Serializable{
         return Integer.MAX_VALUE;
     }
 
-    public Point getCoordinates() {
-        return coordinates;
+    public Point getBoardCoordinates() {
+        return boardCoordinates;
+    }
+
+    public Point getCardCoordinates() {
+        return cardCoordinates;
     }
 
     public String toString() {
