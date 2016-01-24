@@ -138,7 +138,11 @@ public class EnterScoresActivity extends AppCompatActivity {
             float centerY = (float) (train.getCoordinates().y * mapHeight / 417.0);
 //            System.out.println("Drawing a rectangle at " + centerX + ", " + centerY);
 //            System.out.println("Scaling by " + mapWidth / 624.0 + " and " + mapHeight / 417.0);
-            RectF trainCar = new RectF(centerX - 10, centerY - 25, centerX + 10, centerY + 25);
+            RectF trainCar = new RectF(
+                    (float) (centerX - (3 * mapWidth / 624.0)),
+                    (float) (centerY - (9 * mapHeight / 417.0)),
+                    (float) (centerX + (3 * mapWidth / 624.0)),
+                    (float) (centerY + (9 * mapHeight / 417.0)));
             canvas.save(Canvas.MATRIX_SAVE_FLAG);
             canvas.rotate((float) train.getTheta(), centerX, centerY);
             canvas.drawRect(trainCar, paint);
@@ -175,7 +179,11 @@ public class EnterScoresActivity extends AppCompatActivity {
                 float centerY = (float) (train.getCoordinates().y * mapHeight / 417.0);
 //                System.out.println("Drawing a rectangle at " + centerX + ", " + centerY);
 //                System.out.println("Scaling by " + mapWidth / 624.0 + " and " + mapHeight / 417.0);
-                RectF trainCar = new RectF(centerX - 10, centerY - 25, centerX + 10, centerY + 25);
+                RectF trainCar = new RectF(
+                        (float) (centerX - (3 * mapWidth / 624.0)),
+                        (float) (centerY - (9 * mapHeight / 417.0)),
+                        (float) (centerX + (3 * mapWidth / 624.0)),
+                        (float) (centerY + (9 * mapHeight / 417.0)));
                 canvas.save(Canvas.MATRIX_SAVE_FLAG);
                 canvas.rotate((float) train.getTheta(), centerX, centerY);
                 canvas.drawRect(trainCar, paint);
