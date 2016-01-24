@@ -35,7 +35,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.EnterScoresActivity"
+            android:name=".view.EnterScoresActivity2"
             android:label="@string/app_name"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />

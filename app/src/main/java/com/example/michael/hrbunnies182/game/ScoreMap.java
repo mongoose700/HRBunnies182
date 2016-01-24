@@ -55,7 +55,7 @@ public class ScoreMap {
     }
 
     public void clearEdge(Edge edge) {
-        Set<Player> oldOwners = owners.get(edge);
+        Set<Player> oldOwners = new HashSet<>(owners.get(edge));
         owners.get(edge).clear();
         for (Player player : oldOwners) {
             player.incrementTrainsRemaining(edge.getLength());

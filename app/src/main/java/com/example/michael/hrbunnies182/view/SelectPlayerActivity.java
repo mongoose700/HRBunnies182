@@ -28,7 +28,7 @@ public class SelectPlayerActivity extends AppCompatActivity {
         setContentView(R.layout.select_player_gameplay);
 
         final Intent viewHandActivity = new Intent(this, com.example.michael.hrbunnies182.view.ViewHandActivity.class);
-        final Intent enterScoresActivity = new Intent(this, com.example.michael.hrbunnies182.view.EnterScoresActivity.class);
+        final Intent enterScoresActivity = new Intent(this, com.example.michael.hrbunnies182.view.EnterScoresActivity2.class);
         final Controller gameController = ((MyApplication) this.getApplication()).getGame();
 
         HashMap<Integer, PlayerColor> colorButtons = new HashMap<>();

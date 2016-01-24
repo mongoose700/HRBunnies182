@@ -10,7 +10,9 @@
         android:id="@+id/imageView"
         android:layout_gravity="top|left|center"
         android:scaleType="fitStart"
-        android:src="@drawable/ticket_to_ride"/>
+        android:src="@drawable/destination_card"/>
+
+
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -97,6 +99,13 @@
                 android:text="Trains left: 45"
                 android:layout_gravity="center"
                 android:id="@+id/scoreBlack" />
+
+            <RadioButton
+                android:id="@+id/radioClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="CLEAR" />
 
             <Button
                 android:layout_width="wrap_content"
